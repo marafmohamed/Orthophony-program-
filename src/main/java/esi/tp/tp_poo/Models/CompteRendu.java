@@ -1,4 +1,8 @@
 package esi.tp.tp_poo.Models;
 
-public class CompteRendu {
+public abstract class CompteRendu {
+
+    private Test test;
+
+
 }

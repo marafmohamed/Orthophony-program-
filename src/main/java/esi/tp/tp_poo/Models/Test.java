@@ -3,15 +3,17 @@ package esi.tp.tp_poo.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
-    private String nomTest;
-    private List<Resultat> resultats = new ArrayList<>();
+public abstract class Test {
+    protected String nomTest;
+    protected String Capacité;
+    protected Patient patient;
+    protected  CompteRendu compteRendu;
 
-    public Test(String nomTest) {
+    public Test(String nomTest, String capacité, Patient patient, CompteRendu compteRendu) {
         this.nomTest = nomTest;
+        this.Capacité = capacité;
+        this.patient = patient;
+        this.compteRendu = compteRendu;
     }
 
-    public int evaluer() {
-        return resultats.stream().mapToInt(Resultat::getScore).sum();
-    }
 }
