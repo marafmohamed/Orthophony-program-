@@ -1,27 +1,22 @@
 package esi.tp.tp_poo.Models;
 
 import  java.sql.Date;
+import java.sql.Time;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public abstract class RendezVous {
-    protected String idRendezVous;
-    protected int idOrthophoniste;
+    protected int IdOrthophoniste;
     protected Date date;
-    protected String duree;
-    public RendezVous(String idRendezVous, Date dateHeure , String duree, int idOrthophoniste) {
-        this.idRendezVous = idRendezVous;
-        this.date = dateHeure;
-        this.duree= duree;
-        this.idOrthophoniste = idOrthophoniste;
+    protected Time hour;
+    protected Duration duration;
+    public RendezVous(Date date, Time hour, Duration duration, int IdOrthophoniste) {
+        this.IdOrthophoniste = IdOrthophoniste;
+        this.date = date;
+        this.hour = hour;
+        this.duration=duration;
     }
 
-    // public void ajouterParticipant(Patient patient) {
-    //     listeParticipants.add(patient);
-    // }
-
-    // public void supprimerParticipant(Patient patient) {
-    //     listeParticipants.remove(patient);
-    // }
 }

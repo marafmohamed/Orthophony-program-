@@ -1,4 +1,11 @@
 package esi.tp.tp_poo.Enums;
 
-public class CatAnamEnfant {
+public enum CatAnamEnfant {
+    STRUCTURE_FAMILIALE,
+    DYNAMIQUE_FAMILIALE,
+    ANTECEDENTE_FAMILIALE,
+    CONDITIONS_NATALES,
+    DEVELOPPEMENT_PSYCHOMOTEUR,
+    DEVELOPPEMENT_LANGAGIER,
+    CARACTERE
 }
