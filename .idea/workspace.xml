@@ -5,30 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e37550f5-f51a-4489-9ea7-df0182ffa7c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/esi/tp/tp_poo/Controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/esi/tp/tp_poo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/esi/tp/tp_poo/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/esi/tp/tp_poo/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/hello-view.fxml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="CSS File" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;AzzouzAimen&quot;
+
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "marafmohamed"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="7b71ae8e-0e5a-4b31-ad13-bd8820bbce32" />
-        <option name="url" value="https://github.com/marafmohamed/Orthophony-program-.git" />
-      </UrlAndAccount>
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/marafmohamed/Orthophony-program-.git",
+    "accountId": "3901a518-4c3e-47d5-a2ce-3115d2b3d5d6"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+
     </option>
   </component>
   <component name="ProblemsViewState">
@@ -46,41 +66,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "settings.qodana",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="RunManager">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="esi.tp.tp_poo.HelloApplication" />
-      <module name="Tp_Poo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="esi.tp.tp_poo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.HelloApplication" />
-      </list>
-    </recent_temporary>
+
+
+    "list.type.of.created.stylesheet": "CSS",
+
+
+
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Tp Poo\src\main\resources\Views" />
+    </key>
+
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -97,9 +95,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716141236433</updated>
-      <workItem from="1716141237505" duration="3000" />
-      <workItem from="1716141819407" duration="505000" />
-      <workItem from="1716142338703" duration="840000" />
+
+      <workItem from="1716141237505" duration="2395000" />
+
     </task>
     <servers />
   </component>
@@ -117,8 +115,8 @@
       </map>
     </option>
   </component>
+
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
-</project>
