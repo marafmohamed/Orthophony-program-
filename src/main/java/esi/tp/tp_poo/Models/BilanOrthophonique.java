@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BilanOrthophonique {
-    private static int numeroBilan=0;
     private Patient patient;
+    private int IdOrthophoniste;
+    private List<EpreuveClinique> EprvsCliniques;
+    private List<Trouble> troubles;
+    private String ProjetTherap;
     private String dateRealisation;
-    private List<Test> resultatTests = new ArrayList<>();
-
-    public BilanOrthophonique(Patient patient, String dateRealisation) {
+    public BilanOrthophonique(Patient patient, String dateRealisation ,ArrayList<EpreuveClinique> EprvsCliniques , int IdOrthophoniste, ArrayList<Trouble> troubles , String ProjetTherap) {
         this.patient = patient;
         this.dateRealisation = dateRealisation;
-        numeroBilan+=1;
-    }
+        this.EprvsCliniques=EprvsCliniques;
+        this.IdOrthophoniste=IdOrthophoniste;
+        this.troubles=troubles;
+        this.ProjetTherap=ProjetTherap;
 
-    public void ajouterTest(Test test) {
-        resultatTests.add(test);
     }
 }

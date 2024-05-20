@@ -1,16 +1,18 @@
 package esi.tp.tp_poo.Models;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class Atelier extends RendezVous{
-    private String theme;
-    protected List<Patient> listeParticipants = new ArrayList<>();
-
-    public Atelier(String idRendezVous, Date dateHeure, String duree, String theme , int idOrthophoniste) {
-        super(idRendezVous, dateHeure, duree, idOrthophoniste);
-        this.theme=theme;
-
-        }
+    private String Thematique;
+    private List<Patient> Patients;
+    public Atelier(Date date, Time time, String Thematique, ArrayList<Patient> Patients , int IdOrthophoniste){
+        super(date,time, Duration.ofHours(1),IdOrthophoniste);
+        this.Thematique=Thematique;
+        this.Patients=Patients;     //will change this line to search for Patients with their NumDossiers
+    }
 }
