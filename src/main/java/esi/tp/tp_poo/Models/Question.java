@@ -1,15 +1,35 @@
 package esi.tp.tp_poo.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Question {
-    private String enonce;
-    private List<String> reponsesPossibles;
-    private String reponseCorrecte;
 
-    public Question(String enonce, List<String> reponsesPossibles, String reponseCorrecte) {
+public abstract class Question {
+    private String enonce;
+    private List<String> propositions;
+    protected int score;
+
+    public Question(String enonce, List<String> propositions, int score) {
         this.enonce = enonce;
-        this.reponsesPossibles = reponsesPossibles;
-        this.reponseCorrecte = reponseCorrecte;
+        this.propositions = propositions;
+        this.score = 0;
     }
+
+    public List<String> getPropositions() {
+        return propositions;
+    }
+
+    public String getEnonce() {
+        return enonce;
+    }
+
+    public void setPropositions(List<String> propositions) {
+        this.propositions = propositions;
+    }
+
+    public void setEnonce(String enonce) {
+        this.enonce = enonce;
+    }
+
+    public abstract void afficher();
 }
