@@ -9,11 +9,11 @@ import java.util.Timer;
 
 public class Atelier extends RendezVous{
     private String Thematique;
-    private List<Patient> Patients;
+    private List<DossierPatient> DossierPatient;
     private Duration duration=Duration.ofHours(1);
-    public Atelier(Date date, Time time, String Thematique, ArrayList<Patient> Patients , int IdOrthophoniste){
+    public Atelier(Date date, Time time, String Thematique, ArrayList<DossierPatient> DossierPatient , int IdOrthophoniste){
         super(date,time,IdOrthophoniste);
         this.Thematique=Thematique;
-        this.Patients=Patients;     //will change this line to search for Patients with their NumDossiers
+        this.DossierPatient=DossierPatient;     //will change this line to search for Patients with their NumDossiers
     }
 }
