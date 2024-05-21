@@ -5,8 +5,8 @@ import esi.tp.tp_poo.Enums.CatAnamEnfant;
 public class QuestAnamEnfant extends QuestAnam{
     private CatAnamEnfant category;
 
-    public QuestAnamEnfant(String questionText, CatAnamEnfant category) {
-        super(questionText);
+    public QuestAnamEnfant(String questionText, String answerText,CatAnamEnfant category) {
+        super(questionText,answerText);
         this.category = category;
     }
 

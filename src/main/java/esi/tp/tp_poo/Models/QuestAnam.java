@@ -2,9 +2,10 @@ package esi.tp.tp_poo.Models;
 
 public abstract class QuestAnam {
     private String questionText;
-
-    public QuestAnam(String questionText) {
+    private String answerText;
+    public QuestAnam(String questionText, String answerText) {
         this.questionText = questionText;
+        this.answerText = answerText;
     }
 
     public String getQuestionText() {

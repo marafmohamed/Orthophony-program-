@@ -11,12 +11,10 @@ public abstract class RendezVous {
     protected int IdOrthophoniste;
     protected Date date;
     protected Time hour;
-    protected Duration duration;
-    public RendezVous(Date date, Time hour, Duration duration, int IdOrthophoniste) {
+    public RendezVous(Date date, Time hour, int IdOrthophoniste) {
         this.IdOrthophoniste = IdOrthophoniste;
         this.date = date;
         this.hour = hour;
-        this.duration=duration;
     }
 
 }
