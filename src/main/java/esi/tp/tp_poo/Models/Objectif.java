@@ -1,19 +1,28 @@
 package esi.tp.tp_poo.Models;
 
-public class Objectif {
-    private String nomObjectif;
-    private String description;
-    private int niveauPriorite;
-    private Termes terme;
+import esi.tp.tp_poo.Enums.TypeTerm;
 
-    public Objectif(String nomObjectif, String description, int niveauPriorite, Termes terme) {
-        this.nomObjectif = nomObjectif;
+public class Objectif {
+    private String nom;
+    private String description;
+    private TypeTerm terme;
+    private int evolution;
+
+    public Objectif(String nomObjectif, String description, TypeTerm terme) {
+        this.nom = nomObjectif;
         this.description = description;
-        this.niveauPriorite = niveauPriorite;
         this.terme = terme;
+        this.evolution = 0;
     }
 
-    public enum Termes {
-        COURT_TERME, MOYEN_TERME, LONG_TERME
+    public void evaluer(int evolution) throws IllegalArgumentException {
+        if (evolution < 1 || evolution > 5) {
+            throw new IllegalArgumentException("Evaluation must be between 1 and 5");
+        }
+        this.evolution = evolution;
+    }
+
+    public int getEvolution() {
+        return evolution;
     }
 }

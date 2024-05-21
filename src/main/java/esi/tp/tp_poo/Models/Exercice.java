@@ -3,12 +3,14 @@ package esi.tp.tp_poo.Models;
 public class Exercice {
     private String enonce;
     private String reponse;
+    private String consigne;
     protected int score;
 
-    public Exercice(String enonce, String reponse, int score) {
+    public Exercice(String enonce, String reponse, String consigne) {
         this.enonce = enonce;
         this.reponse = reponse;
-        this.score = 0;
+        this.score = 10;
+        this.consigne = consigne;
     }
 
     public String getEnonce() {
@@ -21,6 +23,10 @@ public class Exercice {
 
     public int getScore() {
         return score;
+    }
+
+    public String getConsigne() {
+        return this.consigne;
     }
 
     public void setEnonce(String enonce) {
@@ -38,4 +44,5 @@ public class Exercice {
     public void afficher() {
         System.out.println(enonce);
     }
+
 }
