@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0"
+            prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.DossiersController">
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="537.0" prefWidth="183.0" style="-fx-background-color: #06283d;"
+              BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <ImageView fitHeight="57.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/profile_photo.png"/>
+                            </image>
+                        </ImageView>
+                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"
+                              wrappingWidth="47.11500549316406">
+                            <font>
+                                <Font name="Montserrat Regular" size="15.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                    <padding>
+                        <Insets left="20.0"/>
+                    </padding>
+                </HBox>
+                <Pane layoutX="10.0" layoutY="134.0" prefHeight="19.0" prefWidth="183.0"/>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accès Rapide">
+                    <font>
+                        <Font name="Montserrat Regular" size="15.0"/>
+                    </font>
+                </Text>
+                <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0"/>
+                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton"
+                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous"/>
+                <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers"/>
+                <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests"/>
+                <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques"/>
+                <Pane prefHeight="193.0" prefWidth="183.0"/>
+                <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0"
+                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/logout.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="Montserrat Regular" size="12.0"/>
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="10.0" top="10.0"/>
+            </padding>
+        </VBox>
+    </left>
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="943.0" spacing="15.0" styleClass="hbox"
+              stylesheets="@../Styles/Styles.css" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="64.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/logo.png"/>
+                    </image>
+                </ImageView>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dossiers des Patients">
+                    <font>
+                        <Font name="Montserrat Bold" size="19.0"/>
+                    </font>
+                </Text>
+                <Pane prefHeight="64.0" prefWidth="498.0"/>
+                <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/settingBl.png"/>
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
+            </children>
+            <padding>
+                <Insets left="50.0"/>
+            </padding>
+        </HBox>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <TableView layoutX="72.0" layoutY="79.0" prefHeight="342.0" prefWidth="597.0"
+                           stylesheets="@../Styles/Styles.css" AnchorPane.bottomAnchor="128.00000000000006"
+                           AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="90.39999999999998"
+                           AnchorPane.topAnchor="79.0"  fx:id="tableView">
+                    <columns>
+                        <TableColumn prefWidth="168.0" text="Nom" fx:id="nomColumn">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nom"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="9.6" prefWidth="165.6" text="Prenom" fx:id="prenomColumn">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="prenom"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="120.8" text="Age" fx:id="ageColumn">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="age"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="143.2" text="N Dossier" fx:id="numDossierColumn">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="numDossier"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button layoutX="72.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
+                        styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/arrow-circle-left.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

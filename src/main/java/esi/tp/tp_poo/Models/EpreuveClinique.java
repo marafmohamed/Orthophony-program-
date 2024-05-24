@@ -7,6 +7,7 @@ public class EpreuveClinique {
     private String nom;
     private List<String> observations;
     private List<Test> tests;
+
     public EpreuveClinique(String nom, ArrayList<String> observations, ArrayList<Test> tests) {
         this.nom = nom;
         this.observations = observations;

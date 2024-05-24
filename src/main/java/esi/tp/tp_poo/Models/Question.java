@@ -5,6 +5,7 @@ import java.util.List;
 
 
 public abstract class Question {
+    private int Question_id;
     private String enonce;
     private List<String> propositions;
     protected int score;
