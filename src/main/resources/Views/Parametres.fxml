@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Views.Parametres"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" spacing="20.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.HelloController">
+    <Label text="Settings" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
-</AnchorPane>
+    <Separator/>
+
+    <GridPane hgap="10" vgap="10">
+
+        <!-- Personal Information -->
+        <Label text="Personal Information" GridPane.columnSpan="2" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <Label text="Name:" GridPane.rowIndex="1"/>
+        <TextField fx:id="nameField" promptText="Enter your name" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="2"/>
+        <TextField fx:id="emailField" promptText="Enter your email" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Phone Number:" GridPane.rowIndex="3"/>
+        <TextField fx:id="phoneField" promptText="Enter your phone number" GridPane.rowIndex="3"
+                   GridPane.columnIndex="1"/>
+
+        <Separator GridPane.rowIndex="4" GridPane.columnSpan="2"/>
+
+        <!-- Preferences -->
+        <Label text="Preferences" GridPane.rowIndex="5" GridPane.columnSpan="2"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <Label text="Language:" GridPane.rowIndex="6"/>
+        <ComboBox fx:id="languageComboBox" GridPane.rowIndex="6" GridPane.columnIndex="1">
+            <items>
+
+            </items>
+        </ComboBox>
+
+        <Label text="Notifications:" GridPane.rowIndex="7"/>
+        <HBox spacing="10" GridPane.rowIndex="7" GridPane.columnIndex="1">
+            <CheckBox text="Email"/>
+            <CheckBox text="SMS"/>
+        </HBox>
+
+        <Label text="Theme:" GridPane.rowIndex="8"/>
+        <ComboBox fx:id="themeComboBox" GridPane.rowIndex="8" GridPane.columnIndex="1">
+            <items>
+
+            </items>
+        </ComboBox>
+
+        <Separator GridPane.rowIndex="9" GridPane.columnSpan="2"/>
+
+        <!-- Security -->
+        <Label text="Security" GridPane.rowIndex="10" GridPane.columnSpan="2"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <Label text="Change Password:" GridPane.rowIndex="11"/>
+        <Button text="Change Password" fx:id="changePasswordButton" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+
+        <Separator GridPane.rowIndex="12" GridPane.columnSpan="2"/>
+
+        <!-- Save and Cancel Buttons -->
+        <HBox spacing="10" GridPane.rowIndex="13" GridPane.columnSpan="2" alignment="CENTER_RIGHT">
+            <Button text="Save" fx:id="saveButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+            <Button text="Cancel" fx:id="cancelButton" style="-fx-background-color: #F44336; -fx-text-fill: white;"/>
+        </HBox>
+    </GridPane>
+</VBox>
