@@ -1,11 +1,17 @@
 package esi.tp.tp_poo;
 
+import esi.tp.tp_poo.Models.Adult;
+import esi.tp.tp_poo.Models.BilanOrthophonique;
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 public class HelloApplication extends Application {
     @Override
