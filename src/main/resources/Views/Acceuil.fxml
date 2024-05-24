@@ -32,7 +32,7 @@
                         maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
                         prefHeight="141.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css"
                         text="Nouveau rendez-vous" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
-                        GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                        GridPane.valignment="CENTER" GridPane.vgrow="NEVER" fx:id="nouveauRendezVousButton">
                     <graphic>
                         <ImageView fitHeight="85.0" fitWidth="80.0" preserveRatio="true">
                             <image>
@@ -44,7 +44,8 @@
                 <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false"
                         prefHeight="154.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css"
                         text="Accéder aux dossiers patients" textAlignment="CENTER" wrapText="true"
-                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"
+                        fx:id="dossiersPatientsButton">
                     <graphic>
                         <ImageView fitHeight="83.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -56,7 +57,7 @@
                 <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false"
                         prefHeight="154.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css" text="Statistiques"
                         textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1"
-                        GridPane.valignment="CENTER">
+                        GridPane.valignment="CENTER" fx:id="statistiquesButton">
                     <graphic>
                         <ImageView fitHeight="83.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -68,7 +69,7 @@
                 <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false"
                         prefHeight="154.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css" text="Paramètres"
                         textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                        GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        GridPane.rowIndex="1" GridPane.valignment="CENTER" fx:id="parametresButton">
                     <graphic>
                         <ImageView fitHeight="85.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -80,7 +81,8 @@
                 <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false"
                         prefHeight="154.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css"
                         text="Gérer les tests et anamnèses" textAlignment="CENTER" wrapText="true"
-                        GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"
+                        fx:id="gererTestsAnamnesesButton">
                     <graphic>
                         <ImageView fitHeight="85.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -92,7 +94,7 @@
                 <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false"
                         prefHeight="154.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css" text="Agenda"
                         textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER"
-                        GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        GridPane.rowIndex="1" GridPane.valignment="CENTER" fx:id="agendaButton">
                     <graphic>
                         <ImageView fitHeight="84.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -129,8 +131,8 @@
                         <Font name="Montserrat Regular" size="16.0"/>
                     </font>
                 </Text>
-                <Button layoutX="780.0" layoutY="55.0" mnemonicParsing="false" style="-fx-background-color: #06283d;"
-                        text="Se Deconnecter" textFill="WHITE">
+                <Button fx:id="seDeconnecterButton" layoutX="780.0" layoutY="55.0" mnemonicParsing="false"
+                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>

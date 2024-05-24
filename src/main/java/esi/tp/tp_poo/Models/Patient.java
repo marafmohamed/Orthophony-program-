@@ -75,4 +75,18 @@ public abstract class Patient {
     public int getPatient_id() {
         return Patient_id;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+
 }
