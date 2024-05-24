@@ -30,7 +30,7 @@
             <children>
                 <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" maxHeight="-Infinity"
                         maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                        prefHeight="154.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css"
+                        prefHeight="141.0" prefWidth="186.0" stylesheets="@../Styles/Styles.css"
                         text="Nouveau rendez-vous" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
                         GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                     <graphic>
@@ -108,7 +108,8 @@
         </GridPane>
     </center>
     <top>
-        <Pane fx:id="topPane" prefHeight="149.0" prefWidth="943.0" style="-fx-background-color: #06283d;" BorderPane.alignment="CENTER">
+        <Pane fx:id="topPane" prefHeight="149.0" prefWidth="943.0" style="-fx-background-color: #06283d;"
+              BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="145.0" fitWidth="131.0" layoutX="32.0" layoutY="6.0" pickOnBounds="true"
                            preserveRatio="true">
@@ -116,19 +117,20 @@
                         <Image url="@../Images/logo+nom.png"/>
                     </image>
                 </ImageView>
-                <Text fx:id="centeredText" fill="WHITE" layoutX="366.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonjour">
+                <Text fx:id="centeredText" fill="WHITE" layoutX="366.0" layoutY="85.0" strokeType="OUTSIDE"
+                      strokeWidth="0.0" text="Bonjour">
                     <font>
                         <Font name="Montserrat Bold" size="50.0"/>
                     </font>
                 </Text>
-                <Text  fill="WHITE" layoutX="392.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                <Text fill="WHITE" layoutX="392.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0"
                       text="Dr Maraf Mohamed" textAlignment="CENTER">
                     <font>
                         <Font name="Montserrat Regular" size="16.0"/>
                     </font>
                 </Text>
                 <Button layoutX="780.0" layoutY="55.0" mnemonicParsing="false" style="-fx-background-color: #06283d;"
-                        text="Se Deconnecter">
+                        text="Se Deconnecter" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
