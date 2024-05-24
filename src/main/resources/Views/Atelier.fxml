@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -83,12 +84,12 @@
                         <Image url="@../Images/logo.png" />
                     </image>
                 </ImageView>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Parametres">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prise De Rendez-Vous : Atelier">
                     <font>
                         <Font name="Montserrat Bold" size="19.0" />
                     </font>
                 </Text>
-                <Pane prefHeight="64.0" prefWidth="582.0" />
+                <Pane prefHeight="64.0" prefWidth="358.0" />
                 <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Images/settingBl.png" />
@@ -106,80 +107,89 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Pane layoutX="49.0" layoutY="62.0" prefHeight="408.0" prefWidth="642.0" styleClass="formBox" stylesheets="@../Styles/Styles.css" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="62.0">
-               <children>
-                   <GridPane alignment="CENTER" hgap="10" layoutX="13.0" prefHeight="406.0" prefWidth="588.0" vgap="10">
+                <Pane layoutX="49.0" layoutY="62.0" prefHeight="315.0" prefWidth="642.0" styleClass="formBox" stylesheets="@../Styles/Styles.css" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="62.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" layoutX="358.0" layoutY="83.0" prefHeight="26.0" prefWidth="258.0" spacing="10.0">
+                            <Label text="Heure:">
+                                <font>
+                                    <Font name="Montserrat SemiBold" size="14.0" />
+                                </font>
+                            </Label>
+                            <ComboBox fx:id="hourComboBox">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
 
-                       <!-- Personal Information -->
-                       <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Personal Information" GridPane.columnSpan="2" />
-
-                       <Label text="Name:" GridPane.rowIndex="1" />
-                       <TextField fx:id="nameField" promptText="Enter your name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                       <Label text="Email:" GridPane.rowIndex="2" />
-                       <TextField fx:id="emailField" promptText="Enter your email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                       <Label text="Phone Number:" GridPane.rowIndex="3" />
-                       <TextField fx:id="phoneField" promptText="Enter your phone number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-                       <Separator GridPane.columnSpan="2" GridPane.rowIndex="4" />
-
-                       <!-- Preferences -->
-                       <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Preferences" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-
-                       <Label text="Language:" GridPane.rowIndex="6" />
-                       <ComboBox fx:id="languageComboBox" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <items>
-
-                           </items>
-                       </ComboBox>
-
-                       <Label text="Notifications:" GridPane.rowIndex="7" />
-                       <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <CheckBox text="Email" />
-                           <CheckBox text="SMS" />
-                       </HBox>
-
-                       <Label text="Theme:" GridPane.rowIndex="8" />
-                       <ComboBox fx:id="themeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                           <items>
-
-                           </items>
-                       </ComboBox>
-
-                       <Separator GridPane.columnSpan="2" GridPane.rowIndex="9" />
-
-                       <!-- Security -->
-                       <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Security" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-
-                       <Label text="Change Password:" GridPane.rowIndex="11" />
-                       <Button fx:id="changePasswordButton" text="Change Password" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-
-                       <Separator GridPane.columnSpan="2" GridPane.rowIndex="12" />
-                     <columnConstraints>
-                        <ColumnConstraints />
-                        <ColumnConstraints />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                     </rowConstraints>
-                   </GridPane>
-               </children></Pane>
-                <HBox alignment="CENTER_LEFT" layoutX="408.0" layoutY="145.0" prefHeight="26.0" prefWidth="258.0" spacing="10.0" />
-                <Button layoutX="55.0" layoutY="482.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0" stylesheets="@../Styles/Styles.css" text="Valider" />
+                            <Label text=" Minute:">
+                                <font>
+                                    <Font name="Montserrat SemiBold" size="14.0" />
+                                </font>
+                            </Label>
+                            <ComboBox fx:id="minuteComboBox">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="00" />
+                                        <String fx:value="05" />
+                                        <String fx:value="10" />
+                                        <String fx:value="15" />
+                                        <String fx:value="20" />
+                                        <String fx:value="25" />
+                                        <String fx:value="30" />
+                                        <String fx:value="35" />
+                                        <String fx:value="40" />
+                                        <String fx:value="45" />
+                                        <String fx:value="50" />
+                                        <String fx:value="55" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                        </HBox>
+                        <Text layoutX="359.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes :">
+                            <font>
+                                <Font name="Montserrat SemiBold" size="14.0" />
+                            </font>
+                        </Text>
+                        <ScrollPane layoutX="23.0" layoutY="45.0" prefHeight="239.0" prefWidth="280.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="273.0">
+                                    <children>
+                              <CheckBox layoutX="13.0" layoutY="38.0" mnemonicParsing="false" text="Nom, num Dossier" />
+                              <CheckBox layoutX="13.0" layoutY="14.0" mnemonicParsing="false" text="Nom, num Dossier" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                  <Text layoutX="359.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thématique :">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="359.0" layoutY="139.0" prefHeight="26.0" prefWidth="257.0" promptText="them" />
+                    </children></Pane>
+                <Text layoutX="81.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient :">
+                    <font>
+                        <Font name="Montserrat SemiBold" size="14.0" />
+                    </font>
+                </Text>
+                <DatePicker layoutX="408.0" layoutY="106.0" prefHeight="26.0" prefWidth="256.0" promptText="JJ/MM/AAAA" />
+                <Text layoutX="408.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Rendez-Vous :">
+                    <font>
+                        <Font name="Montserrat SemiBold" size="14.0" />
+                    </font>
+                </Text>
+                <TextArea layoutX="407.0" layoutY="259.0" prefHeight="96.0" prefWidth="258.0" promptText="Informations supplémentaires" />
+                <Button layoutX="295.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0" stylesheets="@../Styles/Styles.css" text="Valider" />
                 <Button layoutX="49.0" layoutY="6.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0" styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
@@ -189,6 +199,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
+                <Button layoutX="57.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0" styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler" />
             </children>
         </AnchorPane>
     </center>

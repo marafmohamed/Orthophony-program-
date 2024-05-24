@@ -29,4 +29,5 @@ public class Consultation extends RendezVous {
     public void setNumDossier(int NumDossier) {
         this.NumDossier = NumDossier;
     }
+
 }
