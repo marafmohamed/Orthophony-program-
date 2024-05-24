@@ -5,29 +5,102 @@
     -fx-text-fill: #333;
 }
 
+
+
 .button
 {
     -fx-background-color :  #353ee5;
-    /*font montserrat semi bold 12px*/
     -fx-font-family: "Montserrat SemiBold";
     -fx-font-size: 12px;
     -fx-text-fill: white;
-    -fx-background-radius: 2em;
+    -fx-transition: all 0.3s ease;
+    -fx-background-radius: 1em;
     -fx-border-radius: 1em;
+
 }
 .button:hover
 {
     -fx-background-color : #4b88e8;
+
 }
 .button:pressed
 {
     -fx-background-color : #73A3EF ;
 }
 
+.sidebarButton {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:0em;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-padding: 10px 20px;
+    -fx-alignment: center;
+}
+.returnButton {
+-fx-background-color: transparent;
+    -fx-background-radius: 1em;
+    -fx-border-radius:1em;
+    -fx-font-size: 14px;
+    -fx-text-fill: #06283d !important;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-padding: 10px 20px;
+    -fx-alignment: center;
+}
+.returnButton:hover {
+    -fx-background-color: #dae0ea;
+}
+
+.secondaryButton {
+    /*transparent with a stroke*/
+    -fx-background-color: transparent;
+    -fx-background-radius: 1em;
+    -fx-border-radius:1em;
+    -fx-border-color: #353ee5;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #353ee5;
+    -fx-font-family: "Montserrat SemiBold";
+
+}
+.secondaryButton:hover {
+    -fx-text-fill: white;
+}
+
+.secondarySuppButton {
+    -fx-background-color: transparent;
+    -fx-background-radius: 1em;
+    -fx-border-radius:1em;
+    -fx-border-color: red;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+    -fx-font-family: "Montserrat SemiBold";
+}
+.secondarySuppButton:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #f57f9b;
+}
+
+.secondarySuppButton:pressed {
+    -fx-background-color: #efbac7;
+}
+.hbox {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.formBox {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size : 20;
-    -fx-background-color:   #2D75E8;
+    -fx-background-color: #353ee5;
 }
 .table-view .column-header .label{
 
@@ -91,18 +164,39 @@
     -fx-border-width: 0px;
 }
 
-/* style for HBOX, make it have shadow */
-.hbox {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+.tab-pane {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 5, 0, 0);
 }
 
-.sidebarButton {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0em;
-    -fx-border-radius:0em;
-    -fx-font-size: 14px;
+
+.tab-pane .tab-header-area .tab {
+    -fx-background-color: #4b88e8;
+    -fx-border-color: transparent;
     -fx-font-family: "Montserrat SemiBold";
-    -fx-padding: 10px 20px;
-    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: white; /* Text color in the tab */
 }
+
+.tab-pane .tab-header-area .tab-label {
+    -fx-text-fill: white; /* Ensure text in the tab is white */
+}
+
+.tab-pane .tab-header-area .tab:selected {
+    -fx-background-color: #353ee5;
+    -fx-text-fill: white; /* Text color in the selected tab */
+}
+
+.tab-pane .tab-header-area .tab:hover {
+    -fx-background-color: #73A3EF;
+}
+
+.listObj {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+

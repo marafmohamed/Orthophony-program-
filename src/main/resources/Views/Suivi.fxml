@@ -2,7 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -75,12 +83,12 @@
                         <Image url="@../Images/logo.png" />
                     </image>
                 </ImageView>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prise De Rendez-Vous">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fiche de Suivi">
                     <font>
                         <Font name="Montserrat Bold" size="19.0" />
                     </font>
                 </Text>
-                <Pane prefHeight="64.0" prefWidth="498.0" />
+                <Pane prefHeight="64.0" prefWidth="550.0" />
                 <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Images/settingBl.png" />
@@ -96,6 +104,109 @@
         </HBox>
     </top>
     <center>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane layoutX="63.0" layoutY="58.0" prefHeight="430.0" prefWidth="238.0">
+               <content>
+                  <VBox prefHeight="427.0" prefWidth="234.0" spacing="18.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des objectifs :">
+                           <font>
+                              <Font name="Montserrat SemiBold" size="14.0" />
+                           </font>
+                        </Text>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Nom de L'objectif:">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefHeight="26.0" prefWidth="220.0" promptText="Terme" />
+                              <Label layoutX="10.0" layoutY="10.0" text="evolution :">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Slider blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="20.0" layoutY="54.0" spacing="5.0">
+                           <children>
+                              <Label text="Nom de L'objectif:">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefHeight="26.0" prefWidth="220.0" promptText="Terme" />
+                              <Label layoutX="10.0" layoutY="10.0" text="évolution :">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Slider blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="20.0" layoutY="155.0" spacing="5.0">
+                           <children>
+                              <Label text="Nom de L'objectif:">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefHeight="26.0" prefWidth="220.0" promptText="Terme" />
+                              <Label layoutX="10.0" layoutY="10.0" text="évolution :">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Slider blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <AnchorPane layoutX="330.0" layoutY="58.0" prefHeight="279.0" prefWidth="385.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
+               <children>
+                  <LineChart layoutX="4.0" layoutY="38.0" prefHeight="241.0" prefWidth="346.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progression du patient">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="325.0" layoutY="360.0" prefHeight="126.0" prefWidth="390.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
+               <children>
+                  <TextArea layoutX="20.0" layoutY="38.0" prefHeight="74.0" prefWidth="350.0" promptText="Ajouter les notes ici" />
+                  <Text layoutX="30.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes et Recommandations :">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Button layoutX="68.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0" styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/arrow-circle-left.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="301.0" layoutY="497.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" stylesheets="@../Styles/Styles.css" text="Enregistrer" />
+         </children></AnchorPane>
     </center>
 </BorderPane>

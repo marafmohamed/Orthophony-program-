@@ -38,6 +38,7 @@ public class Consultation extends RendezVous {
         this.NumDossier = NumDossier;
     }
 
+
     @Override
     public void insertRendezVous() {
         ConnectDB db = ConnectDB.getInstance();
