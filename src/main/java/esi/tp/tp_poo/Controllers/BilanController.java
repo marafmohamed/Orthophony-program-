@@ -2,13 +2,17 @@ package esi.tp.tp_poo.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class BilanController {
@@ -21,12 +25,16 @@ public class BilanController {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button seDeconnecterButton;
+
     //private List<TestController> testControllers = new ArrayList<>();
 
     @FXML
     public void initialize() {
         // This method is called after the FXML file has been loaded
         loadInitialQuestions();
+        seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
        // addTest();
     }
     @FXML
@@ -70,5 +78,23 @@ public class BilanController {
         if (childrenCount > 0) {
             questionContainer.getChildren().remove(childrenCount - 1);
         }
+    }
+
+
+    @FXML
+    private void handleSeDeconnecterButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

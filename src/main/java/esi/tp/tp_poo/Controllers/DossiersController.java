@@ -2,13 +2,19 @@ package esi.tp.tp_poo.Controllers;
 
 import esi.tp.tp_poo.Models.Adult;
 import esi.tp.tp_poo.Models.Patient;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.text.ParseException;
@@ -16,6 +22,10 @@ import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 public class DossiersController implements Initializable {
+    @FXML
+    private Button RetourButton;
+    @FXML
+    private Button seDeconnecterButton;
 
     @FXML
     private TableView<Patient> tableView;
@@ -62,6 +72,9 @@ public class DossiersController implements Initializable {
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
+
+        RetourButton.setOnAction(this::handleRetourButtonAction);
+        seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
 
         // Populate TableView with data from the database
         populateTableView();
@@ -110,5 +123,41 @@ public class DossiersController implements Initializable {
         }
 
 
+    }
+
+    @FXML
+    private void handleRetourButtonAction(ActionEvent event) {
+        // Your logic to handle retour button action
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void handleSeDeconnecterButtonAction(ActionEvent event) {
+        // Your logic to handle se deconnecter button action
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

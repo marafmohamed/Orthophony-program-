@@ -12,9 +12,12 @@ import java.io.IOException;
 public class RdvSuiviController {
     @FXML
     private Button RetourButton;
+    @FXML
+    private Button seDeconnecterButton;
 
     @FXML
     public void initialize() {
+        seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RetourButton.setOnAction(this::handleRetourButtonAction);
     }
 
@@ -22,6 +25,22 @@ public class RdvSuiviController {
     private void handleRetourButtonAction(ActionEvent event) {
         // Your logic to handle retour button action
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private void handleSeDeconnecterButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(loader.load());

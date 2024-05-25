@@ -63,7 +63,7 @@
                         styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques"/>
                 <Pane prefHeight="193.0" prefWidth="183.0"/>
                 <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0"
-                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5">
+                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5" fx:id="seDeconnecterButton">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -220,7 +220,7 @@
                 </AnchorPane>
                 <Button layoutX="68.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
                         styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil"
-                        AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0">
+                        AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0" fx:id="RetourButton">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                             <image>
