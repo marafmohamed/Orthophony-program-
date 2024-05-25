@@ -9,22 +9,37 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class SuiviController {
     @FXML
+    private Button RdvSideBar;
+
+    @FXML
+    private Button DossierSideBar;
+
+    @FXML
+    private Button TestSideBar;
+
+    @FXML
+    private Button StatSideBar;
+
+    @FXML
     private Button RetourButton;
+
     @FXML
     private Button seDeconnecterButton;
 
-    @FXML
     public void initialize() {
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
+        RdvSideBar.setOnAction(this::handleRdvSideBarAction);
+        DossierSideBar.setOnAction(this::handleDossierSideBarAction);
+        TestSideBar.setOnAction(this::handleTestSideBarAction);
+        StatSideBar.setOnAction(this::handleStatSideBarAction);
     }
 
-    @FXML
-    private void handleRetourButtonAction(ActionEvent event) {
-        // Your logic to handle retour button action
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
+    private void handleStatSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Statistics.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
@@ -33,7 +48,55 @@ public class SuiviController {
             System.out.println("Couldn't load FXML file");
         }
 
-        Button button = (Button) event.getSource();
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleTestSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Epreuves.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleDossierSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossiers.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleRdvSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/TypeRdv.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -56,4 +119,23 @@ public class SuiviController {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    private void handleRetourButtonAction(ActionEvent event) {
+        // Your logic to handle retour button action
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
+
