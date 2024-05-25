@@ -90,7 +90,7 @@ public class Orthophoniste {
     }
 
     public BilanOrthophonique CreateBilan(int Patient_id) {
-        BilanOrthophonique bilan = new BilanOrthophonique(Patient_id, "10/12/2024", this.identifiant, "kkk", 0);
+        BilanOrthophonique bilan = new BilanOrthophonique(Patient_id, "10/12/2024", this.identifiant, "kkk",0);
         return bilan;
     }
 

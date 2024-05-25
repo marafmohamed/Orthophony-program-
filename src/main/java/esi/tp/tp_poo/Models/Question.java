@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Question {
+public class Question {
     protected int Question_id;
     protected String enonce;
     protected List<String> propositions;
@@ -119,4 +119,5 @@ public abstract class Question {
             throw e;
         }
     }
+
 }

@@ -12,14 +12,15 @@ public class TestExercices extends Test {
 
     private ArrayList<Exercice> SerieExercices;
     double scoreTotal;
+    final boolean exo=true;
 
 
-    public TestExercices(String nomTest, String capacité, int patient, int compteRendu, Exercice[] SerieExercices, int Bilan, int Test_id) {
+    public TestExercices(String nomTest, String capacité, int patient, int compteRendu,int Bilan, int Test_id) {
         super(nomTest, capacité, patient, compteRendu, Bilan);
         this.SerieExercices = new ArrayList<Exercice>();
         if (Test_id > 0) {
             this.Test_id = Test_id;
-
+            retrieveExercicesFromDB();
         } else {
             insertTest();
         }
@@ -60,13 +61,14 @@ public class TestExercices extends Test {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO TestQuestions (nom, Capacite, Patient, CompteRendu) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO TestQuestions (nom, Capacite, Patient, CompteRendu,exo) VALUES (?, ?, ?, ?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, this.nomTest);
             pstmt.setString(2, this.Capacité);
             pstmt.setInt(3, this.patient);
             pstmt.setInt(4, this.compteRendu);
+            pstmt.setBoolean(5,this.exo);
             pstmt.executeUpdate();
 
             // Retrieve the generated keys (in this case, just one)
@@ -80,6 +82,28 @@ public class TestExercices extends Test {
             System.out.println("TestExercice added to the database successfully. Test ID: " + this.Test_id);
         } catch (SQLException e) {
             System.out.println("Error inserting TestQuestions: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    private void retrieveExercicesFromDB() {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+
+        String sql = "SELECT Exo_id FROM Exo_Test WHERE Test_id = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, this.Test_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int exoId = rs.getInt("Exo_id");
+                    Exercice exercice = Exercice.getExerciceById(exoId);
+                    if (exercice != null) {
+                        SerieExercices.add(exercice);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving exercises: " + e.getMessage());
             e.printStackTrace();
         }
     }

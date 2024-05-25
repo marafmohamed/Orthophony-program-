@@ -168,7 +168,10 @@ public class Exercice {
                     String enonce = resultSet.getString("enonce");
                     String reponse = resultSet.getString("reponse");
                     String consigne = resultSet.getString("consigne");
-
+                    String material = resultSet.getString("Material");
+                    if(material!=null){
+                        return new ExerciceMateriel(enonce,reponse,material,consigne,Exo_id);
+                    }
                     return new Exercice(enonce, reponse, consigne, Exo_id);
                 } else {
                     throw new SQLException("Exercice with ID " + id + " not found.");

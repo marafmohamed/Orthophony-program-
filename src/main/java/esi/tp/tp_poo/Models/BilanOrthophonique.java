@@ -1,19 +1,21 @@
 package esi.tp.tp_poo.Models;
 
 import esi.tp.tp_poo.ConnectDB;
+import esi.tp.tp_poo.Enums.TypeTrouble;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BilanOrthophonique {
-    private int patient;
-    private int IdOrthophoniste;
-    private int Bilan_id;
-    private String ProjetTherap;
-    private String dateRealisation;
+    protected int patient;
+    protected int IdOrthophoniste;
+    protected int Bilan_id;
+    protected String ProjetTherap;
+    protected String dateRealisation;
+    protected List<Trouble> Troubles = new ArrayList<>();
 
-    public BilanOrthophonique(int patient, String dateRealisation, int IdOrthophoniste, String ProjetTherap, int Bilan_id) {
+    public BilanOrthophonique(int patient, String dateRealisation, int IdOrthophoniste, String ProjetTherap ,int Bilan_id) {
         this.patient = patient;
         this.dateRealisation = dateRealisation;
         this.IdOrthophoniste = IdOrthophoniste;
@@ -68,6 +70,23 @@ public class BilanOrthophonique {
         return IdOrthophoniste;
     }
 
+    public void addTrouble(String nom, TypeTrouble type) {
+        Trouble trouble = new Trouble(nom, type, this.Bilan_id, 0);
+        Troubles.add(trouble);
+    }
+
+    public List<Trouble> getTroubles() {
+        if (Troubles.isEmpty()) {
+            try {
+                return Troubles= Trouble.getTroublesByBilanId(this.Bilan_id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return Troubles;
+        }
+    }
+
     public static List<BilanOrthophonique> getBilansForOrthophonisteWithPatient(int orthophonisteId, int patient_Id) {
         List<BilanOrthophonique> bilans = new ArrayList<>();
         ConnectDB db = ConnectDB.getInstance();
@@ -86,9 +105,8 @@ public class BilanOrthophonique {
                 int bilanId = rs.getInt(1);
                 String projetTherapeutique = rs.getString("Projet_Therap");
 
-
                 // Fetch patient details from Patient table using patientId
-                BilanOrthophonique bilan = new BilanOrthophonique(patient_Id, dateRealisation, orthophonisteId, projetTherapeutique, bilanId);
+                BilanOrthophonique bilan = new BilanOrthophonique(patient_Id, dateRealisation, orthophonisteId, projetTherapeutique,bilanId);
                 bilans.add(bilan);
             }
         } catch (SQLException e) {
