@@ -33,11 +33,11 @@ public class BilanController {
     @FXML
     private VBox questionContainer;
 
-    /*@FXML
+    @FXML
     private VBox testsVBox;
 
     @FXML
-    private Button saveButton;*/
+    private Button saveButton;
 
     @FXML
     private Button seDeconnecterButton;
@@ -70,6 +70,10 @@ public class BilanController {
     private TextField diplomeField; // Assuming you have a TextField with fx:id="diplomeField"
     @FXML
     private TextField professionField; // Assuming you have a TextField with fx:id="professionField"
+    @FXML
+    private TextArea ObservationArea;
+
+
 
 
     //private List<TestController> testControllers = new ArrayList<>();

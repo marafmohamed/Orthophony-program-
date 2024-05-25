@@ -173,14 +173,11 @@
                                 <Font name="Montserrat SemiBold" size="14.0"/>
                             </font>
                         </Text>
-                        <ScrollPane layoutX="23.0" layoutY="45.0" prefHeight="239.0" prefWidth="280.0">
+                        <ScrollPane fx:id="patientScrollPane" layoutX="23.0" layoutY="45.0" prefHeight="239.0" prefWidth="280.0">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="273.0">
                                     <children>
-                                        <CheckBox layoutX="13.0" layoutY="38.0" mnemonicParsing="false"
-                                                  text="Nom, num Dossier"/>
-                                        <CheckBox layoutX="13.0" layoutY="14.0" mnemonicParsing="false"
-                                                  text="Nom, num Dossier"/>
+                                        <!-- The checkboxes will be added here dynamically -->
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -192,7 +189,7 @@
                             </font>
                         </Text>
                         <TextField layoutX="359.0" layoutY="139.0" prefHeight="26.0" prefWidth="257.0"
-                                   promptText="them"/>
+                                   promptText="them" fx:id="thematiqueTextField"/>
                     </children>
                 </Pane>
                 <Text layoutX="81.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient :">
@@ -201,7 +198,7 @@
                     </font>
                 </Text>
                 <DatePicker layoutX="408.0" layoutY="106.0" prefHeight="26.0" prefWidth="256.0"
-                            promptText="JJ/MM/AAAA"/>
+                            promptText="JJ/MM/AAAA" fx:id="rendezVousDatePicker"/>
                 <Text layoutX="408.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0"
                       text="Date de Rendez-Vous :">
                     <font>
@@ -209,9 +206,9 @@
                     </font>
                 </Text>
                 <TextArea layoutX="407.0" layoutY="259.0" prefHeight="96.0" prefWidth="258.0"
-                          promptText="Informations supplémentaires"/>
+                          promptText="Informations supplémentaires" fx:id="additionalInfoTextArea"/>
                 <Button layoutX="295.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        stylesheets="@../Styles/Styles.css" text="Valider"/>
+                        stylesheets="@../Styles/Styles.css" text="Valider" fx:id="validerButton"/>
                 <Button layoutX="49.0" layoutY="6.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
                         styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil"
                         AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0" fx:id="RetourButton">
@@ -224,7 +221,7 @@
                     </graphic>
                 </Button>
                 <Button layoutX="57.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler"/>
+                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler" fx:id="annulerButton"/>
             </children>
         </AnchorPane>
     </center>

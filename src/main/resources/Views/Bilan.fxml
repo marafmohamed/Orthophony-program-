@@ -152,7 +152,7 @@
                                                                     </HBox.margin>
                                                                 </Text>
                                                                 <TextArea prefHeight="66.0" prefWidth="534.0"
-                                                                          promptText="observation" text="obs&#10;">
+                                                                          promptText="observation" text="obs&#10;" fx:id="ObservationArea">
                                                                 </TextArea>
                                                             </children>
                                                             <padding>

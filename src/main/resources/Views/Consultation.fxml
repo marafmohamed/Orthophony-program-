@@ -179,30 +179,30 @@
                     </font>
                 </Text>
                 <TextField layoutX="81.0" layoutY="106.0" prefHeight="26.0" prefWidth="257.0"
-                           promptText="Nom de Patient"/>
+                           promptText="Nom de Patient" fx:id="patientNameField"/>
                 <Text layoutX="81.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom :">
                     <font>
                         <Font name="Montserrat SemiBold" size="14.0"/>
                     </font>
                 </Text>
                 <TextField layoutX="81.0" layoutY="175.0" prefHeight="26.0" prefWidth="257.0"
-                           promptText="Prénom de Patient"/>
+                           promptText="Prénom de Patient" fx:id="patientPrenomField"/>
                 <Text layoutX="81.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :">
                     <font>
                         <Font name="Montserrat SemiBold" size="14.0"/>
                     </font>
                 </Text>
                 <TextField layoutX="81.0" layoutY="248.0" prefHeight="26.0" prefWidth="257.0"
-                           promptText="Age de Patient"/>
+                           promptText="Age de Patient" fx:id="patientAgeField"/>
                 <Text layoutX="81.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motif :">
                     <font>
                         <Font name="Montserrat SemiBold" size="14.0"/>
                     </font>
                 </Text>
                 <TextField layoutX="81.0" layoutY="323.0" prefHeight="26.0" prefWidth="257.0"
-                           promptText="Raison de la visite"/>
+                           promptText="Raison de la visite" fx:id="patientMotifField"/>
                 <DatePicker layoutX="408.0" layoutY="106.0" prefHeight="26.0" prefWidth="256.0"
-                            promptText="JJ/MM/AAAA"/>
+                            promptText="JJ/MM/AAAA" fx:id="rendezVousDatePicker"/>
                 <Text layoutX="408.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0"
                       text="Date de Rendez-Vous :">
                     <font>
@@ -210,9 +210,9 @@
                     </font>
                 </Text>
                 <TextArea layoutX="407.0" layoutY="249.0" prefHeight="105.0" prefWidth="258.0"
-                          promptText="Informations supplémentaires"/>
+                          promptText="Informations supplémentaires" fx:id="additionalInfoTextArea"/>
                 <Button layoutX="295.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        stylesheets="@../Styles/Styles.css" text="Valider"/>
+                        stylesheets="@../Styles/Styles.css" text="Valider" fx:id="ValiderButton"/>
                 <Button layoutX="49.0" layoutY="6.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
                         styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil"
                         AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0" fx:id="RetourButton">
@@ -226,7 +226,7 @@
                     </graphic>
                 </Button>
                 <Button layoutX="57.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler"/>
+                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler" fx:id="AnnulerButton"/>
             </children>
         </AnchorPane>
     </center>

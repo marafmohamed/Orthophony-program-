@@ -41,7 +41,7 @@ public class LoginController {
         if (isLoginValid()) {
             try {
                 // Load the home page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Bilan.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
                 Scene scene = new Scene(loader.load());
 
                 // Get the current stage
