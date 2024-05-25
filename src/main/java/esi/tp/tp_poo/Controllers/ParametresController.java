@@ -1,95 +1,45 @@
 package esi.tp.tp_poo.Controllers;
 
-import esi.tp.tp_poo.HelloApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AcceuilController {
+public class ParametresController {
     @FXML
-    private Pane topPane;
+    private Button RdvSideBar;
 
     @FXML
-    private Text centeredText;
+    private Button DossierSideBar;
 
     @FXML
-    private Button nouveauRendezVousButton;
+    private Button TestSideBar;
 
     @FXML
-    private Button dossiersPatientsButton;
+    private Button StatSideBar;
 
     @FXML
-    private Button statistiquesButton;
-
-    @FXML
-    private Button parametresButton;
-
-    @FXML
-    private Button gererTestsAnamnesesButton;
-
-    @FXML
-    private Button agendaButton;
+    private Button RetourButton;
 
     @FXML
     private Button seDeconnecterButton;
 
+
     @FXML
     public void initialize() {
-        // Set the event handlers for the buttons
-        nouveauRendezVousButton.setOnAction(this::handleNouveauRendezVousButtonAction);
-        dossiersPatientsButton.setOnAction(this::handleDossiersPatientsButtonAction);
-        statistiquesButton.setOnAction(this::handleStatistiquesButtonAction);
-        parametresButton.setOnAction(this::handleParametresButtonAction);
-        gererTestsAnamnesesButton.setOnAction(this::handleGererTestsAnamnesesButtonAction);
-        agendaButton.setOnAction(this::handleAgendaButtonAction);
+        RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
+        RdvSideBar.setOnAction(this::handleRdvSideBarAction);
+        DossierSideBar.setOnAction(this::handleDossierSideBarAction);
+        TestSideBar.setOnAction(this::handleTestSideBarAction);
+        StatSideBar.setOnAction(this::handleStatSideBarAction);
     }
 
-    @FXML
-    private void handleNouveauRendezVousButtonAction(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/TypeRdv.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Couldn't load FXML file");
-        }
-
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    // Add other button handlers here
-
-    @FXML
-    private void handleDossiersPatientsButtonAction(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossiers.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Couldn't load FXML file");
-        }
-
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();    }
-
-    @FXML
-    private void handleStatistiquesButtonAction(ActionEvent event) {
+    private void handleStatSideBarAction(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Statistics.fxml"));
         Scene scene = null;
         try {
@@ -99,31 +49,13 @@ public class AcceuilController {
             System.out.println("Couldn't load FXML file");
         }
 
-        Button button = (Button) event.getSource();
+        Button button = (Button) actionEvent.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
 
-    @FXML
-    private void handleParametresButtonAction(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Parametres.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Couldn't load FXML file");
-        }
-
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    private void handleGererTestsAnamnesesButtonAction(ActionEvent event) {
+    private void handleTestSideBarAction(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Epreuves.fxml"));
         Scene scene = null;
         try {
@@ -133,20 +65,65 @@ public class AcceuilController {
             System.out.println("Couldn't load FXML file");
         }
 
-        Button button = (Button) event.getSource();
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleDossierSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossiers.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleRdvSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/TypeRdv.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    private void handleAgendaButtonAction(ActionEvent event) {
-
-    }
-
-    @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
+        // Your logic to handle se deconnecter button action
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private void handleRetourButtonAction(ActionEvent event) {
+        // Your logic to handle retour button action
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(loader.load());

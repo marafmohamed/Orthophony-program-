@@ -11,4 +11,6 @@ module esi.tp.tp_poo {
     exports esi.tp.tp_poo;
     exports esi.tp.tp_poo.Controllers;
     opens esi.tp.tp_poo.Controllers to javafx.fxml;
+    opens esi.tp.tp_poo.Models to javafx.base;
+
 }

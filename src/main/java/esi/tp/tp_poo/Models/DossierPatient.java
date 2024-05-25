@@ -61,4 +61,8 @@ public class DossierPatient {
             e.printStackTrace();
         }
     }
+
+    public int getNumDossier() {
+        return NumDossier;
+    }
 }

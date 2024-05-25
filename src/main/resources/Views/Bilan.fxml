@@ -24,144 +24,180 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.BilanController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0"
+            prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.BilanController">
     <left>
-        <VBox alignment="TOP_CENTER" prefHeight="537.0" prefWidth="183.0" style="-fx-background-color: #06283d;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="537.0" prefWidth="183.0" style="-fx-background-color: #06283d;"
+              BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <ImageView fitHeight="57.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/profile_photo.png" />
+                                <Image url="@../Images/profile_photo.png"/>
                             </image>
                         </ImageView>
-                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="47.11500549316406">
+                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"
+                              wrappingWidth="47.11500549316406">
                             <font>
-                                <Font name="Montserrat Regular" size="15.0" />
+                                <Font name="Montserrat Regular" size="15.0"/>
                             </font>
                         </Text>
                     </children>
                     <padding>
-                        <Insets left="20.0" />
+                        <Insets left="20.0"/>
                     </padding>
                 </HBox>
-                <Pane layoutX="10.0" layoutY="134.0" prefHeight="19.0" prefWidth="183.0" />
+                <Pane layoutX="10.0" layoutY="134.0" prefHeight="19.0" prefWidth="183.0"/>
                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accès Rapide">
                     <font>
-                        <Font name="Montserrat Regular" size="15.0" />
+                        <Font name="Montserrat Regular" size="15.0"/>
                     </font>
                 </Text>
-                <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0" />
-                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Rendez-Vous" />
-                <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers" />
-                <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests" />
-                <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques" />
-                <Pane prefHeight="193.0" prefWidth="183.0" />
-                <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5">
+                <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0"/>
+                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton"
+                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous" fx:id="RdvSideBar"/>
+                <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers" fx:id="DossierSideBar"/>
+                <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests" fx:id="TestSideBar"/>
+                <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques" fx:id="StatSideBar"/>
+                <Pane prefHeight="193.0" prefWidth="183.0"/>
+                <Button fx:id="seDeconnecterButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0"
+                        prefWidth="194.0" style="-fx-background-color: #06283d;" text="Se Deconnecter"
+                        textFill="#fff5f5">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/logout.png" />
+                                <Image url="@../Images/logout.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font name="Montserrat Regular" size="12.0" />
+                        <Font name="Montserrat Regular" size="12.0"/>
                     </font>
                 </Button>
             </children>
             <padding>
-                <Insets bottom="10.0" top="10.0" />
+                <Insets bottom="10.0" top="10.0"/>
             </padding>
         </VBox>
     </left>
     <opaqueInsets>
-        <Insets />
+        <Insets/>
     </opaqueInsets>
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="943.0" spacing="15.0" styleClass="hbox" stylesheets="@../Styles/Styles.css" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="943.0" spacing="15.0" styleClass="hbox"
+              stylesheets="@../Styles/Styles.css" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="64.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Images/logo.png" />
+                        <Image url="@../Images/logo.png"/>
                     </image>
                 </ImageView>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bilan Orthophonique">
                     <font>
-                        <Font name="Montserrat Bold" size="19.0" />
+                        <Font name="Montserrat Bold" size="19.0"/>
                     </font>
                 </Text>
-                <Pane prefHeight="64.0" prefWidth="498.0" />
-                <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                <Pane prefHeight="64.0" prefWidth="498.0"/>
+                <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../Images/settingBl.png" />
+                        <Image url="@../Images/settingBl.png"/>
                     </image>
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </ImageView>
             </children>
             <padding>
-                <Insets left="50.0" />
+                <Insets left="50.0"/>
             </padding>
         </HBox>
     </top>
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Pane layoutX="50.0" layoutY="63.2" prefHeight="414.0" prefWidth="623.0" styleClass="formBox" stylesheets="@../Styles/Styles.css" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="63.0" />
-                <TabPane layoutX="82.0" layoutY="63.2" prefHeight="414.0" prefWidth="623.0" stylesheets="@../Styles/Styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="63.0">
+                <Pane layoutX="50.0" layoutY="63.2" prefHeight="414.0" prefWidth="623.0" styleClass="formBox"
+                      stylesheets="@../Styles/Styles.css" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="49.0"
+                      AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="63.0"/>
+                <TabPane layoutX="82.0" layoutY="63.2" prefHeight="414.0" prefWidth="623.0"
+                         stylesheets="@../Styles/Styles.css" tabClosingPolicy="UNAVAILABLE"
+                         AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="88.0"
+                         AnchorPane.topAnchor="63.0">
                     <tabs>
-                        <Tab text="Epreuves Cliniques">
+                        <Tab fx:id="epreuvesCliniquesTab" text="Epreuves Cliniques">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <ScrollPane layoutX="2.0" prefHeight="349.0" prefWidth="618.0" AnchorPane.bottomAnchor="3.1999999999999886" AnchorPane.leftAnchor="1.6000000000000227" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
+                                        <ScrollPane layoutX="2.0" prefHeight="349.0" prefWidth="618.0"
+                                                    AnchorPane.bottomAnchor="3.1999999999999886"
+                                                    AnchorPane.leftAnchor="1.6000000000000227"
+                                                    AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                                             <content>
                                                 <VBox prefHeight="342.0" prefWidth="615.0" spacing="20.0">
                                                     <children>
                                                         <HBox spacing="10.0">
                                                             <children>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Observations :">
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="Observations :">
                                                                     <font>
-                                                                        <Font name="Montserrat SemiBold" size="14.0" />
+                                                                        <Font name="Montserrat SemiBold" size="14.0"/>
                                                                     </font>
                                                                     <HBox.margin>
-                                                                        <Insets left="5.0" top="5.0" />
+                                                                        <Insets left="5.0" top="5.0"/>
                                                                     </HBox.margin>
                                                                 </Text>
-                                                                <TextArea prefHeight="66.0" prefWidth="534.0" promptText="observation" text="obs&#10;">
+                                                                <TextArea prefHeight="66.0" prefWidth="534.0"
+                                                                          promptText="observation" text="obs&#10;" fx:id="ObservationArea">
                                                                 </TextArea>
                                                             </children>
                                                             <padding>
-                                                                <Insets right="5.0" top="20.0" />
+                                                                <Insets right="5.0" top="20.0"/>
                                                             </padding>
                                                         </HBox>
                                                         <VBox spacing="3.0">
                                                             <children>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tests :">
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="Tests :">
                                                                     <font>
-                                                                        <Font name="Montserrat SemiBold" size="14.0" />
+                                                                        <Font name="Montserrat SemiBold" size="14.0"/>
                                                                     </font>
                                                                 </Text>
                                                                 <Accordion>
                                                                     <panes>
-                                                                        <TitledPane prefHeight="210.0" prefWidth="606.0" text="nom Test + capacity">
+                                                                        <TitledPane prefHeight="210.0" prefWidth="606.0"
+                                                                                    text="nom Test + capacity">
                                                                             <content>
                                                                                 <VBox spacing="10">
                                                                                     <!-- Test Name -->
-                                                                                    <HBox alignment="CENTER_LEFT" spacing="10">
-                                                                                        <Label text="Test Questionnaire" />
-                                                                                        <Label text="Type QCM" />
+                                                                                    <HBox alignment="CENTER_LEFT"
+                                                                                          spacing="10">
+                                                                                        <Label text="Test Questionnaire"/>
+                                                                                        <Label text="Type QCM"/>
                                                                                     </HBox>
                                                                                     <!-- Questions -->
                                                                                     <VBox spacing="5">
-                                                                  <children>
-                                                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Question 1" />
-                                                                     <CheckBox mnemonicParsing="false" text="choix 1" />
-                                                                     <CheckBox layoutX="10.0" layoutY="32.0" mnemonicParsing="false" text="choix 1" />
-                                                                     <CheckBox layoutX="10.0" layoutY="55.0" mnemonicParsing="false" text="choix 1" />
-                                                                  </children></VBox>
+                                                                                        <children>
+                                                                                            <Text strokeType="OUTSIDE"
+                                                                                                  strokeWidth="0.0"
+                                                                                                  text="Question 1"/>
+                                                                                            <CheckBox
+                                                                                                    mnemonicParsing="false"
+                                                                                                    text="choix 1"/>
+                                                                                            <CheckBox layoutX="10.0"
+                                                                                                      layoutY="32.0"
+                                                                                                      mnemonicParsing="false"
+                                                                                                      text="choix 1"/>
+                                                                                            <CheckBox layoutX="10.0"
+                                                                                                      layoutY="55.0"
+                                                                                                      mnemonicParsing="false"
+                                                                                                      text="choix 1"/>
+                                                                                        </children>
+                                                                                    </VBox>
                                                                                     <!-- Exercises -->
                                                                                     <VBox spacing="5">
                                                                                         <!-- Add exercises dynamically using the controller -->
@@ -173,7 +209,7 @@
                                                                 </Accordion>
                                                             </children>
                                                             <VBox.margin>
-                                                                <Insets left="5.0" right="5.0" />
+                                                                <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
                                                         </VBox>
                                                     </children>
@@ -185,106 +221,135 @@
                             </content>
                         </Tab>
 
-                        <Tab text="Anamnèse">
+                        <Tab fx:id="anamneseTab" text="Anamnèse">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="622.0">
                                     <children>
-                                        <VBox layoutX="19.2" layoutY="188.0" prefHeight="178.0" prefWidth="590.0" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="13" AnchorPane.topAnchor="188.0">
+                                        <VBox layoutX="19.2" layoutY="188.0" prefHeight="178.0" prefWidth="590.0"
+                                              AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="19.0"
+                                              AnchorPane.rightAnchor="13" AnchorPane.topAnchor="188.0">
                                             <children>
-                                                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="325.0" prefWidth="591.0" AnchorPane.bottomAnchor="15.200000000000045" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="13.600000000000023" AnchorPane.topAnchor="19.0">
+                                                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="325.0"
+                                                            prefWidth="591.0"
+                                                            AnchorPane.bottomAnchor="15.200000000000045"
+                                                            AnchorPane.leftAnchor="18.0"
+                                                            AnchorPane.rightAnchor="13.600000000000023"
+                                                            AnchorPane.topAnchor="19.0">
                                                     <content>
-                                                        <VBox fx:id="questionContainer" prefWidth="589.0" spacing="10.0">
+                                                        <VBox fx:id="questionContainer" prefWidth="589.0"
+                                                              spacing="10.0">
                                                             <padding>
-                                                                <Insets bottom="10" left="10" right="10" top="10" />
+                                                                <Insets bottom="10" left="10" right="10" top="10"/>
                                                             </padding>
                                                             <!-- Initial Questions -->
                                                             <HBox alignment="CENTER" spacing="10.0">
-                                                                <Button onAction="#handleAddQuestion" text="Add Question" />
-                                                                <Button onAction="#handleRemoveLastQuestion" text="Remove Last Question" />
+                                                                <Button onAction="#handleAddQuestion"
+                                                                        text="Add Question"/>
+                                                                <Button onAction="#handleRemoveLastQuestion"
+                                                                        text="Remove Last Question"/>
                                                             </HBox>
                                                         </VBox>
                                                     </content>
                                                 </ScrollPane>
                                             </children>
                                         </VBox>
-                              <Text layoutX="32.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
-                                 <font>
-                                    <Font name="Montserrat SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <TextField layoutX="32.0" layoutY="32.0" prefHeight="26.0" prefWidth="165.0" promptText="Nom de Patient" />
-                              <Text layoutX="217.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom :">
-                                 <font>
-                                    <Font name="Montserrat SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <TextField layoutX="217.0" layoutY="32.0" prefHeight="26.0" prefWidth="165.0" promptText="Nom de Patient" />
-                              <DatePicker layoutX="395.0" layoutY="32.0" prefHeight="26.0" prefWidth="194.0" promptText="JJ/MM/AAAA" />
-                              <Text layoutX="395.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance :">
-                                 <font>
-                                    <Font name="Montserrat SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu de Naissance :">
-                                 <font>
-                                    <Font name="Montserrat SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <TextField layoutX="32.0" layoutY="84.0" prefHeight="26.0" prefWidth="165.0" promptText="lieu" />
-                              <Text layoutX="217.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :">
-                                 <font>
-                                    <Font name="Montserrat SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <TextField layoutX="217.0" layoutY="84.0" prefHeight="26.0" prefWidth="165.0" promptText="lieu" />
-                              <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="120.0" prefHeight="29.0" prefWidth="558.0" spacing="5.0">
-                                 <children>
-                                    <RadioButton mnemonicParsing="false" text="Enfant">
-                                       <font>
-                                          <Font name="Montserrat Bold" size="12.0" />
-                                       </font>
-                                    </RadioButton>
-                                    <Text layoutX="178.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau :">
-                                       <font>
-                                          <Font name="Montserrat Regular" size="12.0" />
-                                       </font>
-                                    </Text>
-                                    <TextField prefHeight="26.0" prefWidth="94.0" />
-                                    <Text layoutX="72.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro :">
-                                       <font>
-                                          <Font name="Montserrat Regular" size="12.0" />
-                                       </font>
-                                    </Text>
-                                    <TextField layoutX="116.0" layoutY="10.0" prefHeight="26.0" prefWidth="102.0" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="150.0" prefHeight="30.0" prefWidth="570.0" spacing="5.0">
-                                 <children>
-                                    <RadioButton mnemonicParsing="false" text="Adult">
-                                       <font>
-                                          <Font name="Montserrat Bold" size="12.0" />
-                                       </font>
-                                    </RadioButton>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diplome :">
-                                       <font>
-                                          <Font name="Montserrat Regular" size="12.0" />
-                                       </font>
-                                    </Text>
-                                    <TextField prefHeight="26.0" prefWidth="94.0" />
-                                    <Text layoutX="72.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profession :">
-                                       <font>
-                                          <Font name="Montserrat Regular" size="12.0" />
-                                       </font>
-                                    </Text>
-                                    <TextField layoutX="116.0" layoutY="10.0" prefHeight="26.0" prefWidth="101.0" />
-                                    <Text layoutX="211.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro :">
-                                       <font>
-                                          <Font name="Montserrat Regular" size="12.0" />
-                                       </font>
-                                    </Text>
-                                    <TextField layoutX="260.0" layoutY="12.0" prefHeight="26.0" prefWidth="101.0" />
-                                 </children>
-                              </HBox>
+                                        <Text layoutX="32.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Nom :">
+                                            <font>
+                                                <Font name="Montserrat SemiBold" size="14.0"/>
+                                            </font>
+                                        </Text>
+                                        <TextField fx:id="nameField" layoutX="32.0" layoutY="32.0" prefHeight="26.0"
+                                                   prefWidth="165.0" promptText="Nom de Patient"/>
+                                        <Text layoutX="217.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Prénom :">
+                                            <font>
+                                                <Font name="Montserrat SemiBold" size="14.0"/>
+                                            </font>
+                                        </Text>
+                                        <TextField fx:id="prenomField" layoutX="217.0" layoutY="32.0" prefHeight="26.0"
+                                                   prefWidth="165.0" promptText="Nom de Patient"/>
+                                        <DatePicker fx:id="dateNaissancePicker" layoutX="395.0" layoutY="32.0"
+                                                    prefHeight="26.0" prefWidth="194.0" promptText="JJ/MM/AAAA"/>
+                                        <Text layoutX="395.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Date de Naissance :">
+                                            <font>
+                                                <Font name="Montserrat SemiBold" size="14.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Lieu de Naissance :">
+                                            <font>
+                                                <Font name="Montserrat SemiBold" size="14.0"/>
+                                            </font>
+                                        </Text>
+                                        <TextField fx:id="lieuNaissanceField" layoutX="32.0" layoutY="84.0"
+                                                   prefHeight="26.0" prefWidth="165.0" promptText="lieu"/>
+                                        <Text layoutX="217.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Adresse :">
+                                            <font>
+                                                <Font name="Montserrat SemiBold" size="14.0"/>
+                                            </font>
+                                        </Text>
+                                        <TextField fx:id="adresseField" layoutX="217.0" layoutY="84.0" prefHeight="26.0"
+                                                   prefWidth="165.0" promptText="adre"/>
+                                        <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="120.0" prefHeight="29.0"
+                                              prefWidth="558.0" spacing="5.0">
+                                            <children>
+                                                <RadioButton mnemonicParsing="false" text="Enfant" fx:id="enfantRadioButton">
+                                                    <font>
+                                                        <Font name="Montserrat Bold" size="12.0"/>
+                                                    </font>
+                                                </RadioButton>
+                                                <Text layoutX="178.0" layoutY="29.0" strokeType="OUTSIDE"
+                                                      strokeWidth="0.0" text="Niveau :">
+                                                    <font>
+                                                        <Font name="Montserrat Regular" size="12.0"/>
+                                                    </font>
+                                                </Text>
+                                                <TextField prefHeight="26.0" prefWidth="94.0" promptText="niv" fx:id="niveauField"/>
+                                                <Text layoutX="72.0" layoutY="23.0" strokeType="OUTSIDE"
+                                                      strokeWidth="0.0" text="Numéro :">
+                                                    <font>
+                                                        <Font name="Montserrat Regular" size="12.0"/>
+                                                    </font>
+                                                </Text>
+                                                <TextField layoutX="116.0" layoutY="10.0" prefHeight="26.0"
+                                                           prefWidth="102.0" promptText="num enf" fx:id="numeroFieldEnf"/>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="150.0" prefHeight="30.0"
+                                              prefWidth="570.0" spacing="5.0">
+                                            <children>
+                                                <RadioButton mnemonicParsing="false" text="Adult" fx:id="adultRadioButton">
+                                                    <font>
+                                                        <Font name="Montserrat Bold" size="12.0"/>
+                                                    </font>
+                                                </RadioButton>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diplome :">
+                                                    <font>
+                                                        <Font name="Montserrat Regular" size="12.0"/>
+                                                    </font>
+                                                </Text>
+                                                <TextField prefHeight="26.0" prefWidth="94.0" promptText="diplom" fx:id="diplomeField"/>
+                                                <Text layoutX="72.0" layoutY="23.0" strokeType="OUTSIDE"
+                                                      strokeWidth="0.0" text="Profession :">
+                                                    <font>
+                                                        <Font name="Montserrat Regular" size="12.0"/>
+                                                    </font>
+                                                </Text>
+                                                <TextField layoutX="116.0" layoutY="10.0" prefHeight="26.0"
+                                                           prefWidth="101.0" promptText="profess" fx:id="professionField"/>
+                                                <Text layoutX="211.0" layoutY="29.0" strokeType="OUTSIDE"
+                                                      strokeWidth="0.0" text="Numéro :">
+                                                    <font>
+                                                        <Font name="Montserrat Regular" size="12.0"/>
+                                                    </font>
+                                                </Text>
+                                                <TextField layoutX="260.0" layoutY="12.0" prefHeight="26.0"
+                                                           prefWidth="101.0" promptText="num adlt" fx:id="numeroFieldAdlt"/>
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -292,16 +357,19 @@
 
                     </tabs>
                 </TabPane>
-            <Button layoutX="292.0" layoutY="489.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" stylesheets="@../Styles/Styles.css" text="Enregistrer" />
-            <Button layoutX="49.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0" styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0">
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/arrow-circle-left.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button layoutX="292.0" layoutY="489.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0"
+                        stylesheets="@../Styles/Styles.css" text="Enregistrer"/>
+                <Button layoutX="49.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
+                        styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil"
+                        AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0" fx:id="RetourButton">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/arrow-circle-left.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </AnchorPane>
     </center>

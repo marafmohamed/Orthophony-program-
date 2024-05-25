@@ -18,144 +18,163 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0"
+            prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.StatisticsController">
     <left>
-        <VBox alignment="TOP_CENTER" prefHeight="537.0" prefWidth="183.0" style="-fx-background-color: #06283d;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="537.0" prefWidth="183.0" style="-fx-background-color: #06283d;"
+              BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <ImageView fitHeight="57.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/profile_photo.png" />
+                                <Image url="@../Images/profile_photo.png"/>
                             </image>
                         </ImageView>
-                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="47.11500549316406">
+                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"
+                              wrappingWidth="47.11500549316406">
                             <font>
-                                <Font name="Montserrat Regular" size="15.0" />
+                                <Font name="Montserrat Regular" size="15.0"/>
                             </font>
                         </Text>
                     </children>
                     <padding>
-                        <Insets left="20.0" />
+                        <Insets left="20.0"/>
                     </padding>
                 </HBox>
-                <Pane layoutX="10.0" layoutY="134.0" prefHeight="19.0" prefWidth="183.0" />
+                <Pane layoutX="10.0" layoutY="134.0" prefHeight="19.0" prefWidth="183.0"/>
                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accès Rapide">
                     <font>
-                        <Font name="Montserrat Regular" size="15.0" />
+                        <Font name="Montserrat Regular" size="15.0"/>
                     </font>
                 </Text>
-                <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0" />
-                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Rendez-Vous" />
-                <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers" />
-                <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests" />
-                <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques" />
-                <Pane prefHeight="193.0" prefWidth="183.0" />
-                <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5">
+                <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0"/>
+                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton"
+                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous" fx:id="RdvSideBar"/>
+                <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers" fx:id="DossierSideBar"/>
+                <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests" fx:id="TestSideBar"/>
+                <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques" fx:id="StatSideBar"/>
+                <Pane prefHeight="193.0" prefWidth="183.0"/>
+                <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0"
+                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5" fx:id="seDeconnecterButton">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/logout.png" />
+                                <Image url="@../Images/logout.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                     <font>
-                        <Font name="Montserrat Regular" size="12.0" />
+                        <Font name="Montserrat Regular" size="12.0"/>
                     </font>
                 </Button>
             </children>
             <padding>
-                <Insets bottom="10.0" top="10.0" />
+                <Insets bottom="10.0" top="10.0"/>
             </padding>
         </VBox>
     </left>
     <opaqueInsets>
-        <Insets />
+        <Insets/>
     </opaqueInsets>
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="943.0" spacing="15.0" styleClass="hbox" stylesheets="@../Styles/Styles.css" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="943.0" spacing="15.0" styleClass="hbox"
+              stylesheets="@../Styles/Styles.css" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="64.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Images/logo.png" />
+                        <Image url="@../Images/logo.png"/>
                     </image>
                 </ImageView>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Statistiques">
                     <font>
-                        <Font name="Montserrat Bold" size="19.0" />
+                        <Font name="Montserrat Bold" size="19.0"/>
                     </font>
                 </Text>
-                <Pane prefHeight="64.0" prefWidth="565.0" />
-                <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                <Pane prefHeight="64.0" prefWidth="565.0"/>
+                <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../Images/settingBl.png" />
+                        <Image url="@../Images/settingBl.png"/>
                     </image>
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </ImageView>
             </children>
             <padding>
-                <Insets left="50.0" />
+                <Insets left="50.0"/>
             </padding>
         </HBox>
     </top>
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="44.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0" styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil">
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/arrow-circle-left.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <AnchorPane layoutX="56.0" layoutY="69.0" prefHeight="226.0" prefWidth="304.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
-               <children>
-                  <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de patients par trouble">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="14.0" />
-                     </font>
-                  </Text>
-                  <BarChart layoutX="14.0" layoutY="44.0" prefHeight="175.0" prefWidth="274.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="124.0" layoutY="311.0" prefHeight="199.0" prefWidth="471.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
-               <children>
-                  <LineChart layoutX="4.0" layoutY="38.0" prefHeight="167.0" prefWidth="446.0">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </LineChart>
-                  <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Évolution du nombre de patients par trouble">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="380.0" layoutY="69.0" prefHeight="227.0" prefWidth="309.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
-               <children>
-                  <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pourcentage de patients par trouble">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="14.0" />
-                     </font>
-                  </Text>
-                  <PieChart layoutX="20.0" layoutY="48.0" prefHeight="167.0" prefWidth="270.0" />
-               </children>
-            </AnchorPane>
-         </children></AnchorPane>
+            <children>
+                <Button layoutX="44.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
+                        styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil" fx:id="RetourButton">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Images/arrow-circle-left.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <AnchorPane layoutX="56.0" layoutY="69.0" prefHeight="226.0" prefWidth="304.0" styleClass="listObj"
+                            stylesheets="@../Styles/Styles.css">
+                    <children>
+                        <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Nombre de patients par trouble">
+                            <font>
+                                <Font name="Montserrat SemiBold" size="14.0"/>
+                            </font>
+                        </Text>
+                        <BarChart layoutX="14.0" layoutY="44.0" prefHeight="175.0" prefWidth="274.0">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT"/>
+                            </yAxis>
+                        </BarChart>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="124.0" layoutY="311.0" prefHeight="199.0" prefWidth="471.0" styleClass="listObj"
+                            stylesheets="@../Styles/Styles.css">
+                    <children>
+                        <LineChart layoutX="4.0" layoutY="38.0" prefHeight="167.0" prefWidth="446.0">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT"/>
+                            </yAxis>
+                        </LineChart>
+                        <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Évolution du nombre de patients par trouble">
+                            <font>
+                                <Font name="Montserrat SemiBold" size="14.0"/>
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="380.0" layoutY="69.0" prefHeight="227.0" prefWidth="309.0" styleClass="listObj"
+                            stylesheets="@../Styles/Styles.css">
+                    <children>
+                        <Text layoutX="27.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Pourcentage de patients par trouble">
+                            <font>
+                                <Font name="Montserrat SemiBold" size="14.0"/>
+                            </font>
+                        </Text>
+                        <PieChart layoutX="20.0" layoutY="48.0" prefHeight="167.0" prefWidth="270.0"/>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
     </center>
 </BorderPane>
