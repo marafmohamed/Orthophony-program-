@@ -75,7 +75,42 @@ public abstract class Patient {
     public int getPatient_id() {
         return Patient_id;
     }
+    public static Patient getPatientById(int id) {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
 
+        String sql = "SELECT * FROM Patient WHERE Patient_id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int numDossier = rs.getInt("NumDossier");
+                    String nom = rs.getString("nom");
+                    String prenom = rs.getString("Prenom");
+                    Date dateNaissance = rs.getDate("Date_Naissance");
+                    String adresse = rs.getString("adresse");
+                    String lieuNaissance = rs.getString("Lieu_Naissance");
+                    String etude = rs.getString("Etude");
+                    String diplome = rs.getString("diplome");
+                    String proffession = rs.getString("proffession");
+                    String numTelephone = rs.getString("Phone");
+                    int orthophonisteId = rs.getInt("Orthophoniste_id");
+
+                    if (etude != null) {
+                        // This is an enfant
+                        return new Enfant(nom, prenom, dateNaissance, adresse, lieuNaissance, etude, numTelephone, orthophonisteId);
+                    } else {
+                        // This is an adult
+                        return new Adult(nom, prenom, dateNaissance, adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching patient from the database.");
+            e.printStackTrace();
+        }
+        return null;
+    }
     public String getNom() {
         return nom;
     }
@@ -87,6 +122,5 @@ public abstract class Patient {
     public Date getDateNaissance() {
         return dateNaissance;
     }
-
 
 }
