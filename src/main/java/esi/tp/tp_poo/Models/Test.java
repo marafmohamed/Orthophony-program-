@@ -8,14 +8,12 @@ public abstract class Test {
     protected String nomTest;
     protected String Capacité;
     protected int patient;
-    protected  int compteRendu;
     protected int Bilan;
 
     public Test(String nomTest, String capacité, int patient, int compteRendu, int Bilan) {
         this.nomTest = nomTest;
         this.Capacité = capacité;
         this.patient = patient;
-        this.compteRendu = compteRendu;
         this.Bilan = Bilan;
     }
     public Patient getPatient(){

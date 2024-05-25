@@ -1,10 +1,12 @@
 package esi.tp.tp_poo.Models;
 
 public class PatientScore {
-    private int score; // Score that the patient received for this exercise
-
-    public PatientScore(int score) {
+    protected int PatientScore_id;
+    protected int score; // Score that the patient received for this exercise
+    protected int CompteRendu;
+    public PatientScore(int score, int CompteRendu) {
         this.score = score;
+        this.CompteRendu = CompteRendu;
     }
 
     public int getScore() {
