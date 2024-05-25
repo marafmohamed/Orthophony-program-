@@ -61,14 +61,13 @@ public class TestExercices extends Test {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO TestQuestions (nom, Capacite, Patient, CompteRendu,exo) VALUES (?, ?, ?, ?,?)";
+        String sql = "INSERT INTO TestQuestions (nom, Capacite, Patient,exo) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, this.nomTest);
             pstmt.setString(2, this.Capacité);
             pstmt.setInt(3, this.patient);
-            pstmt.setInt(4, this.compteRendu);
-            pstmt.setBoolean(5,this.exo);
+            pstmt.setBoolean(4,this.exo);
             pstmt.executeUpdate();
 
             // Retrieve the generated keys (in this case, just one)

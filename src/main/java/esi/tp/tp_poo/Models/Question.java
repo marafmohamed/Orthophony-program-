@@ -15,12 +15,10 @@ public class Question {
     protected String enonce;
     protected List<String> propositions;
     protected int score;
-    protected int Test_id;
     public Question(String enonce, List<String> propositions, int score, int Test_id, int Question_id) {
         this.enonce = enonce;
         this.propositions = propositions;
         this.score = 0;
-        this.Test_id = Test_id;
         if(Question_id > 0){
             this.Question_id = Question_id;
         }else {
@@ -95,13 +93,12 @@ public class Question {
         Connection connection = db.getConnection();
 
         // Assuming the table name is "Question" and it has columns for enonce, propositions, score, and reponse
-        String sql = "INSERT INTO Question (Enonce, Propositions, score,Test) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Question (Enonce, Propositions, score) VALUES (?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, this.enonce);
             pstmt.setString(2, String.join(",", this.propositions)); // Join propositions into a single string
             pstmt.setInt(3, this.score);
-            pstmt.setInt(4, this.Test_id);
             pstmt.executeUpdate();
 
             // Retrieve the generated keys (if any)
@@ -118,6 +115,70 @@ public class Question {
             System.out.println("Error inserting Question: " + e.getMessage());
             throw e;
         }
+    }
+    public static Question getQuestionById(int question_id) throws SQLException {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+        String sql = "SELECT * FROM Question WHERE Question_id = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, question_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int questionId = rs.getInt("Question_id");
+                    String enonce = rs.getString("Enonce");
+                    int score = rs.getInt("score");
+
+                    // Retrieve propositions (assuming propositions are stored in a separate table or as a delimited string)
+                    String propositions = rs.getString(3);
+                    String reponse= rs.getString(5);
+                    if (reponse ==null) {
+                       return new Question(enonce,new ArrayList<String>(), score, 0, questionId);
+                    }else if(reponse.contains("[")){
+                        List<Integer>reponsesCorrectes=convertStringToIntegerList(reponse);
+                        List<String> props = convertStringToStringList(propositions);
+                       return new QCM(enonce,props, reponsesCorrectes, 0, questionId);
+                    } else {
+                        int reponseC = Integer.parseInt(reponse);
+                        List<String> props = convertStringToStringList(propositions);
+                        return  new QCU(enonce, (ArrayList<String>) props, reponseC, 0, questionId);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+    public static List<Integer> convertStringToIntegerList(String str) {
+        // Remove the square brackets
+        str = str.substring(1, str.length() - 1);
+
+        // Split the string by commas
+        String[] items = str.split(",");
+
+        // Convert string elements to integers and collect them into a list
+        List<Integer> resultList = new ArrayList<>();
+        for (String item : items) {
+            resultList.add(Integer.parseInt(item.trim()));
+        }
+
+        return resultList;
+    }
+    public static List<String> convertStringToStringList(String str) {
+        // Remove the square brackets
+        str = str.substring(1, str.length() - 1);
+
+        // Split the string by commas while taking care of quoted strings
+        String[] items = str.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+
+        // Remove the quotes around each item and collect them into a list
+        List<String> resultList = new ArrayList<>();
+        for (String item : items) {
+            resultList.add(item.trim().replaceAll("^\"|\"$", ""));
+        }
+
+        return resultList;
     }
 
 }
