@@ -167,7 +167,7 @@
                                                                         <Font name="Montserrat SemiBold" size="14.0"/>
                                                                     </font>
                                                                 </Text>
-                                                                <Accordion>
+                                                                <Accordion fx:id="testsAccordion">
                                                                     <panes>
                                                                         <TitledPane prefHeight="210.0" prefWidth="606.0"
                                                                                     text="nom Test + capacity">
@@ -358,7 +358,7 @@
                     </tabs>
                 </TabPane>
                 <Button layoutX="292.0" layoutY="489.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0"
-                        stylesheets="@../Styles/Styles.css" text="Enregistrer"/>
+                        stylesheets="@../Styles/Styles.css" text="Enregistrer" fx:id="saveButton"/>
                 <Button layoutX="49.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
                         styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil"
                         AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0" fx:id="RetourButton">
