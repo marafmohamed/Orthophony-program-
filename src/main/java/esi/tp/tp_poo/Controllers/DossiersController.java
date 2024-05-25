@@ -1,7 +1,10 @@
 package esi.tp.tp_poo.Controllers;
 
 import esi.tp.tp_poo.Models.Adult;
+import esi.tp.tp_poo.Models.Enfant;
 import esi.tp.tp_poo.Models.Patient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +23,8 @@ import java.net.URL;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class DossiersController implements Initializable {
@@ -94,6 +100,36 @@ public class DossiersController implements Initializable {
         DossierSideBar.setOnAction(this::handleDossierSideBarAction);
         TestSideBar.setOnAction(this::handleTestSideBarAction);
         StatSideBar.setOnAction(this::handleStatSideBarAction);
+
+        // Initialize TableView columns
+        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
+
+        // Handle row click event
+        tableView.setRowFactory(tv -> {
+            TableRow<Patient> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 /*&& (!row.isEmpty())*/) {
+                    Patient rowData = row.getItem();
+                    // Your logic to handle row double click
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossier.fxml"));
+                    Scene scene = null;
+                    try {
+                        scene = new Scene(loader.load());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Couldn't load FXML file");
+                    }
+
+                    Stage stage = (Stage) tableView.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            });
+            return row;
+        });
     }
 
     private void handleStatSideBarAction(ActionEvent actionEvent) {
@@ -162,7 +198,7 @@ public class DossiersController implements Initializable {
 
 
     private void populateTableView() {
-        try (Statement statement = connection.createStatement();
+        /*try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SELECT_ALL_QUERY)) {
 
             while (resultSet.next()) {
@@ -174,14 +210,24 @@ public class DossiersController implements Initializable {
                 java.sql.Date sqlDate = new java.sql.Date(parsed.getTime());
                 String numDossier = resultSet.getString("numDossier");
 
-                // Pass a valid phone number
-                tableView.getItems().add(new Adult(nom, prenom, sqlDate, "0", "0", "0", "0", "0690045793", 0));
+                // Assuming you have a way to determine whether a patient is an adult or a child
+                boolean isAdult = true; // replace with your condition
+
+                Patient patient = null;
+                if (isAdult) {
+                   // patient = new Adult()
+                } else {
+                   // patient = new Enfant();
+                }
+
+                tableView.getItems().add(patient);
             }
 
         } catch (SQLException | ParseException e) {
             System.err.println("Failed to populate table view: " + e.getMessage());
             // Show an error dialog to the user, or handle the error in another appropriate way
-        }
+        }*/
+
     }
 
     @FXML
