@@ -19,7 +19,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BilanController {
+    @FXML
+    private Button RdvSideBar;
 
+    @FXML
+    private Button DossierSideBar;
+
+    @FXML
+    private Button TestSideBar;
+
+    @FXML
+    private Button StatSideBar;
 
     @FXML
     private TabPane tabPane; // Assuming you have a TabPane in your FXML
@@ -106,9 +116,76 @@ public class BilanController {
 
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RetourButton.setOnAction(this::handleRetourButtonAction);
-
-
+        RdvSideBar.setOnAction(this::handleRdvSideBarAction);
+        DossierSideBar.setOnAction(this::handleDossierSideBarAction);
+        TestSideBar.setOnAction(this::handleTestSideBarAction);
+        StatSideBar.setOnAction(this::handleStatSideBarAction);
     }
+
+    private void handleStatSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Statistics.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleTestSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Epreuves.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleDossierSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossiers.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleRdvSideBarAction(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/TypeRdv.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     private void handleSaveButton() {
         // Get the data from the fields

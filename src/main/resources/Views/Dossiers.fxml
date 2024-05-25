@@ -49,13 +49,13 @@
                 </Text>
                 <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0"/>
                 <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton"
-                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous"/>
+                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous" fx:id="RdvSideBar"/>
                 <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0"
-                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers"/>
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers" fx:id="DossierSideBar"/>
                 <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
-                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests"/>
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests" fx:id="TestSideBar"/>
                 <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
-                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques"/>
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques" fx:id="StatSideBar"/>
                 <Pane prefHeight="193.0" prefWidth="183.0"/>
                 <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0"
                         style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5" fx:id="seDeconnecterButton">
