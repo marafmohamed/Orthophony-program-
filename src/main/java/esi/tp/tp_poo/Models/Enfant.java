@@ -37,7 +37,7 @@ public class Enfant extends Patient {
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, this.nom);
             pstmt.setString(2, this.prenom);
-            pstmt.setDate(3, this.dateNaissance);
+            pstmt.setString(3, String.valueOf(this.dateNaissance));
             pstmt.setString(4, this.adresse);
             pstmt.setString(5, this.lieuNaissance);
             pstmt.setInt(6, this.Orthophoniste_id);

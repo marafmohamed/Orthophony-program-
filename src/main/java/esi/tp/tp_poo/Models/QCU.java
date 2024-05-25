@@ -3,7 +3,7 @@ package esi.tp.tp_poo.Models;
 import java.util.List;
 import java.util.ArrayList;
 
-public class QCU extends Question{
+public class QCU extends Question {
 
     private int reponseCorrecte;
 

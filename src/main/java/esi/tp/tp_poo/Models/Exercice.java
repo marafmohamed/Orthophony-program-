@@ -1,6 +1,7 @@
 package esi.tp.tp_poo.Models;
 
 public class Exercice {
+    private int Exo_id;
     private String enonce;
     private String reponse;
     private String consigne;

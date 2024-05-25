@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Test {
+    protected int Test_id;
     protected String nomTest;
     protected String Capacité;
     protected Patient patient;
