@@ -37,9 +37,6 @@ public class EnfantController {
     private DatePicker dateNaissanceField;
 
     @FXML
-    private TextField numeroMereField;
-
-    @FXML
     private TextField numeroPereField;
 
     @FXML
@@ -55,9 +52,8 @@ public class EnfantController {
         String niveau = NiveauField.getText();
         String lieuNaissance = lieuNaissanceField.getText();
         LocalDate dateNaissance = dateNaissanceField.getValue();
-        String numeroMere = numeroMereField.getText();
         String numeroPere = numeroPereField.getText();
-        if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || niveau.isEmpty() || lieuNaissance.isEmpty() || dateNaissance == null || numeroMere.isEmpty() || numeroPere.isEmpty()) {
+        if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || niveau.isEmpty() || lieuNaissance.isEmpty() || dateNaissance == null ||  numeroPere.isEmpty()) {
             showAlert("Please fill in all the fields");
             return;
         }
@@ -76,7 +72,6 @@ public class EnfantController {
             NiveauField.clear();
             lieuNaissanceField.clear();
             dateNaissanceField.getEditor().clear();
-            numeroMereField.clear();
             numeroPereField.clear();
 
         }
