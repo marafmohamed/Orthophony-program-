@@ -54,16 +54,16 @@
                 </Text>
                 <Pane layoutX="10.0" layoutY="252.0" prefHeight="29.0" prefWidth="183.0"/>
                 <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="183.0" styleClass="sidebarButton"
-                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous"/>
+                        stylesheets="@../Styles/Styles.css" text="Rendez-Vous" fx:id="RdvSideBar"/>
                 <Button layoutX="76.0" layoutY="76.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="238.0"
-                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers"/>
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Dossiers" fx:id="DossierSideBar"/>
                 <Button layoutX="76.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
-                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests"/>
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Tests" fx:id="TestSideBar"/>
                 <Button layoutX="10.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0"
-                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques"/>
+                        styleClass="sidebarButton" stylesheets="@../Styles/Styles.css" text="Statistiques" fx:id="StatSideBar"/>
                 <Pane prefHeight="193.0" prefWidth="183.0"/>
                 <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0"
-                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5">
+                        style="-fx-background-color: #06283d;" text="Se Deconnecter" textFill="#fff5f5" fx:id="seDeconnecterButton">
                     <graphic>
                         <ImageView fitHeight="28.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -172,12 +172,11 @@
                                 <Font name="Montserrat SemiBold" size="14.0"/>
                             </font>
                         </Text>
-                        <ScrollPane layoutX="23.0" layoutY="45.0" prefHeight="239.0" prefWidth="280.0">
+                        <ScrollPane fx:id="patientScrollPane" layoutX="23.0" layoutY="45.0" prefHeight="239.0" prefWidth="280.0">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="273.0">
                                     <children>
-                                        <RadioButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false"
-                                                     text="Nom, num Dossier"/>
+                                        <!-- The radio buttons will be added here dynamically -->
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -187,19 +186,12 @@
                                 <Font name="Montserrat SemiBold" size="14.0"/>
                             </font>
                         </Text>
-                        <ComboBox fx:id="hourComboBox1" layoutX="360.0" layoutY="145.0" prefHeight="25.0"
+                        <ComboBox fx:id="DeroulementComboBox" layoutX="360.0" layoutY="145.0" prefHeight="25.0"
                                   prefWidth="254.0">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="08"/>
-                                    <String fx:value="09"/>
-                                    <String fx:value="10"/>
-                                    <String fx:value="11"/>
-                                    <String fx:value="12"/>
-                                    <String fx:value="13"/>
-                                    <String fx:value="14"/>
-                                    <String fx:value="15"/>
-                                    <String fx:value="16"/>
+                                    <String fx:value="En ligne"/>
+                                    <String fx:value="Présentiel"/>
                                 </FXCollections>
                             </items>
                         </ComboBox>
@@ -219,9 +211,9 @@
                     </font>
                 </Text>
                 <TextArea layoutX="407.0" layoutY="259.0" prefHeight="96.0" prefWidth="258.0"
-                          promptText="Informations supplémentaires"/>
+                          promptText="Informations supplémentaires" fx:id="additionalInfoTextArea"/>
                 <Button layoutX="295.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        stylesheets="@../Styles/Styles.css" text="Valider"/>
+                        stylesheets="@../Styles/Styles.css" text="Valider" fx:id="validerButton"/>
                 <Button layoutX="49.0" layoutY="6.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"
                         styleClass="returnButton" stylesheets="@../Styles/Styles.css" text="Retourner à l'Accueil"
                         AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="6.0" fx:id="RetourButton">
@@ -234,7 +226,7 @@
                     </graphic>
                 </Button>
                 <Button layoutX="57.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler"/>
+                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Annuler" fx:id="annulerButton"/>
             </children>
         </AnchorPane>
     </center>

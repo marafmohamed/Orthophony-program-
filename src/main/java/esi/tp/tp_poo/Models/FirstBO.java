@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class FirstBO extends BilanOrthophonique {
     Anamnese anamnese;
 
-    public FirstBO(int patient, String dateRealisation, int IdOrthophoniste, String ProjetTherap, int anamnese) throws SQLException {
-        super(patient, dateRealisation, IdOrthophoniste, ProjetTherap, 0);
+    public FirstBO(int patient, String dateRealisation, int IdOrthophoniste, String ProjetTherap, int anamnese,int Bilan_id) throws SQLException {
+        super(patient, dateRealisation, IdOrthophoniste, ProjetTherap,Bilan_id);
         setAnamnese(anamnese);
     }
 
@@ -25,7 +25,7 @@ public class FirstBO extends BilanOrthophonique {
             pstmt.setInt(1, anamnese);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                this.anamnese = new Anamnese(anamnese);
+                this.anamnese = new Anamnese(anamnese,this.Bilan_id);
             } else {
                 System.out.println("Anamnese does not exist in the database with this id" + anamnese);
             }
@@ -33,5 +33,26 @@ public class FirstBO extends BilanOrthophonique {
             throw new RuntimeException(e);
         }
 
+    }
+    public Anamnese getAnamnese() throws SQLException {
+        if (this.anamnese == null) {
+            ConnectDB db = ConnectDB.getInstance();
+            Connection connection = db.getConnection();
+            String sql = "SELECT * FROM Anamnese WHERE Bilan_id = ?";
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setInt(1, this.Bilan_id);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        int anamneseId = rs.getInt("Anamnese_id");
+                        this.anamnese = new Anamnese(anamneseId, this.Bilan_id);
+                    } else {
+                        System.out.println("Anamnese does not exist in the database for Bilan_id: " + this.Bilan_id);
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return this.anamnese;
     }
 }

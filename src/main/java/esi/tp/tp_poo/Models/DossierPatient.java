@@ -18,8 +18,11 @@ public class DossierPatient {
 
     public DossierPatient(int patient, int NumDossier) {
         this.patient = patient;
-        this.NumDossier = NumDossier;
-        insertDossier();
+        if(NumDossier>0){
+            this.NumDossier = NumDossier;
+        }else {
+            insertDossier();
+        }
     }
 
     public void ajouterRendezVous(RendezVous nouveauRendezVous) {
