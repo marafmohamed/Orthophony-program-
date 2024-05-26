@@ -56,6 +56,9 @@ public class DossiersController implements Initializable {
     @FXML
     private TableColumn<Patient, Integer> numDossierColumn;
 
+    @FXML
+    private  Button AjouterPatient;
+
     private static final String SELECT_ALL_QUERY = "SELECT d.NumDossier, p.nom, p.Prenom, p.Date_Naissance FROM DossierPatient d JOIN Patient p ON d.Patient_id = p.Patient_id";
     private Connection connection;
     private Statement statement;
@@ -89,6 +92,7 @@ public class DossiersController implements Initializable {
 
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
+        AjouterPatient.setOnAction(this::handleAjouterPatient);
 
         // Populate TableView with data from the database
         try {
@@ -281,6 +285,25 @@ public class DossiersController implements Initializable {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void handleAjouterPatient(ActionEvent event) {
+        // Your logic to handle ajouter patient button action
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Patient.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = new Stage();// (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Patient Details");
         stage.show();
     }
 }

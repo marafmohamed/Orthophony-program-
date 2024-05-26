@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #06283d;"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="esi.tp.tp_poo.Controllers.PatientController">
+    <children>
+        <Button layoutX="329.0" layoutY="299.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0"
+                style="-fx-background-color: #353ee5;" text="Enfant" textFill="WHITE" fx:id="EnfantButton">
+            <font>
+                <Font name="Montserrat Regular" size="13.0"/>
+            </font>
+        </Button>
+        <Button layoutX="100.0" layoutY="299.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="182.0"
+                style="-fx-background-color: #353ee5;" text="Adulte" textFill="WHITE" fx:id="AdultButton">
+            <font>
+                <Font name="Montserrat Regular" size="13.0"/>
+            </font>
+        </Button>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="182.0" layoutY="71.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fitHeight="283.0" fitWidth="284.0" layoutX="159.0" layoutY="14.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../Images/logo+slogan.png"/>
+            </image>
+        </ImageView>
+    </children>
+
+</AnchorPane>
