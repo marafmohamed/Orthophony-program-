@@ -35,7 +35,11 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+
         // Launch the JavaFX application
         launch(args);
+
     }
 }

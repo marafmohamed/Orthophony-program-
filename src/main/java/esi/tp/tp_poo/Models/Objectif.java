@@ -153,7 +153,7 @@ public class Objectif {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "DELETE FROM Objectif WHERE id = ?";
+        String sql = "DELETE FROM Objectif WHERE Objectif_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, this.id);
@@ -175,7 +175,7 @@ public class Objectif {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "SELECT * FROM Objectif WHERE id = ?";
+        String sql = "SELECT * FROM Objectif WHERE Objectif_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, id);
