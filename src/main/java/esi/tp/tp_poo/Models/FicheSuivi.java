@@ -111,7 +111,7 @@ public class FicheSuivi {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "UPDATE FicheSuivi SET observations = ?, objectiveDone = ? , NumDossier= ? WHERE id = ?";
+        String sql = "UPDATE FicheSuivi SET observations = ?, objectiveDone = ? , NumDossier= ? WHERE FichSuivi_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, this.observations);
@@ -136,7 +136,7 @@ public class FicheSuivi {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "DELETE FROM FicheSuivi WHERE id = ?";
+        String sql = "DELETE FROM FicheSuivi WHERE FichSuivi_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, this.id);
@@ -158,7 +158,7 @@ public class FicheSuivi {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "SELECT * FROM FicheSuivi WHERE id = ?";
+        String sql = "SELECT * FROM FicheSuivi WHERE FichSuivi_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, id);
@@ -166,11 +166,11 @@ public class FicheSuivi {
                 if (resultSet.next()) {
                     String observations = resultSet.getString("observations");
                     boolean objectiveDone = resultSet.getBoolean("objectiveDone");
-
+                    int NumDossier=resultSet.getInt("NumDossier");
                     // Assuming that Objectif objects can be fetched or created in a similar way
                     List<Objectif> objectifs = Objectif.getObjectifsByFicheSuiviId(id);
 
-                    FicheSuivi ficheSuivi = new FicheSuivi(objectifs, observations);
+                    FicheSuivi ficheSuivi = new FicheSuivi(objectifs,observations,NumDossier,id);
                     ficheSuivi.setObjectiveDone(objectiveDone);
                     ficheSuivi.id = id;
 
@@ -199,14 +199,14 @@ public class FicheSuivi {
              ResultSet resultSet = pstmt.executeQuery()) {
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt(1);
                 String observations = resultSet.getString("observations");
                 boolean objectiveDone = resultSet.getBoolean("objectiveDone");
-
+                int NumDossier=resultSet.getInt("NumDossier");
                 // Assuming that Objectif objects can be fetched or created in a similar way
                 List<Objectif> objectifs = Objectif.getObjectifsByFicheSuiviId(id);
 
-                FicheSuivi ficheSuivi = new FicheSuivi(objectifs, observations);
+                FicheSuivi ficheSuivi = new FicheSuivi(objectifs,observations,NumDossier,id);
                 ficheSuivi.setObjectiveDone(objectiveDone);
                 ficheSuivi.id = id;
 
