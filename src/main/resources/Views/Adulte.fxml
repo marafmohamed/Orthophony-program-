@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0"
+      prefWidth="508.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="esi.tp.tp_poo.Controllers.AdultController">
+    <children>
+        <VBox layoutX="50.0" layoutY="20.0" spacing="10.0">
+            <Label text="Nom"/>
+            <TextField fx:id="nomField" promptText="Nom"/>
+            <Label text="Prenom"/>
+            <TextField fx:id="prenomField" promptText="Prenom"/>
+            <Label text="Adresse"/>
+            <TextField fx:id="adresseField" promptText="Adresse"/>
+            <Label text="Diplome"/>
+            <TextField fx:id="diplomeField" promptText="Diplome"/>
+        </VBox>
+        <Label layoutX="293.0" layoutY="84.0" text="Lieu de Naissance"/>
+        <TextField fx:id="lieuNaissanceField" layoutX="291.0" layoutY="111.0" prefHeight="27.0" prefWidth="152.0"
+                   promptText="Lieu de Naissance"/>
+        <Label layoutX="293.0" layoutY="151.0" text="Date de Naissance"/>
+        <DatePicker fx:id="dateNaissanceField" layoutX="291.0" layoutY="176.0" prefHeight="27.0" prefWidth="152.0"
+                    promptText="date de naissance"/>
+        <Label layoutX="293.0" layoutY="20.0" text="Numero"/>
+        <TextField fx:id="numeroField" layoutX="291.0" layoutY="49.0" prefHeight="27.0" prefWidth="152.0"
+                   promptText="Numero"/>
+        <Label layoutX="294.0" layoutY="216.0" text="Profession"/>
+        <TextField fx:id="professionField" layoutX="291.0" layoutY="247.0" prefHeight="27.0" prefWidth="152.0"
+                   promptText="Profession"/>
+        <Button layoutX="163.0" layoutY="304.0" mnemonicParsing="false"  prefHeight="38.0"
+                prefWidth="182.0" style="-fx-background-color: #353ee5;" text="Submit" textFill="WHITE" fx:id="SubmitButton">
+            <font>
+                <Font name="Montserrat Regular" size="13.0"/>
+            </font>
+        </Button>
+    </children>
+</Pane>

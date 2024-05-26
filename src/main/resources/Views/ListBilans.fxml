@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.DossiersController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="943.0" style="-fx-background-color: #F2F4F8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esi.tp.tp_poo.Controllers.ListBilansController">
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="537.0" prefWidth="183.0" style="-fx-background-color: #06283d;" BorderPane.alignment="CENTER">
             <children>
@@ -78,12 +78,12 @@
                         <Image url="@../Images/logo.png" />
                     </image>
                 </ImageView>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dossiers des Patients">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bilans du Patient">
                     <font>
                         <Font name="Montserrat Bold" size="19.0" />
                     </font>
                 </Text>
-                <Pane prefHeight="64.0" prefWidth="498.0" />
+                <Pane prefHeight="64.0" prefWidth="523.0" />
                 <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Images/settingBl.png" />
@@ -103,24 +103,14 @@
             <children>
                 <TableView fx:id="tableView" layoutX="72.0" layoutY="79.0" prefHeight="342.0" prefWidth="597.0" stylesheets="@../Styles/Styles.css" AnchorPane.bottomAnchor="128.00000000000006" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="90.39999999999998" AnchorPane.topAnchor="79.0">
                     <columns>
-                        <TableColumn fx:id="nomColumn" prefWidth="168.0" text="Nom">
+                        <TableColumn fx:id="dateColumn" prefWidth="282.4000244140625" text="Date Realisation">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nom" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="prenomColumn" minWidth="9.6" prefWidth="165.6" text="Prenom">
+                        <TableColumn fx:id="bilanIdColumn" minWidth="0.0" prefWidth="315.199951171875" text="Numero de Bilan">
                             <cellValueFactory>
                                 <PropertyValueFactory property="prenom" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="ageColumn" prefWidth="120.8" text="Age">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="age" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="numDossierColumn" prefWidth="143.2" text="N Dossier">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="numDossier" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
@@ -134,7 +124,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-            <Button layoutX="295.0" layoutY="450.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" stylesheets="@../Styles/Styles.css" text="Ajouter Patient" fx:id="AjouterPatient"/>
+                <Button fx:id="AjouterBilan" layoutX="295.0" layoutY="450.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" stylesheets="@../Styles/Styles.css" text="Ajouter Bilan" />
             </children>
         </AnchorPane>
     </center>

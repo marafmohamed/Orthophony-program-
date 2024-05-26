@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0"
+      prefWidth="508.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="esi.tp.tp_poo.Controllers.EnfantController">
+    <children>
+        <VBox layoutX="50.0" layoutY="20.0" spacing="10.0">
+            <Label text="Nom"/>
+            <TextField fx:id="nomField" promptText="Nom"/>
+            <Label text="Prenom"/>
+            <TextField fx:id="prenomField" promptText="Prenom"/>
+            <Label text="Adresse"/>
+            <TextField fx:id="adresseField" promptText="Adresse"/>
+            <Label text="Niveau d'etudes"/>
+            <TextField fx:id="NiveauField" promptText="Niveau"/>
+        </VBox>
+        <Label layoutX="286.0" layoutY="151.0" text="Lieu de Naissance"/>
+        <TextField fx:id="lieuNaissanceField" layoutX="284.0" layoutY="181.0" prefHeight="27.0" prefWidth="152.0"
+                   promptText="Lieu de Naissance"/>
+        <Label layoutX="286.0" layoutY="218.0" text="Date de Naissance"/>
+        <DatePicker fx:id="dateNaissanceField" layoutX="284.0" layoutY="247.0" prefHeight="27.0" prefWidth="152.0"
+                    promptText="date de naissance"/>
+        <Label layoutX="286.0" layoutY="85.0" text="Numero Mere"/>
+        <TextField fx:id="numeroMereField" layoutX="284.0" layoutY="115.0" prefHeight="27.0" prefWidth="152.0"
+                   promptText="Numero"/>
+        <Button layoutX="163.0" layoutY="304.0" mnemonicParsing="false" fx:id="SubmitButton" prefHeight="38.0"
+                prefWidth="182.0" style="-fx-background-color: #353ee5;" text="Submit" textFill="WHITE">
+            <font>
+                <Font name="Montserrat Regular" size="13.0"/>
+            </font>
+        </Button>
+        <Label layoutX="284.0" layoutY="20.0" text="Numero Pere"/>
+        <TextField fx:id="numeroPereField" layoutX="282.0" layoutY="48.0" prefHeight="27.0" prefWidth="152.0"
+                   promptText="Numero"/>
+    </children>
+</Pane>
