@@ -30,7 +30,10 @@ public class SignUpController {
     private PasswordField passwordField;
 
     @FXML
-    private PasswordField confirmPasswordField;
+    private  TextField numeroField;
+
+    @FXML
+    private  TextField adresseField;
 
     @FXML
     private Button signUpButton;
@@ -43,6 +46,10 @@ public class SignUpController {
     @FXML
     private void handleSignUpButtonAction(ActionEvent event) {
         // Validate input fields
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
 
         if (validateInput()) {
             // Your logic to handle sign-up
@@ -76,7 +83,6 @@ public class SignUpController {
         String lastName = lastNameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
 
         try{
             if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
