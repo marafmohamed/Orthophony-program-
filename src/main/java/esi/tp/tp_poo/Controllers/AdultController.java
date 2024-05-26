@@ -12,6 +12,7 @@ import esi.tp.tp_poo.Models.Patient;
 import esi.tp.tp_poo.Models.Enfant;
 
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -69,8 +70,12 @@ public class AdultController {
         if (age < 18) {
             showAlert("The patient must be a minor. Please fill in the child form.");
         } else {
-            // create a new adult patient
-            // ...
+            try {
+                Orthophoniste.getInstance().addPatientAdult(adresse,numero,diplome,profession,nom,prenom,dateNaissance,lieuNaissance);
+            } catch (Exception e) {
+                showAlert(e.getMessage());
+                throw new RuntimeException(e);
+            }
             showAlert("Patient saved!");
             // clear the form
             nomField.clear();

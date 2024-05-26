@@ -205,15 +205,12 @@ public class DossiersController implements Initializable {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        Orthophoniste orthophoniste= new Orthophoniste("mohamed","maraf","chlef","0690045768","mm_maraf@esi.dz","ABCabc123");
-        orthophoniste.addPatientAdult("Alger","0746579687","Computer science","informatique","islam","azzouz", LocalDate.now(),"Chlef");
 
-        orthophoniste.addPatientEnfant("Oran", "0712345678", "saida", "Engineering", "Ali", "Boumediene",LocalDate.now());
 //        orthophoniste.addPatientAdult("Constantine", "0798765432", "Electrical Engineering", "Engineering", "Said", "Benyahia");
 //        orthophoniste.addPatientAdult("Blida", "0776543210", "Civil Engineering", "Construction", "Amine", "Zerouali");
 //        orthophoniste.addPatientAdult("Annaba", "0754321098", "Biology", "Science", "Yasmina", "Hamidi");
 
-        List<Patient> patients=  orthophoniste.getPatientForOrthophoniste();
+        List<Patient> patients=  Orthophoniste.getInstance().getPatientForOrthophoniste();
         ObservableList<TableDossier> table = FXCollections.observableArrayList();
         for(Patient patient : patients){
             TableDossier T;

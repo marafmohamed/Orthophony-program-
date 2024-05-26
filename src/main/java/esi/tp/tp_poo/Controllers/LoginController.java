@@ -1,10 +1,12 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -81,9 +83,25 @@ public class LoginController {
 
     private boolean isLoginValid() {
         // Add your login validation logic here
-        /*String email = emailField.getText();
+        String email = emailField.getText();
         String password = passwordField.getText();
-        return email.equals("yourEmail@example.com") && password.equals("yourPassword");*/
-        return true;
+        try{
+            if (email.isEmpty() || password.isEmpty()) {
+                showAlert("Veuillez remplir tous les champs.");
+                return false;
+            }
+            Orthophoniste.connect(email, password);
+        } catch (Exception e) {
+            showAlert(e.getMessage());
+            return false;
+        }
+        return Orthophoniste.getInstance() != null;
+    }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

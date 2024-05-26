@@ -1,10 +1,12 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -41,13 +43,8 @@ public class SignUpController {
     @FXML
     private void handleSignUpButtonAction(ActionEvent event) {
         // Validate input fields
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
 
-        if (validateInput(firstName, lastName, email, password, confirmPassword)) {
+        if (validateInput()) {
             // Your logic to handle sign-up
             try {
                 // Load the home page
@@ -70,11 +67,43 @@ public class SignUpController {
         }
     }
 
-    private boolean validateInput(String firstName, String lastName, String email, String password, String confirmPassword) {
+    private boolean validateInput() {
         // Add your validation logic here
         // For example, you can check if all fields are filled, if the email is in a valid format,
         // and if the password matches the confirmed password
         //return !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && password.equals(confirmPassword);
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+
+        try{
+            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                showAlert("All fields are required.");
+                return false;
+            }
+            if (!password.equals(confirmPassword)) {
+                showAlert("Passwords do not match.");
+                return false;
+            }
+            if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+                showAlert("Invalid email format.");
+                return false;
+            }
+            Orthophoniste.getInstance(firstName,lastName,"", "0698058486",email,password);
+        }catch (Exception e){
+            e.printStackTrace();
+            showAlert(e.getMessage());
+            return false;
+        }
         return true;
+    }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
