@@ -28,10 +28,14 @@ public class SignUpController {
     private PasswordField passwordField;
 
     @FXML
-    private PasswordField confirmPasswordField;
+    private  TextField numeroField;
+
+    @FXML
+    private  TextField adresseField;
 
     @FXML
     private Button signUpButton;
+
 
     @FXML
     public void initialize() {
@@ -45,9 +49,8 @@ public class SignUpController {
         String lastName = lastNameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
 
-        if (validateInput(firstName, lastName, email, password, confirmPassword)) {
+        if (validateInput(firstName, lastName, email, password)) {
             // Your logic to handle sign-up
             try {
                 // Load the home page
@@ -70,7 +73,7 @@ public class SignUpController {
         }
     }
 
-    private boolean validateInput(String firstName, String lastName, String email, String password, String confirmPassword) {
+    private boolean validateInput(String firstName, String lastName, String email, String password) {
         // Add your validation logic here
         // For example, you can check if all fields are filled, if the email is in a valid format,
         // and if the password matches the confirmed password
