@@ -1,8 +1,7 @@
 package esi.tp.tp_poo.Controllers;
 
-import esi.tp.tp_poo.Models.Adult;
-import esi.tp.tp_poo.Models.Enfant;
-import esi.tp.tp_poo.Models.Patient;
+import esi.tp.tp_poo.ConnectDB;
+import esi.tp.tp_poo.Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,11 +20,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 public class DossiersController implements Initializable {
     @FXML
@@ -46,7 +42,7 @@ public class DossiersController implements Initializable {
     private Button seDeconnecterButton;
 
     @FXML
-    private TableView<Patient> tableView;
+    private TableView<TableDossier> tableView;
 
     @FXML
     private TableColumn<Patient, String> nomColumn;
@@ -58,7 +54,7 @@ public class DossiersController implements Initializable {
     private TableColumn<Patient, String> ageColumn;
 
     @FXML
-    private TableColumn<Patient, String> numDossierColumn;
+    private TableColumn<Patient, Integer> numDossierColumn;
 
     private static final String SELECT_ALL_QUERY = "SELECT d.NumDossier, p.nom, p.Prenom, p.Date_Naissance FROM DossierPatient d JOIN Patient p ON d.Patient_id = p.Patient_id";
     private Connection connection;
@@ -85,34 +81,38 @@ public class DossiersController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Initialize TableView columns
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-        numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
+//        // Initialize TableView columns
+//        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+//        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+//        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+//        numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
 
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
 
         // Populate TableView with data from the database
-        populateTableView();
+        try {
+            populateTableView();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         RdvSideBar.setOnAction(this::handleRdvSideBarAction);
         DossierSideBar.setOnAction(this::handleDossierSideBarAction);
         TestSideBar.setOnAction(this::handleTestSideBarAction);
         StatSideBar.setOnAction(this::handleStatSideBarAction);
 
         // Initialize TableView columns
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-        numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
+//        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+//        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+//        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+//        numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
 
         // Handle row click event
         tableView.setRowFactory(tv -> {
-            TableRow<Patient> row = new TableRow<>();
+            TableRow<TableDossier> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 /*&& (!row.isEmpty())*/) {
-                    Patient rowData = row.getItem();
+                    TableDossier rowData = row.getItem();
                     // Your logic to handle row double click
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossier.fxml"));
                     Scene scene = null;
@@ -197,44 +197,40 @@ public class DossiersController implements Initializable {
     }
 
 
-    private void populateTableView() {
-        /*try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(SELECT_ALL_QUERY)) {
+    private void populateTableView() throws SQLException {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
 
-            while (resultSet.next()) {
-                String nom = resultSet.getString("nom");
-                String prenom = resultSet.getString("prenom");
-                String Date_Naissance = resultSet.getString("Date_Naissance");
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy"); // replace with your date format
-                java.util.Date parsed = format.parse(Date_Naissance);
-                java.sql.Date sqlDate = new java.sql.Date(parsed.getTime());
-                String numDossier = resultSet.getString("numDossier");
+        Orthophoniste orthophoniste= new Orthophoniste("mohamed","maraf","chlef","0690045768","mm_maraf@esi.dz","ABCabc123");
+        orthophoniste.addPatientAdult("Alger","0746579687","Computer science","informatique","islam","azzouz", LocalDate.now(),"Chlef");
 
-                // Assuming you have a way to determine whether a patient is an adult or a child
-                boolean isAdult = true; // replace with your condition
+        orthophoniste.addPatientEnfant("Oran", "0712345678", "saida", "Engineering", "Ali", "Boumediene",LocalDate.now());
+//        orthophoniste.addPatientAdult("Constantine", "0798765432", "Electrical Engineering", "Engineering", "Said", "Benyahia");
+//        orthophoniste.addPatientAdult("Blida", "0776543210", "Civil Engineering", "Construction", "Amine", "Zerouali");
+//        orthophoniste.addPatientAdult("Annaba", "0754321098", "Biology", "Science", "Yasmina", "Hamidi");
 
-                Patient patient = null;
-                if (isAdult) {
-                   // patient = new Adult()
-                } else {
-                   // patient = new Enfant();
-                }
-
-                tableView.getItems().add(patient);
+        List<Patient> patients=  orthophoniste.getPatientForOrthophoniste();
+        ObservableList<TableDossier> table = FXCollections.observableArrayList();
+        for(Patient patient : patients){
+            TableDossier T;
+            if(patient instanceof Enfant){
+                Enfant enfant = (Enfant) patient;
+                T = new TableDossier(enfant.getNom(), enfant.getPrenom(), "Enfant",String.valueOf(patient.getNumDossier()));
+            }else{
+                    Adult adult = (Adult) patient;
+                    System.out.println(patient.getNumDossier());
+                    T= new TableDossier(patient.getNom(),patient.getPrenom(),"Adulte",String.valueOf(patient.getNumDossier()));
             }
-
-        } catch (SQLException | ParseException e) {
-            System.err.println("Failed to populate table view: " + e.getMessage());
-            // Show an error dialog to the user, or handle the error in another appropriate way
-        }*/
-
+            table.add(T);
+        }
+        tableView.setItems(table);
     }
 
     @FXML
     private void handleRowClicked(MouseEvent event) {
         if (event.getClickCount() == 2) { // Double-click
             // Get the selected Patient
-            Patient selectedPatient = tableView.getSelectionModel().getSelectedItem();
+            TableDossier selectedPatient = tableView.getSelectionModel().getSelectedItem();
             if (selectedPatient != null) {
                 // You can open a new view here or perform any action you want
             }

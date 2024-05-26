@@ -1,6 +1,7 @@
 package esi.tp.tp_poo.Models;
 
 import esi.tp.tp_poo.ConnectDB;
+import esi.tp.tp_poo.Enums.TypeTerm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,12 +16,14 @@ public class DossierPatient {
     private List<RendezVous> rendezVous = new ArrayList<>();
     private List<BilanOrthophonique> bilans = new ArrayList<>();
     private List<FicheSuivi> ficheSuivi = new ArrayList<>();
+    private int Ortho_id;
 
-    public DossierPatient(int patient, int NumDossier) {
+    public DossierPatient(int patient, int NumDossier, int OrthoId) {
         this.patient = patient;
-        if(NumDossier>0){
+        this.Ortho_id = OrthoId;
+        if (NumDossier > 0) {
             this.NumDossier = NumDossier;
-        }else {
+        } else {
             insertDossier();
         }
     }
@@ -41,10 +44,11 @@ public class DossierPatient {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO DossierPatient (Patient_id) VALUES (?)";
+        String sql = "INSERT INTO DossierPatient (Patient_id,Orthophoniste_id) VALUES (?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, this.patient);
+            pstmt.setInt(2, this.Ortho_id);
             pstmt.executeUpdate();
 
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
@@ -65,4 +69,6 @@ public class DossierPatient {
     public int getNumDossier() {
         return NumDossier;
     }
+
 }
+

@@ -15,9 +15,9 @@ public class Adult extends Patient {
     private String NumTelephone;
 
     public Adult(String nom, String prenom, Date dateNaissance, String adresse, String lieuNaissance,
-                 String diplome, String proffession, String NumTelephone, int Orthophoniste_id) throws SQLException {
-        super(-1, nom, prenom, dateNaissance, adresse, lieuNaissance, Orthophoniste_id);
-
+                 String diplome, String proffession, String NumTelephone, int Orthophoniste_id,int NumDossier, int Patient_id) throws SQLException {
+        super(nom, prenom, dateNaissance, adresse, lieuNaissance, Orthophoniste_id,NumDossier);
+        System.out.println("lll " + Patient_id);
         if (!Patient.isValidPhoneNumber(NumTelephone)) {
             throw new IllegalArgumentException("Invalid phone number: " + NumTelephone);
         }
@@ -25,9 +25,15 @@ public class Adult extends Patient {
         this.NumTelephone = NumTelephone;
         this.diplome = diplome;
         this.proffession = proffession;
+        System.out.println("kmmdmdm "+ Patient_id);
+        if(Patient_id>0){
+            System.out.println(" azzouz");
+            this.Patient_id=Patient_id;
+        }else {
+            insertPatient();
+        }
 
-        // Check if patient already exists before inserting
-        patientExists();
+
     }
 
     private void patientExists() {
@@ -83,6 +89,9 @@ public class Adult extends Patient {
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     this.Patient_id = generatedKeys.getInt(1);
+                    DossierPatient dossier= new DossierPatient(this.Patient_id,0,Orthophoniste_id);
+                    this.numDossier=dossier.getNumDossier();
+                    updatePatient();
                 } else {
                     throw new SQLException("Creating Adult failed, no ID obtained.");
                 }
@@ -105,5 +114,37 @@ public class Adult extends Patient {
 
     public String getNumTelephone() {
         return NumTelephone;
+    }
+    public void updatePatient() {
+        // Update patient details in the database
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+
+        String sql = "UPDATE Patient SET nom = ?, Prenom = ?, Date_Naissance = ?, adresse = ?, Lieu_Naissance = ?, diplome = ?, proffession = ?, Phone = ?, Orthophoniste_id = ? , NumDossier= ? WHERE Patient_id = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, this.nom);
+            pstmt.setString(2, this.prenom);
+            pstmt.setString(3, String.valueOf(this.dateNaissance));
+            pstmt.setString(4, this.adresse);
+            pstmt.setString(5, this.lieuNaissance);
+            pstmt.setString(6, this.diplome);
+            pstmt.setString(7, this.proffession);
+            pstmt.setString(8, this.NumTelephone);
+            pstmt.setInt(9, this.Orthophoniste_id);
+            pstmt.setInt(10,this.numDossier);
+            pstmt.setInt(11, this.Patient_id);
+
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Adult patient updated successfully.");
+            } else {
+                System.out.println("No patient found with the provided Patient_id.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating patient: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

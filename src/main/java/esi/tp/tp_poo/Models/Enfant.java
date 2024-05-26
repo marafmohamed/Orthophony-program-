@@ -13,8 +13,8 @@ public class Enfant extends Patient {
     private String NumTelephoneParent;
 
     public Enfant(String nom, String prenom, Date dateNaissance, String adresse,
-                  String lieuNaissance, String NumTelephoneParent, String etude, int Orthophoniste_id) throws SQLException {
-        super(-1, nom, prenom, dateNaissance, adresse, lieuNaissance, Orthophoniste_id);
+                  String lieuNaissance, String NumTelephoneParent, String etude, int Orthophoniste_id, int NumDossier,int Patient_id) throws SQLException {
+        super(nom, prenom, dateNaissance, adresse, lieuNaissance, Orthophoniste_id,NumDossier);
 
         if (!Patient.isValidPhoneNumber(NumTelephoneParent)) {
             throw new IllegalArgumentException("Invalid phone number: " + NumTelephoneParent);
@@ -22,9 +22,11 @@ public class Enfant extends Patient {
 
         this.NumTelephoneParent = NumTelephoneParent;
         this.etude = etude;
-
-        // Check if patient already exists before inserting
-        patientExists();
+        if (Patient_id > 0) {
+            this.Patient_id = Patient_id;
+        } else {
+            insertPatient();
+        }
     }
 
     private void patientExists() {
@@ -59,12 +61,12 @@ public class Enfant extends Patient {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO Patient (nom, Prenom, Date_Naissance, adresse, Lieu_Naissance, Phone, Etude , Orthophoniste_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Patient (nom, Prenom, Date_Naissance, adresse, Lieu_Naissance, Phone, Etude , Orthophoniste_id) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, this.nom);
             pstmt.setString(2, this.prenom);
-            pstmt.setDate(3, this.dateNaissance);
+            pstmt.setString(3,String.valueOf(this.dateNaissance));
             pstmt.setString(4, this.adresse);
             pstmt.setString(5, this.lieuNaissance);
             pstmt.setString(6, this.NumTelephoneParent);
@@ -75,7 +77,9 @@ public class Enfant extends Patient {
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     this.Patient_id = generatedKeys.getInt(1);
-                    this.numDossier = generatedKeys.getInt("NumDossier");
+                    DossierPatient dossier= new DossierPatient(this.Patient_id,0,Orthophoniste_id);
+                    this.numDossier=dossier.getNumDossier();
+                    updatePatient();
                 } else {
                     throw new SQLException("Creating Enfant failed, no ID obtained.");
                 }
@@ -94,5 +98,36 @@ public class Enfant extends Patient {
 
     public String getNumTelephoneParent() {
         return NumTelephoneParent;
+    }
+    public void updatePatient() {
+        // Update patient details in the database
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+
+        String sql = "UPDATE Patient SET nom = ?, Prenom = ?, Date_Naissance = ?, adresse = ?, Lieu_Naissance = ?,etude = ?, Phone = ?, Orthophoniste_id = ? , NumDossier= ? WHERE Patient_id = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, this.nom);
+            pstmt.setString(2, this.prenom);
+            pstmt.setString(3, String.valueOf(this.dateNaissance));
+            pstmt.setString(4, this.adresse);
+            pstmt.setString(5, this.lieuNaissance);
+            pstmt.setString(6,this.etude);
+            pstmt.setString(7,this.NumTelephoneParent);
+            pstmt.setInt(8, this.Orthophoniste_id);
+            pstmt.setInt(9,this.numDossier);
+            pstmt.setInt(10, this.Patient_id);
+
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Adult patient updated successfully.");
+            } else {
+                System.out.println("No patient found with the provided Patient_id.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating patient: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

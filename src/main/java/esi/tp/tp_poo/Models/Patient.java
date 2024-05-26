@@ -18,14 +18,16 @@ public abstract class Patient {
     protected String adresse;
     protected int Orthophoniste_id;
 
-    public Patient(int Patient_id, String nom, String prenom, Date dateNaissance, String adresse, String lieuNaissance, int Orthophoniste_id) {
-        this.Patient_id = Patient_id;
+    public Patient( String nom, String prenom, Date dateNaissance, String adresse, String lieuNaissance, int Orthophoniste_id,int NumDossier) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.lieuNaissance = lieuNaissance;
         this.adresse = adresse;
         this.Orthophoniste_id = Orthophoniste_id;
+        if(NumDossier>0){
+            this.numDossier=NumDossier;
+        }
     }
 
     public int obtenirDossier() {
@@ -50,6 +52,7 @@ public abstract class Patient {
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
+                int patient_id=rs.getInt("Patient_id");
                 int numDossier = rs.getInt("NumDossier");
                 String nom = rs.getString("nom");
                 String prenom = rs.getString("Prenom");
@@ -62,7 +65,7 @@ public abstract class Patient {
                 int orthophonisteId = rs.getInt("Orthophoniste_id");
 
                 // Assuming all patients in the result set are adults for simplicity
-                Adult patient = new Adult(nom, prenom, dateNaissance, adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId);
+                Adult patient = new Adult(nom, prenom, dateNaissance, adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId,numDossier,patient_id);
                 patients.add(patient);
             }
         } catch (SQLException e) {
@@ -84,6 +87,7 @@ public abstract class Patient {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
+                    int patient_id= rs.getInt("Patient_id");
                     int numDossier = rs.getInt("NumDossier");
                     String nom = rs.getString("nom");
                     String prenom = rs.getString("Prenom");
@@ -98,10 +102,10 @@ public abstract class Patient {
 
                     if (etude != null) {
                         // This is an enfant
-                        return new Enfant(nom, prenom, dateNaissance, adresse, lieuNaissance, etude, numTelephone, orthophonisteId);
+                        return new Enfant(nom, prenom, dateNaissance, adresse, lieuNaissance, etude, numTelephone, orthophonisteId,numDossier,patient_id);
                     } else {
                         // This is an adult
-                        return new Adult(nom, prenom, dateNaissance, adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId);
+                        return new Adult(nom, prenom, dateNaissance, adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId,numDossier,patient_id);
                     }
                 }
             }
@@ -121,6 +125,10 @@ public abstract class Patient {
 
     public Date getDateNaissance() {
         return dateNaissance;
+    }
+    public int getNumDossier(){
+        System.out.println(this.numDossier);
+        return this.numDossier;
     }
 
 }
