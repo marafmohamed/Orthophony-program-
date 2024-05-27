@@ -203,7 +203,7 @@
                     </font>
                 </Text>
                 <DatePicker layoutX="408.0" layoutY="106.0" prefHeight="26.0" prefWidth="256.0"
-                            promptText="JJ/MM/AAAA"/>
+                            promptText="JJ/MM/AAAA" fx:id="Datepick"/>
                 <Text layoutX="408.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0"
                       text="Date de Rendez-Vous :">
                     <font>

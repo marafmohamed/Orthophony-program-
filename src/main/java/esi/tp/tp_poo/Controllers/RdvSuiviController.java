@@ -1,7 +1,10 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.ConnectDB;
 import esi.tp.tp_poo.Models.CurrentPatient;
 import esi.tp.tp_poo.Models.Orthophoniste;
+import esi.tp.tp_poo.Models.Patient;
+import esi.tp.tp_poo.Models.Suivi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,11 +60,14 @@ public class RdvSuiviController {
     @FXML
     private Button annulerButton;
 
-    @FXML
-    public void initialize() {
-        // Fetch data from the database
-        List<String> patients = fetchPatientsFromDatabase();
 
+    @FXML
+    private DatePicker Datepick;
+
+    @FXML
+    public void initialize() throws SQLException {
+        // Fetch data from the database
+        List<Patient> patients = Orthophoniste.getInstance().getPatientForOrthophoniste();
         // Create a VBox to hold the CheckBoxes
         VBox vbox = new VBox();
         vbox.setSpacing(10); // Set spacing between CheckBoxes
@@ -67,8 +77,9 @@ public class RdvSuiviController {
         ToggleGroup group = new ToggleGroup();
 
         // Create a RadioButton for each patient
-        for (String patient : patients) {
-            RadioButton radioButton = new RadioButton(patient);
+        for (Patient patient : patients) {
+            String nom = patient.getNom() + patient.getPrenom() + ", " + patient.getNumDossier();
+            RadioButton radioButton = new RadioButton(nom);
             radioButton.setToggleGroup(group); // Add the RadioButton to the ToggleGroup
             vbox.getChildren().add(radioButton);
         }
@@ -105,34 +116,68 @@ public class RdvSuiviController {
 
     private void handleValiderButtonAction(ActionEvent actionEvent) {
         // Get the data from the form fields
+        LocalDate rendezVousDate = Datepick.getValue();
         String hour = hourComboBox.getValue();
         String minute = minuteComboBox.getValue();
         String additionalInfo = additionalInfoTextArea.getText();
         String deroulement = DeroulementComboBox.getValue();
 
         // Get the selected patient
-        String selectedPatient = null;
+        Patient selectedPatient = null;
+        String radioText;
         VBox vbox = (VBox) patientScrollPane.getContent();
         for (Node node : vbox.getChildren()) {
             if (node instanceof RadioButton) {
                 RadioButton radioButton = (RadioButton) node;
                 if (radioButton.isSelected()) {
-                    selectedPatient = radioButton.getText();
-                    break;
+                    radioText = radioButton.getText();
+                    // Extract the patient number from the text
+                    int numDossier = Integer.parseInt(radioText.split(", ")[1]);
+                    // Find the patient with the given number
+                    try {
+                        List<Patient> patients = Orthophoniste.getInstance().getPatientForOrthophoniste();
+                        for (Patient patient : patients ) {
+                            if (patient.getNumDossier() == numDossier) {
+                                selectedPatient = patient;
+                                break;
+                            }
+                        }
+                        break;
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur");
+                        alert.setHeaderText("Erreur lors de l'accès à la base de données");
+                        alert.showAndWait();
+
+                    }
                 }
             }
         }
 
         // Save the data to your database or data structure
-        // Replace this with your actual saving code
-        System.out.println("Saving: " + selectedPatient + ", " + hour + ", " + minute + ", " + additionalInfo + ", " + deroulement);
+        if (hour != null && minute != null && selectedPatient != null && deroulement != null) {
+            // Convert hour and minute to Time
+            Time time = Time.valueOf(hour + ":" + minute + ":00");
+            int numDossier = selectedPatient.getNumDossier(); // Replace with actual method
+            int IdOrthophoniste = Orthophoniste.getInstance().getIdentifiant();
+            int RendezVous_id = 0;
 
+            // Convert deroulement to boolean
+            boolean presentiel = deroulement.equals("Présentiel");
+            // Create a new Suivi object
+
+                Orthophoniste.getInstance().createRdvSuivi(rendezVousDate,time,numDossier,presentiel,IdOrthophoniste,RendezVous_id);
+                System.out.print("Rendez-vous ajouté avec succès");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Veuillez remplir tous les champs");
+            alert.showAndWait();
+        }
     }
 
-    private List<String> fetchPatientsFromDatabase() {
-        // Replace this with your actual database fetching code
-        return Arrays.asList("Patient 1, Dossier 1", "Patient 2, Dossier 2", "Patient 3, Dossier 3");
-    }
+
     @FXML
     private void handleRetourButtonAction(ActionEvent event) {
         // Your logic to handle retour button action

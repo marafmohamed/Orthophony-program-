@@ -66,6 +66,7 @@ public abstract class RendezVous {
                     String hour = rs.getString("Time");
                     int IdOrthophoniste = rs.getInt("Orthophoniste_id");
                     String theme = rs.getString("Thematique");
+                    List <Integer> numDossier = new ArrayList<>();
                     if (theme != null) {
                         return new Atelier(Date.valueOf(date), Time.valueOf(hour), theme, IdOrthophoniste, id);
                     } else {

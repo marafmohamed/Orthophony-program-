@@ -66,7 +66,7 @@ public class LoginController {
         // Your logic to handle sign up
         try {
             // Load the sign-up page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Signup.fxml"));
             Scene scene = new Scene(loader.load());
 
             // Get the current stage

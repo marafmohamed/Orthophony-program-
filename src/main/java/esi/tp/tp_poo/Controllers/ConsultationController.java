@@ -62,6 +62,7 @@ public class ConsultationController {
     @FXML
     private Button AnnulerButton;
 
+
     @FXML
     public void initialize() {
         RetourButton.setOnAction(this::handleRetourButtonAction);
@@ -204,8 +205,7 @@ public class ConsultationController {
             showAlert("Rendez-vous ajouté avec succès");
         }
 
-            // Save the data to your database or data structure
-        // ...
+
     }
 
     private void showAlert(String message) {

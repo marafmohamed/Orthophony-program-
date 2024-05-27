@@ -161,7 +161,14 @@ public class Orthophoniste {
         new Consultation(age, nom, prenom, Date.valueOf(date), hour, this.identifiant, type,0);
     }
 
-    public BilanOrthophonique createBilan(int Patient_id) {
+    public void createRdvSuivi(LocalDate date, Time hour, int numDossier, boolean presentiel, int IdOrthophoniste, int RendezVous_id) {
+        new Suivi(Date.valueOf(date), hour, numDossier, presentiel, IdOrthophoniste, RendezVous_id);
+    }
+
+    public void createAtelier(LocalDate date, Time time, String Thematique, int IdOrthophoniste, int RendezVous_id) {
+        new Atelier(Date.valueOf(date), time, Thematique, IdOrthophoniste, RendezVous_id);
+    }
+    public BilanOrthophonique createBeilan(int Patient_id) {
         return new BilanOrthophonique(Patient_id, "10/12/2024", this.identifiant, "kkk", 0);
     }
 

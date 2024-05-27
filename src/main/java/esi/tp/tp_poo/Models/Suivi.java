@@ -27,7 +27,7 @@ public class Suivi extends RendezVous {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO RendezVous (Date,Orthophoniste_id,Time,Duration,Type , NumDossier) VALUES (?, ?, ?, ?,?)";
+        String sql = "INSERT INTO Rendez_Vous (Date,Orthophoniste_id,Time,Duration,Type , NumDossier) VALUES (?, ?, ?, ?,?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, String.valueOf(this.date));

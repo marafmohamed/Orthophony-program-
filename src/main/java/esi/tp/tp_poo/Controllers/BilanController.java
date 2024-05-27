@@ -84,7 +84,6 @@ public class BilanController {
     private Accordion testsAccordion;
 
 
-
     @FXML
     public void initialize() {
         anamneseTab.setOnSelectionChanged(event -> {
@@ -109,9 +108,6 @@ public class BilanController {
                 loadTestsFromDatabase();
             }
         });
-
-
-
 
 
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
@@ -296,61 +292,66 @@ public class BilanController {
     }
 
     private void loadTestsFromDatabase() {
-        /*String url = "jdbc:sqlite:TPdb.sqlite"; // Replace with your SQLite database path
+        String url = "jdbc:sqlite:TPdb.sqlite"; // Replace with your SQLite database path
         try (Connection conn = DriverManager.getConnection(url)) {
             String sql = "SELECT * FROM Test"; // Replace with your actual SQL query to fetch the tests
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 ResultSet rs = pstmt.executeQuery();
                 while (rs.next()) {
                     String testName = rs.getString("nom"); // Replace with your actual column name for the test name
-                    String testCapacity = rs.getString("capacite"); // Replace with your actual column name for the test capacity
-                    //String testType = rs.getString("type"); // Replace with your actual column name for the test type
-*/
-                    TitledPane pane = new TitledPane();
-                    //pane.setText(testName + " + " + testCapacity);
-                    pane.setText("name , capacité");
+                    String testCapacity = rs.getString("Capacite"); // Replace with your actual column name for the test capacity
+                    Boolean ExoType = rs.getBoolean("exo"); // Replace with your actual column name for the test type
 
-                    if (true) {
+                    TitledPane pane = new TitledPane();
+                    pane.setText(testName + " + " + testCapacity);
+                    //pane.setText("name , capacité");
+
+                    if (!ExoType) {
 
                         HBox testNameAndTypeBox = new HBox(10);
                         testNameAndTypeBox.setAlignment(Pos.CENTER_LEFT);
                         Label testNameLabel = new Label("Test Questionnaire");
                         Label testTypeLabel = new Label("Type QCM");
                         testNameAndTypeBox.getChildren().addAll(testNameLabel, testTypeLabel);
-                        //addQuestionQcm("Question 1", new String[]{"choix 1", "choix 2", "choix 3"});
+
                         VBox questionsBox = new VBox(5);
-                        Label question1 = new Label("question");
-                        questionsBox.getChildren().add(question1);
-                        String[] choices = {"choix 1", "choix 6", "choix 3"};
-                        for(String choice : choices) {
-                            CheckBox choice1 = new CheckBox(choice);
-                            questionsBox.getChildren().add(choice1);
+
+                        for (int i = 1; i <= 5; i++) {
+                            Label questionLabel = new Label("Question " + i);
+                            questionsBox.getChildren().add(questionLabel);
+                            String[] choices = {"Choice 1", "Choice 2", "Choice 3"};
+                            for (String choice : choices) {
+                                CheckBox choiceCheckBox = new CheckBox(choice);
+                                questionsBox.getChildren().add(choiceCheckBox);
+                            }
                         }
+
                         VBox Qstbox = new VBox(5);
                         Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
                         pane.setContent(Qstbox);
 
 
-
-                    }  if (false) {
+                    } else {
                         HBox testNameAndTypeBox = new HBox(10);
                         testNameAndTypeBox.setAlignment(Pos.CENTER_LEFT);
-                        Label testNameLabel = new Label("Test Questionnaire");
-                        Label testTypeLabel = new Label("Type QCU");
-                        testNameAndTypeBox.getChildren().addAll(testNameLabel, testTypeLabel);
+                        Label testNameLabel = new Label("Test Serie d'exercices");
+                        testNameAndTypeBox.getChildren().addAll(testNameLabel);
 
                         VBox questionsBox = new VBox(5);
-                        // Fetch the questions for this test and create RadioButtons for them
-                        // This will depend on how you have structured your questions
-                        // For example:
-                        Label question1 = new Label("Question 1");
-                        RadioButton choice1 = new RadioButton("choix 1");
-                        RadioButton choice2 = new RadioButton("choix 2");
-                        RadioButton choice3 = new RadioButton("choix 3");
-                        questionsBox.getChildren().addAll(question1, choice1, choice2, choice3);
 
-                        //Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
-                    }  if (false) {
+                        for (int i = 1; i <= 5; i++) {
+                            Label questionLabel = new Label("Exercice  " + i);
+                            questionsBox.getChildren().add(questionLabel);
+                            // add a text area for the answer
+                            TextArea answerArea = new TextArea();
+                            answerArea.setPromptText("Enter answer here");
+                            questionsBox.getChildren().add(answerArea);
+                        }
+
+                        VBox Qstbox = new VBox(5);
+                        Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
+                        pane.setContent(Qstbox);
+                    } /* if (false) {
                         HBox testNameAndTypeBox = new HBox(10);
                         testNameAndTypeBox.setAlignment(Pos.CENTER_LEFT);
                         Label testTypeLabel = new Label("Serie d'Exercises");
@@ -367,7 +368,7 @@ public class BilanController {
                         questionsBox.getChildren().addAll(question1, answerArea);
 
                         //Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
-                    }
+                    }*/
 
                     // Set the font of the content to Montserrat
                     Font montserratFont = new Font("Montserrat", 12); // Replace 12 with your desired font size
@@ -379,12 +380,13 @@ public class BilanController {
 
                     //pane.setContent(Qstbox);
                     testsAccordion.getPanes().add(pane);
-               /* }
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
     }
+
     private void loadInitialQuestions() {
         // Example initial questions
         String[] Categories = {"Structure familiale", "Dynamique familiale", "Antécédents familiaux"};
@@ -436,12 +438,11 @@ public class BilanController {
     }
 
 
-
     private VBox addQuestionQcu(String question, String[] choices) {
 
         VBox questionsBox = new VBox(5);
         Label question1 = new Label(question);
-        for(String choice : choices) {
+        for (String choice : choices) {
             RadioButton choice1 = new RadioButton(choice);
             questionsBox.getChildren().add(choice1);
         }
@@ -456,11 +457,6 @@ public class BilanController {
         questionsBox.getChildren().add(answerArea);
         return questionsBox;
     }
-
-
-
-
-
 
 
     @FXML
