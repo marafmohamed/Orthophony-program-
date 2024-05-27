@@ -1,16 +1,22 @@
 package esi.tp.tp_poo.Controllers;
 
-import esi.tp.tp_poo.Models.CurrentPatient;
-import esi.tp.tp_poo.Models.Orthophoniste;
+import esi.tp.tp_poo.Models.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EpreuvesController {
     @FXML
@@ -42,7 +48,13 @@ public class EpreuvesController {
 
     @FXML
     private Text doctorName;
+    @FXML
+    private TableView<TestTable> tableView1;
+    @FXML
+    private TableColumn<BilanOrthophonique, String> NomColumn;
 
+    @FXML
+    private TableColumn<BilanOrthophonique, String> CapaciteColumn;
 
     @FXML
     public void initialize() {
@@ -54,9 +66,21 @@ public class EpreuvesController {
         TestSideBar.setOnAction(this::handleTestSideBarAction);
         StatSideBar.setOnAction(this::handleStatSideBarAction);
         CreerEpreuveButton.setOnAction(this::handleCreerEpreuveButtonAction);
+        NomColumn.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+        CapaciteColumn.setCellValueFactory(new PropertyValueFactory<>("Capacite"));
+        populateView();
         ModifierEpreuveButton.setOnAction(this::handleModifierEpreuveButtonAction);
     }
-
+    private void populateView(){
+        // Your logic to populate the view
+        List<Test> tests=Test.getAllTests();
+        System.out.println(tests.size());
+        ObservableList<TestTable> table = FXCollections.observableArrayList();
+        for (Test test:tests){
+            table.add(new TestTable(test.getNomTest(),test.getCapacite()));
+        }
+        tableView1.setItems(table);
+    }
     private void handleStatSideBarAction(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Statistics.fxml"));
         Scene scene = null;

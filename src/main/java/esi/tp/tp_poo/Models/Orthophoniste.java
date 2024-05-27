@@ -179,6 +179,7 @@ public class Orthophoniste {
         return null;
     }
 
+
     public List<Patient> getPatientForOrthophoniste() throws SQLException {
         List<Patient> patients = new ArrayList<>();
 

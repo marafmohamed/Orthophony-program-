@@ -35,8 +35,8 @@
       <ComboBox fx:id="typecombo" layoutX="151.0" layoutY="87.0" prefWidth="150.0" >
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Capacité 1"/>
-                <String fx:value="Capacité 2"/>
+                <String fx:value="Question"/>
+                <String fx:value="Exo"/>
             </FXCollections>
         </items>
     </ComboBox>

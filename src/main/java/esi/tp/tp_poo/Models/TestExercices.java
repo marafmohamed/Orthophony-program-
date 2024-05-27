@@ -61,7 +61,7 @@ public class TestExercices extends Test {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO TestQuestions (nom, Capacite ,exo) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Test (nom, Capacite ,exo) VALUES (?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, this.nomTest);

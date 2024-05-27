@@ -1,5 +1,9 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Models.Question;
+import esi.tp.tp_poo.Models.Test;
+import esi.tp.tp_poo.Models.TestExercices;
+import esi.tp.tp_poo.Models.TestQuestions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,6 +15,7 @@ import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TestController {
 
@@ -70,6 +75,15 @@ public class TestController {
             HBox hBox = (HBox) questionBox.getChildren().get(i);
             TextField questionField = (TextField) hBox.getChildren().get(0);
             questions.add(questionField.getText());
+        }
+        if(Objects.equals(type, "Question")){
+           Test test= new TestQuestions(nom, capacite, 0);
+            questions.forEach(question -> {
+                new Question(question,new ArrayList<>(), 0, test.getTest_id(), 0);
+                // Insert the question into the database
+            });
+        }else{
+            new TestExercices(nom, capacite, 0);
         }
 
         // TODO: Add your database insertion logic here
