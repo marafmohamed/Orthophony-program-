@@ -80,6 +80,7 @@ public class AtelierController {
 
         // Set the VBox as the content of the ScrollPane
         patientScrollPane.setContent(vbox);
+
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         validerButton.setOnAction(this::handleValiderButtonAction);
