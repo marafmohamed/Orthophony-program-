@@ -254,6 +254,19 @@ public class BilanController {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/CompteRendu.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) actionEvent.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void loadTestsFromDatabase() {
