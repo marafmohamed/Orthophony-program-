@@ -43,7 +43,7 @@ public class LoginController {
         if (isLoginValid()) {
             try {
                 // Load the home page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossier.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
                 Scene scene = new Scene(loader.load());
 
                 // Get the current stage
@@ -66,7 +66,7 @@ public class LoginController {
         // Your logic to handle sign up
         try {
             // Load the sign-up page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SignUp.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
             Scene scene = new Scene(loader.load());
 
             // Get the current stage

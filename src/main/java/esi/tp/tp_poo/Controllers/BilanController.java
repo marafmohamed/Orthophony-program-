@@ -1,5 +1,6 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Models.CurrentPatient;
 import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -464,7 +465,6 @@ public class BilanController {
 
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
-        Orthophoniste.disconnect();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {
@@ -483,6 +483,7 @@ public class BilanController {
     @FXML
     private void handleRetourButtonAction(ActionEvent event) {
         // Your logic to handle retour button action
+        CurrentPatient.getInstance().setCurrentPatient(null);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
         Scene scene = null;
         try {

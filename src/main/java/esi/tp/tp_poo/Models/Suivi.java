@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class Suivi extends RendezVous {
 
-    private int numDossier = -1;
+    private int numDossier;
     private boolean presentiel;
     private Duration duration = Duration.ofHours(1);
 
@@ -27,7 +27,7 @@ public class Suivi extends RendezVous {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO RendezVous (Date,Orthophoniste_id,Time,Duration,Type) VALUES (?, ?, ?, ?,?,?,?,?)";
+        String sql = "INSERT INTO RendezVous (Date,Orthophoniste_id,Time,Duration,Type , NumDossier) VALUES (?, ?, ?, ?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, String.valueOf(this.date));
@@ -35,6 +35,7 @@ public class Suivi extends RendezVous {
             pstmt.setString(3, String.valueOf(this.hour));
             pstmt.setString(4, String.valueOf(this.duration));
             pstmt.setBoolean(5, this.presentiel);
+            pstmt.setInt(6, this.numDossier);
 
             pstmt.executeUpdate();
 
@@ -44,7 +45,7 @@ public class Suivi extends RendezVous {
                     String sql2 = "INSERT INTO RendezVous_Dossier (NumDossier,RendezVous_id) VALUES (?,?)";
                     PreparedStatement pstmt2 = connection.prepareStatement(sql2);
                     pstmt2.setInt(1, numDossier);
-                    pstmt2.setInt(2, IdOrthophoniste);
+                    pstmt2.setInt(2, RendezVousId);
                     pstmt2.executeUpdate();
                 } else {
                     throw new SQLException("Creating RendezVous failed, no ID obtained.");
