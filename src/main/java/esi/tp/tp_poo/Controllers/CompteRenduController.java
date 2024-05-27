@@ -4,12 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DossierController {
+public class CompteRenduController {
     @FXML
     private Button RdvSideBar;
 
@@ -23,26 +25,26 @@ public class DossierController {
     private Button StatSideBar;
 
     @FXML
-    private Button RetourButton;
+    private VBox questionContainer;
 
     @FXML
     private Button seDeconnecterButton;
 
     @FXML
-    private Button AccederBilansButton;
+    private Button RetourButton;
 
     @FXML
-    private Button AccederFichesButton;
+    private Button saveButton;
 
+    @FXML
     public void initialize() {
-        RetourButton.setOnAction(this::handleRetourButtonAction);
-        seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RdvSideBar.setOnAction(this::handleRdvSideBarAction);
         DossierSideBar.setOnAction(this::handleDossierSideBarAction);
         TestSideBar.setOnAction(this::handleTestSideBarAction);
         StatSideBar.setOnAction(this::handleStatSideBarAction);
-        AccederBilansButton.setOnAction(this::handleAccederBilansButtonAction);
-        AccederFichesButton.setOnAction(this::handleAccederFichesButtonAction);
+        seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
+        RetourButton.setOnAction(this::handleRetourButtonAction);
+        saveButton.setOnAction(this::handleSaveButton);
     }
 
     private void handleStatSideBarAction(ActionEvent actionEvent) {
@@ -110,8 +112,47 @@ public class DossierController {
     }
 
     @FXML
+    private void handleSaveButton(ActionEvent actionEvent) {
+
+    }
+
+
+
+
+
+
+    private void addTrouble() {
+        VBox questionBox = new VBox(5);
+
+        Label categoryLabel = new Label("category");
+        ComboBox category = new ComboBox();
+        category.getItems().addAll("Trouble de l'apprentissage", "Trouble de la communication", "Trouble de la motricité");
+        HBox categoryBox = new HBox(5);
+        categoryBox.getChildren().addAll(categoryLabel, category);
+        TextField textField = new TextField();
+        textField.setPromptText("Nom de trouble");
+
+        questionBox.getChildren().addAll(categoryBox, textField);
+        questionContainer.getChildren().add(questionBox);
+    }
+
+    @FXML
+    private void handleAddTrouble(ActionEvent event) {
+        // For simplicity, we'll use a static category name for new questions
+        addTrouble();
+    }
+
+    @FXML
+    private void handleRemoveLastTrouble(ActionEvent event) {
+        int childrenCount = questionContainer.getChildren().size();
+        if (childrenCount > 0) {
+            questionContainer.getChildren().remove(childrenCount - 1);
+        }
+    }
+
+
+    @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
-        // Your logic to handle se deconnecter button action
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {
@@ -126,6 +167,7 @@ public class DossierController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     private void handleRetourButtonAction(ActionEvent event) {
         // Your logic to handle retour button action
@@ -144,37 +186,6 @@ public class DossierController {
         stage.show();
     }
 
-    @FXML
-    private void handleAccederBilansButtonAction (ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/ListBilans.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Couldn't load FXML file");
-        }
 
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    @FXML
-    private void handleAccederFichesButtonAction (ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/ListSuivi.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Couldn't load FXML file");
-        }
-
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
 }

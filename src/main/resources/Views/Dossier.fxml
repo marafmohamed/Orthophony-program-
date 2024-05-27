@@ -142,7 +142,7 @@
                         styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Accéder au Bilans" fx:id="AccederBilansButton"/>
                 <Button layoutX="422.0" layoutY="175.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
                         styleClass="secondaryButton" stylesheets="@../Styles/Styles.css"
-                        text="Accéder au Fiches de Suivi" />
+                        text="Accéder au Fiches de Suivi"  fx:id="AccederFichesButton"/>
                 <Button layoutX="422.0" layoutY="228.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
                         styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Modifier le Dossier"/>
                 <Button layoutX="422.0" layoutY="284.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
