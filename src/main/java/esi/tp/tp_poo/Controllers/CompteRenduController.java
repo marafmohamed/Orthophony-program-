@@ -1,5 +1,6 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -153,6 +154,7 @@ public class CompteRenduController {
 
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
+        Orthophoniste.disconnect();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {

@@ -158,7 +158,7 @@ public class ConsultationController {
 
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
-        // Your logic to handle se deconnecter button action
+        Orthophoniste.disconnect();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {

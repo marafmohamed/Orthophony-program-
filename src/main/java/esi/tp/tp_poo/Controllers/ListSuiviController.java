@@ -1,6 +1,7 @@
 package esi.tp.tp_poo.Controllers;
 
 import esi.tp.tp_poo.Models.BilanOrthophonique;
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -197,7 +198,7 @@ public void closeConnection() {
 
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
-        // Your logic to handle se deconnecter button action
+        Orthophoniste.disconnect();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {
