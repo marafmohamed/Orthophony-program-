@@ -168,44 +168,9 @@
                                                                     </font>
                                                                 </Text>
                                                                 <Accordion fx:id="testsAccordion">
-                                                                    <panes>
-                                                                        <TitledPane prefHeight="210.0" prefWidth="606.0"
-                                                                                    text="nom Test + capacity">
-                                                                            <content>
-                                                                                <VBox spacing="10">
-                                                                                    <!-- Test Name -->
-                                                                                    <HBox alignment="CENTER_LEFT"
-                                                                                          spacing="10">
-                                                                                        <Label text="Test Questionnaire"/>
-                                                                                        <Label text="Type QCM"/>
-                                                                                    </HBox>
-                                                                                    <!-- Questions -->
-                                                                                    <VBox spacing="5">
-                                                                                        <children>
-                                                                                            <Text strokeType="OUTSIDE"
-                                                                                                  strokeWidth="0.0"
-                                                                                                  text="Question 1"/>
-                                                                                            <CheckBox
-                                                                                                    mnemonicParsing="false"
-                                                                                                    text="choix 1"/>
-                                                                                            <CheckBox layoutX="10.0"
-                                                                                                      layoutY="32.0"
-                                                                                                      mnemonicParsing="false"
-                                                                                                      text="choix 1"/>
-                                                                                            <CheckBox layoutX="10.0"
-                                                                                                      layoutY="55.0"
-                                                                                                      mnemonicParsing="false"
-                                                                                                      text="choix 1"/>
-                                                                                        </children>
-                                                                                    </VBox>
-                                                                                    <!-- Exercises -->
-                                                                                    <VBox spacing="5">
-                                                                                        <!-- Add exercises dynamically using the controller -->
-                                                                                    </VBox>
-                                                                                </VBox>
-                                                                            </content>
-                                                                        </TitledPane>
+                                                                    <panes> <!-- Tests -->
                                                                     </panes>
+
                                                                 </Accordion>
                                                             </children>
                                                             <VBox.margin>
@@ -242,12 +207,7 @@
                                                                 <Insets bottom="10" left="10" right="10" top="10"/>
                                                             </padding>
                                                             <!-- Initial Questions -->
-                                                            <HBox alignment="CENTER" spacing="10.0">
-                                                                <Button onAction="#handleAddQuestion"
-                                                                        text="Add Question"/>
-                                                                <Button onAction="#handleRemoveLastQuestion"
-                                                                        text="Remove Last Question"/>
-                                                            </HBox>
+
                                                         </VBox>
                                                     </content>
                                                 </ScrollPane>

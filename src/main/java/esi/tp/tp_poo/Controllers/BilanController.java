@@ -4,11 +4,13 @@ import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
@@ -81,31 +83,35 @@ public class BilanController {
     private Accordion testsAccordion;
 
 
+
     @FXML
     public void initialize() {
-        epreuvesCliniquesTab.setOnSelectionChanged(event -> {
-            if (epreuvesCliniquesTab.isSelected()) {
-                // Your logic when Epreuves Cliniques tab is selected
-            }
-        });
-
         anamneseTab.setOnSelectionChanged(event -> {
             if (anamneseTab.isSelected()) {
+                enfantRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                    if (newValue) {
+                        adultRadioButton.setSelected(false);
+                    }
+                });
+
+                adultRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                    if (newValue) {
+                        enfantRadioButton.setSelected(false);
+                    }
+                });
                 loadInitialQuestions();
             }
         });
 
-        enfantRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                adultRadioButton.setSelected(false);
+        epreuvesCliniquesTab.setOnSelectionChanged(event -> {
+            if (epreuvesCliniquesTab.isSelected()) {
+                loadTestsFromDatabase();
             }
         });
 
-        adultRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                enfantRadioButton.setSelected(false);
-            }
-        });
+
+
+
 
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RetourButton.setOnAction(this::handleRetourButtonAction);
@@ -240,16 +246,34 @@ public class BilanController {
 
                     // The second VBox contains the questions
                     VBox questionsBox = (VBox) content.getChildren().get(1);
-                    ArrayList<String> selectedChoices = new ArrayList<>();
-                    for (Node node : questionsBox.getChildren()) {
-                        if (node instanceof CheckBox && ((CheckBox) node).isSelected()) {
-                            selectedChoices.add(((CheckBox) node).getText());
-                        }
-                    }
 
-                    // Save the data
-                    // Replace this with your actual saving code
-                    System.out.println("Saving: " + testName + ", " + testType + ", " + selectedChoices);
+                    if (testType.equals("QCM")) {
+                        ArrayList<String> selectedChoices = new ArrayList<>();
+                        for (Node node : questionsBox.getChildren()) {
+                            if (node instanceof CheckBox && ((CheckBox) node).isSelected()) {
+                                selectedChoices.add(((CheckBox) node).getText());
+                            }
+                        }
+                        // Save the data
+                        // Replace this with your actual saving code
+                        System.out.println("Saving QCM: " + testName + ", " + selectedChoices);
+                    } else if (testType.equals("QCU")) {
+                        String selectedChoice = null;
+                        for (Node node : questionsBox.getChildren()) {
+                            if (node instanceof RadioButton && ((RadioButton) node).isSelected()) {
+                                selectedChoice = ((RadioButton) node).getText();
+                                break;
+                            }
+                        }
+                        // Save the data
+                        // Replace this with your actual saving code
+                        System.out.println("Saving QCU: " + testName + ", " + selectedChoice);
+                    } else if (testType.equals("Exercises")) {
+                        // Handle exercises type
+                        // This will depend on how you have structured your exercises
+                        // Replace this with your actual saving code
+                        System.out.println("Saving Exercises: " + testName);
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -271,7 +295,7 @@ public class BilanController {
     }
 
     private void loadTestsFromDatabase() {
-        String url = "jdbc:sqlite:TPdb.sqlite"; // Replace with your SQLite database path
+        /*String url = "jdbc:sqlite:TPdb.sqlite"; // Replace with your SQLite database path
         try (Connection conn = DriverManager.getConnection(url)) {
             String sql = "SELECT * FROM Test"; // Replace with your actual SQL query to fetch the tests
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -279,30 +303,95 @@ public class BilanController {
                 while (rs.next()) {
                     String testName = rs.getString("nom"); // Replace with your actual column name for the test name
                     String testCapacity = rs.getString("capacite"); // Replace with your actual column name for the test capacity
-
+                    //String testType = rs.getString("type"); // Replace with your actual column name for the test type
+*/
                     TitledPane pane = new TitledPane();
-                    pane.setText(testName + " + " + testCapacity);
+                    //pane.setText(testName + " + " + testCapacity);
+                    pane.setText("name , capacité");
 
-                    VBox content = new VBox(10);
-                    // Replace with your actual code to fetch the questions for each test and create CheckBoxes for them
-                    // ...
+                    if (true) {
 
-                    pane.setContent(content);
+                        HBox testNameAndTypeBox = new HBox(10);
+                        testNameAndTypeBox.setAlignment(Pos.CENTER_LEFT);
+                        Label testNameLabel = new Label("Test Questionnaire");
+                        Label testTypeLabel = new Label("Type QCM");
+                        testNameAndTypeBox.getChildren().addAll(testNameLabel, testTypeLabel);
+                        //addQuestionQcm("Question 1", new String[]{"choix 1", "choix 2", "choix 3"});
+                        VBox questionsBox = new VBox(5);
+                        Label question1 = new Label("question");
+                        questionsBox.getChildren().add(question1);
+                        String[] choices = {"choix 1", "choix 6", "choix 3"};
+                        for(String choice : choices) {
+                            CheckBox choice1 = new CheckBox(choice);
+                            questionsBox.getChildren().add(choice1);
+                        }
+                        VBox Qstbox = new VBox(5);
+                        Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
+                        pane.setContent(Qstbox);
+
+
+
+                    }  if (false) {
+                        HBox testNameAndTypeBox = new HBox(10);
+                        testNameAndTypeBox.setAlignment(Pos.CENTER_LEFT);
+                        Label testNameLabel = new Label("Test Questionnaire");
+                        Label testTypeLabel = new Label("Type QCU");
+                        testNameAndTypeBox.getChildren().addAll(testNameLabel, testTypeLabel);
+
+                        VBox questionsBox = new VBox(5);
+                        // Fetch the questions for this test and create RadioButtons for them
+                        // This will depend on how you have structured your questions
+                        // For example:
+                        Label question1 = new Label("Question 1");
+                        RadioButton choice1 = new RadioButton("choix 1");
+                        RadioButton choice2 = new RadioButton("choix 2");
+                        RadioButton choice3 = new RadioButton("choix 3");
+                        questionsBox.getChildren().addAll(question1, choice1, choice2, choice3);
+
+                        //Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
+                    }  if (false) {
+                        HBox testNameAndTypeBox = new HBox(10);
+                        testNameAndTypeBox.setAlignment(Pos.CENTER_LEFT);
+                        Label testTypeLabel = new Label("Serie d'Exercises");
+                        testNameAndTypeBox.getChildren().addAll(testTypeLabel);
+
+                        VBox questionsBox = new VBox(5);
+                        // Fetch the questions for this test and create the necessary UI elements for them
+                        // This will depend on how you have structured your exercises
+                        // For example:
+                        Label question1 = new Label("Exercice 1");
+                        // add text for enonce de l'exercice
+
+                        TextArea answerArea = new TextArea();
+                        questionsBox.getChildren().addAll(question1, answerArea);
+
+                        //Qstbox.getChildren().addAll(testNameAndTypeBox, questionsBox);
+                    }
+
+                    // Set the font of the content to Montserrat
+                    Font montserratFont = new Font("Montserrat", 12); // Replace 12 with your desired font size
+                    //Qstbox.setStyle("-fx-font-family: '" + montserratFont.getFamily() + "'; -fx-font-size: " + montserratFont.getSize() + ";");
+
+                    // Add a separator after each question/exercise
+                    Separator separator = new Separator();
+                    //Qstbox.getChildren().add(separator);
+
+                    //pane.setContent(Qstbox);
                     testsAccordion.getPanes().add(pane);
-                }
+               /* }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
     }
     private void loadInitialQuestions() {
-        /*// Example initial questions
+        // Example initial questions
         String[] Categories = {"Structure familiale", "Dynamique familiale", "Antécédents familiaux"};
         String[] Questions = {"Quelle est la structure de votre famille?", "Comment se passe la dynamique familiale?", "Quels sont les antécédents familiaux?"};
 
         for (int i = 0; i < Categories.length; i++) {
             addQuestion(Categories[i], Questions[i]);
-        }*/
+        }
         String url = "jdbc:sqlite:TPdb.sqlite"; // Replace with your SQLite database path
         try (Connection conn = DriverManager.getConnection(url)) {
             String sql = "SELECT * FROM Question_Anamnese"; // Replace with your actual SQL query to fetch the anamnese questions
@@ -322,32 +411,55 @@ public class BilanController {
     }
 
 
-
     private void addQuestion(String category, String question) {
         VBox questionBox = new VBox(5);
 
         Label categoryLabel = new Label(category + ":");
         Label questionLabel = new Label(question);
+
+        // Set the font of the labels to Montserrat
+        Font montserratFont = new Font("Montserrat", 12); // Replace 12 with your desired font size
+        categoryLabel.setFont(montserratFont);
+        questionLabel.setFont(montserratFont);
+
         TextField textField = new TextField();
         textField.setPromptText("Enter answer here");
 
         questionBox.getChildren().addAll(categoryLabel, questionLabel, textField);
+
+        // Add a separator after each question
+        Separator separator = new Separator();
+        questionBox.getChildren().add(separator);
+
         questionContainer.getChildren().add(questionBox);
     }
 
-    @FXML
-    private void handleAddQuestion(ActionEvent event) {
-        // For simplicity, we'll use a static category name for new questions
-        addQuestion("New Category", "New Question");
+
+
+    private VBox addQuestionQcu(String question, String[] choices) {
+
+        VBox questionsBox = new VBox(5);
+        Label question1 = new Label(question);
+        for(String choice : choices) {
+            RadioButton choice1 = new RadioButton(choice);
+            questionsBox.getChildren().add(choice1);
+        }
+        return questionsBox;
     }
 
-    @FXML
-    private void handleRemoveLastQuestion(ActionEvent event) {
-        int childrenCount = questionContainer.getChildren().size();
-        if (childrenCount > 0) {
-            questionContainer.getChildren().remove(childrenCount - 1);
-        }
+    private VBox addQuestionExercices(String question) {
+
+        VBox questionsBox = new VBox(5);
+        Label question1 = new Label(question);
+        TextArea answerArea = new TextArea();
+        questionsBox.getChildren().add(answerArea);
+        return questionsBox;
     }
+
+
+
+
+
 
 
     @FXML

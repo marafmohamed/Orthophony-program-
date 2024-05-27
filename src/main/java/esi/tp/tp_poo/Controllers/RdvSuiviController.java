@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -59,6 +60,7 @@ public class RdvSuiviController {
         // Create a VBox to hold the CheckBoxes
         VBox vbox = new VBox();
         vbox.setSpacing(10); // Set spacing between CheckBoxes
+        vbox.setStyle("-fx-padding: 10 0 0 5;");
 
         // Create a ToggleGroup
         ToggleGroup group = new ToggleGroup();
