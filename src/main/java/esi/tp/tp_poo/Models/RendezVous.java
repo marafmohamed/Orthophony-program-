@@ -68,7 +68,21 @@ public abstract class RendezVous {
                     String theme = rs.getString("Thematique");
                     List <Integer> numDossier = new ArrayList<>();
                     if (theme != null) {
-                        return new Atelier(Date.valueOf(date), Time.valueOf(hour), theme, IdOrthophoniste, id);
+                        String sql2 = "SELECT NumDossier FROM RendezVous_Dossier WHERE RendezVous_id = ?";
+
+                        try (PreparedStatement pstmt2 = connection.prepareStatement(sql2)) {
+                            pstmt2.setInt(1, id);
+                            try (ResultSet rs2 = pstmt.executeQuery()) {
+                                while (rs2.next()) {
+                                    int numDossier1 = rs.getInt("NumDossier");
+                                    numDossier.add(numDossier1);
+                                }
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("Error retrieving exercises: " + e.getMessage());
+                            e.printStackTrace();
+                        }
+                        return new Atelier(Date.valueOf(date), Time.valueOf(hour), theme, IdOrthophoniste,numDossier, id);
                     } else {
                         Boolean type = rs.getBoolean("Type");
                         int NumDossier = rs.getInt("NumDossier");

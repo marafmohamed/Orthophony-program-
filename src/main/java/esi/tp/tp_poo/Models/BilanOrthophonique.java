@@ -28,7 +28,9 @@ public class BilanOrthophonique {
             insertBilan();
         }
     }
-
+    public String getDateRealisation(){
+        return dateRealisation;
+    }
     private void insertBilan() {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
