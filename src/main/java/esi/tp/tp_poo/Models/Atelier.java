@@ -13,11 +13,9 @@ public class Atelier extends RendezVous {
     private List<Integer> DossierPatient;
     private Duration duration = Duration.ofHours(1);
 
-    public Atelier(Date date, Time time, String Thematique, ArrayList<Integer> DossierPatient, int IdOrthophoniste, int RendezVous_id) {
+    public Atelier(Date date, Time time, String Thematique, int IdOrthophoniste, int RendezVous_id) {
         super(date, time, IdOrthophoniste);
         this.Thematique = Thematique;
-        this.DossierPatient = DossierPatient;     //will change this line to search for Patients with their NumDossiers
-
         if (RendezVousId > 0) {
            this.RendezVousId=RendezVous_id;
         } else {
@@ -60,4 +58,36 @@ public class Atelier extends RendezVous {
             e.printStackTrace();
         }
     }
+    public void addDossierPatient(int NumDossier) {
+        DossierPatient.add(NumDossier);
+    }
+    public List<Integer> getDossierPatient() {
+        return DossierPatient;
+    }
+    public String getThematique() {
+        return Thematique;
+    }
+
+    public void setThematique(String Thematique) {
+        this.Thematique = Thematique;
+    }
+    public void setDossierPatient(List<Integer> DossierPatient) {
+        this.DossierPatient = DossierPatient;
+    }
+public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setRendezVousId(int RendezVousId) {
+        this.RendezVousId = RendezVousId;
+    }
+    public int getRendezVousId() {
+        return RendezVousId;
+    }
+
+
+
 }

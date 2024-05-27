@@ -1,5 +1,6 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Models.CurrentPatient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -171,6 +172,7 @@ public class CompteRenduController {
     @FXML
     private void handleRetourButtonAction(ActionEvent event) {
         // Your logic to handle retour button action
+        CurrentPatient.getInstance().setCurrentPatient(null);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
         Scene scene = null;
         try {

@@ -91,7 +91,7 @@ public abstract class Patient {
                     int numDossier = rs.getInt("NumDossier");
                     String nom = rs.getString("nom");
                     String prenom = rs.getString("Prenom");
-                    Date dateNaissance = rs.getDate("Date_Naissance");
+                    String dateNaissance = rs.getString("Date_Naissance");
                     String adresse = rs.getString("adresse");
                     String lieuNaissance = rs.getString("Lieu_Naissance");
                     String etude = rs.getString("Etude");
@@ -102,10 +102,10 @@ public abstract class Patient {
 
                     if (etude != null) {
                         // This is an enfant
-                        return new Enfant(nom, prenom, dateNaissance, adresse, lieuNaissance, etude, numTelephone, orthophonisteId,numDossier,patient_id);
+                        return new Enfant(nom, prenom, Date.valueOf(dateNaissance), adresse, lieuNaissance, etude, numTelephone, orthophonisteId,numDossier,patient_id);
                     } else {
                         // This is an adult
-                        return new Adult(nom, prenom, dateNaissance, adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId,numDossier,patient_id);
+                        return new Adult(nom, prenom, Date.valueOf(dateNaissance), adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId,numDossier,patient_id);
                     }
                 }
             }
@@ -129,6 +129,43 @@ public abstract class Patient {
     public int getNumDossier(){
         System.out.println(this.numDossier);
         return this.numDossier;
+    }
+    public static Patient getPatientByNumDossier(int id) {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+
+        String sql = "SELECT * FROM Patient WHERE NumDossier = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int patient_id= rs.getInt("Patient_id");
+                    int numDossier = rs.getInt("NumDossier");
+                    String nom = rs.getString("nom");
+                    String prenom = rs.getString("Prenom");
+                    String dateNaissance = rs.getString("Date_Naissance");
+                    String adresse = rs.getString("adresse");
+                    String lieuNaissance = rs.getString("Lieu_Naissance");
+                    String etude = rs.getString("Etude");
+                    String diplome = rs.getString("diplome");
+                    String proffession = rs.getString("proffession");
+                    String numTelephone = rs.getString("Phone");
+                    int orthophonisteId = rs.getInt("Orthophoniste_id");
+
+                    if (etude != null) {
+                        // This is an enfant
+                        return new Enfant(nom, prenom,Date.valueOf(dateNaissance), adresse, lieuNaissance, numTelephone,etude, orthophonisteId,numDossier,patient_id);
+                    } else {
+                        // This is an adult
+                        return new Adult(nom, prenom, Date.valueOf(dateNaissance), adresse, lieuNaissance, diplome, proffession, numTelephone, orthophonisteId,numDossier,patient_id);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching patient from the database.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

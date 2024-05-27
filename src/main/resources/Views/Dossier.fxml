@@ -120,11 +120,11 @@
                     </font>
                 </Text>
                 <TableView layoutX="72.0" layoutY="120.0" prefHeight="232.0" prefWidth="328.0"
-                           stylesheets="@../Styles/Styles.css">
+                           stylesheets="@../Styles/Styles.css" fx:id="tableView">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="Date"/>
-                        <TableColumn prefWidth="75.0" text="Heure"/>
-                        <TableColumn prefWidth="176.7999725341797" text="Type de Rendez-Vous"/>
+                        <TableColumn prefWidth="75.0" fx:id="dateColumn" text="Date"/>
+                        <TableColumn prefWidth="75.0" fx:id="hourColumn" text="Heure"/>
+                        <TableColumn prefWidth="176.7999725341797" fx:id="typeColumn" text="Type de Rendez-Vous"/>
                     </columns>
                 </TableView>
                 <Button layoutX="49.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0"

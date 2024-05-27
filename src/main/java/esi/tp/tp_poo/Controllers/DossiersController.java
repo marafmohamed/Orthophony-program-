@@ -93,7 +93,7 @@ public class DossiersController implements Initializable {
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         AjouterPatient.setOnAction(this::handleAjouterPatient);
-
+        CurrentPatient.getInstance().setCurrentPatient(null);
         // Populate TableView with data from the database
         try {
             populateTableView();
@@ -117,6 +117,9 @@ public class DossiersController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 /*&& (!row.isEmpty())*/) {
                     TableDossier rowData = row.getItem();
+                    int numDossier = Integer.parseInt(rowData.getNumDossier());
+                    Patient patient = Patient.getPatientByNumDossier(numDossier);
+                    CurrentPatient.getInstance().setCurrentPatient(patient);
                     // Your logic to handle row double click
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dossier.fxml"));
                     Scene scene = null;
@@ -252,6 +255,7 @@ public class DossiersController implements Initializable {
     @FXML
     private void handleRetourButtonAction(ActionEvent event) {
         // Your logic to handle retour button action
+        CurrentPatient.getInstance().setCurrentPatient(null);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Acceuil.fxml"));
         Scene scene = null;
         try {
