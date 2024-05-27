@@ -179,17 +179,6 @@ public class AtelierController {
 
     private void handleValiderButtonAction(ActionEvent actionEvent) {
         // Your logic to handle enregistrer button action
-        //
-        VBox vbox = (VBox) patientScrollPane.getContent();
-        for (Node node : vbox.getChildren()) {
-            if (node instanceof CheckBox) {
-                CheckBox checkBox = (CheckBox) node;
-                if (checkBox.isSelected()) {
-                    // Save the selected patient
-                    saveSelectedPatient(checkBox.getText());
-                }
-            }
-        }
 
         // Get the data from the fields
         String thematique = thematiqueTextField.getText();

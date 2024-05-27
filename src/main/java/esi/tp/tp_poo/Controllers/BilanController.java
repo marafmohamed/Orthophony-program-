@@ -235,42 +235,9 @@ public class BilanController {
 
                 // Iterate over each TitledPane in the Accordion
                 for (TitledPane pane : testsAccordion.getPanes()) {
-                    VBox content = (VBox) pane.getContent();
-                    // The first HBox contains the test name and type
-                    HBox testNameAndTypeBox = (HBox) content.getChildren().get(0);
-                    String testName = ((Label) testNameAndTypeBox.getChildren().get(0)).getText();
-                    String testType = ((Label) testNameAndTypeBox.getChildren().get(1)).getText();
 
-                    // The second VBox contains the questions
-                    VBox questionsBox = (VBox) content.getChildren().get(1);
 
-                    if (testType.equals("QCM")) {
-                        ArrayList<String> selectedChoices = new ArrayList<>();
-                        for (Node node : questionsBox.getChildren()) {
-                            if (node instanceof CheckBox && ((CheckBox) node).isSelected()) {
-                                selectedChoices.add(((CheckBox) node).getText());
-                            }
-                        }
-                        // Save the data
-                        // Replace this with your actual saving code
-                        System.out.println("Saving QCM: " + testName + ", " + selectedChoices);
-                    } else if (testType.equals("QCU")) {
-                        String selectedChoice = null;
-                        for (Node node : questionsBox.getChildren()) {
-                            if (node instanceof RadioButton && ((RadioButton) node).isSelected()) {
-                                selectedChoice = ((RadioButton) node).getText();
-                                break;
-                            }
-                        }
-                        // Save the data
-                        // Replace this with your actual saving code
-                        System.out.println("Saving QCU: " + testName + ", " + selectedChoice);
-                    } else if (testType.equals("Exercises")) {
-                        // Handle exercises type
-                        // This will depend on how you have structured your exercises
-                        // Replace this with your actual saving code
-                        System.out.println("Saving Exercises: " + testName);
-                    }
+
                 }
             }
         } catch (SQLException e) {
@@ -437,26 +404,6 @@ public class BilanController {
         questionContainer.getChildren().add(questionBox);
     }
 
-
-    private VBox addQuestionQcu(String question, String[] choices) {
-
-        VBox questionsBox = new VBox(5);
-        Label question1 = new Label(question);
-        for (String choice : choices) {
-            RadioButton choice1 = new RadioButton(choice);
-            questionsBox.getChildren().add(choice1);
-        }
-        return questionsBox;
-    }
-
-    private VBox addQuestionExercices(String question) {
-
-        VBox questionsBox = new VBox(5);
-        Label question1 = new Label(question);
-        TextArea answerArea = new TextArea();
-        questionsBox.getChildren().add(answerArea);
-        return questionsBox;
-    }
 
 
     @FXML
