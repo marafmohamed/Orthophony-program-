@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -60,8 +61,12 @@ public class AtelierController {
     private Button annulerButton;
 
     @FXML
+    private Text doctorName;
+
+
+    @FXML
     public void initialize() {
-        // Fetch data from the database
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         List<String> patients = fetchPatientsFromDatabase();
 
         // Create a VBox to hold the CheckBoxes

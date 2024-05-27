@@ -126,7 +126,7 @@
                     </font>
                 </Text>
                 <Text fill="WHITE" layoutX="392.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Dr Maraf Mohamed" textAlignment="CENTER">
+                      fx:id="doctorName" textAlignment="CENTER">
                     <font>
                         <Font name="Montserrat Regular" size="16.0"/>
                     </font>

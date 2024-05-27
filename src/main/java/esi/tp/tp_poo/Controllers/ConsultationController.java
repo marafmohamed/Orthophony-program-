@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,9 +63,13 @@ public class ConsultationController {
     @FXML
     private Button AnnulerButton;
 
+    @FXML
+    private Text doctorName;
+
 
     @FXML
     public void initialize() {
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         ValiderButton.setOnAction(this::handleValiderButtonAction);

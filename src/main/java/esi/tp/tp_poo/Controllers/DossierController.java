@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -57,7 +58,13 @@ public class DossierController {
 
     @FXML
     private TableColumn<Patient, Integer> numDossierColumn;
+    @FXML
+    private Text doctorName;
+
+
+    @FXML
     public void initialize() throws SQLException {
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RdvSideBar.setOnAction(this::handleRdvSideBarAction);

@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -49,9 +50,15 @@ public class ListBilansController implements Initializable {
     @FXML
     private Button AjouterBilan;
 
+    @FXML
+    private Text doctorName;
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize TableView columns
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date de realisation"));
         bilanIdColumn.setCellValueFactory(new PropertyValueFactory<>("Bilan ID"));
 

@@ -13,7 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-
+import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,9 +48,15 @@ public class ListSuiviController implements Initializable {
     @FXML
     private Button AjouterBilan;
 
+    @FXML
+    private Text doctorName;
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize TableView columns
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
 
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);

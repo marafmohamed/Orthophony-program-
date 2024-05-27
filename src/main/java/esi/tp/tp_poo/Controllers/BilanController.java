@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.*;
@@ -82,10 +82,13 @@ public class BilanController {
     private TextArea ObservationArea;
     @FXML
     private Accordion testsAccordion;
+    @FXML
+    private Text doctorName;
 
 
     @FXML
     public void initialize() {
+
         anamneseTab.setOnSelectionChanged(event -> {
             if (anamneseTab.isSelected()) {
                 enfantRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -109,7 +112,7 @@ public class BilanController {
             }
         });
 
-
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RetourButton.setOnAction(this::handleRetourButtonAction);
         RdvSideBar.setOnAction(this::handleRdvSideBarAction);

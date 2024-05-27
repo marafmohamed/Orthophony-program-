@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,7 +40,12 @@ public class CompteRenduController {
     private Button saveButton;
 
     @FXML
+    private Text doctorName;
+
+
+    @FXML
     public void initialize() {
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RdvSideBar.setOnAction(this::handleRdvSideBarAction);
         DossierSideBar.setOnAction(this::handleDossierSideBarAction);
         TestSideBar.setOnAction(this::handleTestSideBarAction);

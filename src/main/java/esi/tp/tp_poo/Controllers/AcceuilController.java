@@ -44,8 +44,12 @@ public class AcceuilController {
     private Button seDeconnecterButton;
 
     @FXML
+    private Text doctorName;
+
+    @FXML
     public void initialize() {
         // Set the event handlers for the buttons
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         nouveauRendezVousButton.setOnAction(this::handleNouveauRendezVousButtonAction);
         dossiersPatientsButton.setOnAction(this::handleDossiersPatientsButtonAction);
         statistiquesButton.setOnAction(this::handleStatistiquesButtonAction);

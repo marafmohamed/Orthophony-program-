@@ -38,10 +38,10 @@
                                 <Image url="@../Images/profile_photo.png"/>
                             </image>
                         </ImageView>
-                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"
+                        <Text fill="#ffd32e" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="doctorName"
                               wrappingWidth="47.11500549316406">
                             <font>
-                                <Font name="Montserrat Regular" size="15.0"/>
+                                <Font name="Montserrat Regular" size="10.0"/>
                             </font>
                         </Text>
                     </children>

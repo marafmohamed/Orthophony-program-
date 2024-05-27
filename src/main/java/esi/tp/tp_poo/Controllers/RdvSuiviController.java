@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -63,10 +64,14 @@ public class RdvSuiviController {
 
     @FXML
     private DatePicker Datepick;
+    @FXML
+    private Text doctorName;
+
 
     @FXML
     public void initialize() throws SQLException {
         // Fetch data from the database
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         List<Patient> patients = Orthophoniste.getInstance().getPatientForOrthophoniste();
         // Create a VBox to hold the CheckBoxes
         VBox vbox = new VBox();

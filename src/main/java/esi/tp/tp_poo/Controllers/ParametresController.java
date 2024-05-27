@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,9 +31,13 @@ public class ParametresController {
     @FXML
     private Button seDeconnecterButton;
 
+    @FXML
+    private Text doctorName;
+
 
     @FXML
     public void initialize() {
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         RdvSideBar.setOnAction(this::handleRdvSideBarAction);

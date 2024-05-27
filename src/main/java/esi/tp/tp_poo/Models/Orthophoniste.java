@@ -141,6 +141,10 @@ public class Orthophoniste {
         }
     }
 
+    public static String getNom() {
+        return instance.nom;
+    }
+
     public int getIdentifiant() {
         return identifiant;
     }
@@ -219,5 +223,9 @@ public class Orthophoniste {
 
     public void modifierInformationPersonnelle(String information) {
         // Implementation needed - modify fields based on the information argument
+    }
+
+    public String getPrenom() {
+        return prenom;
     }
 }

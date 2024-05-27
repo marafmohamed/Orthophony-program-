@@ -15,6 +15,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -58,6 +59,10 @@ public class DossiersController implements Initializable {
 
     @FXML
     private  Button AjouterPatient;
+    @FXML
+    private Text doctorName;
+
+
 
     private static final String SELECT_ALL_QUERY = "SELECT d.NumDossier, p.nom, p.Prenom, p.Date_Naissance FROM DossierPatient d JOIN Patient p ON d.Patient_id = p.Patient_id";
     private Connection connection;
@@ -89,7 +94,7 @@ public class DossiersController implements Initializable {
 //        prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
 //        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
 //        numDossierColumn.setCellValueFactory(new PropertyValueFactory<>("numDossier"));
-
+        doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
         AjouterPatient.setOnAction(this::handleAjouterPatient);
