@@ -1,5 +1,7 @@
 package esi.tp.tp_poo.Controllers;
 
+import esi.tp.tp_poo.Enums.TypePatient;
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -184,11 +186,33 @@ public class ConsultationController {
         String additionalInfo = additionalInfoTextArea.getText();
         String hour = hourComboBox.getValue();
         String minute = minuteComboBox.getValue();
+        if(name.isEmpty() || prenom.isEmpty() || age.isEmpty() || motif.isEmpty() || rendezVousDate == null || additionalInfo.isEmpty() || hour == null || minute == null) {
+            // Show an alert to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Veuillez remplir tous les champs");
+            alert.showAndWait();
 
-        // Save the data to your database or data structure
+        }else {
+            if(Integer.parseInt(age)>=18){
+                Orthophoniste.getInstance().createConsultation(Integer.parseInt(age), name, prenom, rendezVousDate, java.sql.Time.valueOf(hour + ":" + minute + ":00"), TypePatient.valueOf("ADULTE"));
+            }else {
+                Orthophoniste.getInstance().createConsultation(Integer.parseInt(age), name, prenom, rendezVousDate, java.sql.Time.valueOf(hour + ":" + minute + ":00"), TypePatient.valueOf("ENFANT"));
+            }
+            showAlert("Rendez-vous ajouté avec succès");
+        }
+
+            // Save the data to your database or data structure
         // ...
     }
 
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     private void handleAnnulerButtonAction(ActionEvent event) {
         // Your logic to handle annuler button action

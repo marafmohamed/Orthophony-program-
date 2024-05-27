@@ -16,7 +16,7 @@ public class Consultation extends RendezVous {
     private Duration duration;
 
     // num de dossier
-    public Consultation(int age, String nom, String prenom, Date date, Time hour, int IdOrthophoniste, @NotNull TypePatient typePatient) {
+    public Consultation(int age, String nom, String prenom, Date date, Time hour, int IdOrthophoniste, @NotNull TypePatient typePatient, int RendezVousId) {
         super(date, hour, IdOrthophoniste);
         this.age = age;
         this.nom = nom;
@@ -32,6 +32,11 @@ public class Consultation extends RendezVous {
             }
         }
         this.typePatient = typePatient;
+        if (RendezVousId > 0) {
+            this.RendezVousId = RendezVousId;
+        } else {
+            insertRendezVous();
+        }
     }
 
     public void setNumDossier(int NumDossier) {
@@ -44,7 +49,7 @@ public class Consultation extends RendezVous {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO RendezVous (Date,Orthophoniste_id,Time,Duration,Nom,Age,Prenom) VALUES (?, ?, ?, ?,?,?,?)";
+        String sql = "INSERT INTO Rendez_Vous (Date,Orthophoniste_id,Time,Duration,Nom,Age,Prenom,TypePatient) VALUES (?, ?, ?, ?,?,?,?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, String.valueOf(this.date));
@@ -52,8 +57,9 @@ public class Consultation extends RendezVous {
             pstmt.setString(3, String.valueOf(this.hour));
             pstmt.setString(4, String.valueOf(this.duration));
             pstmt.setString(5, this.nom);
-            pstmt.setInt(6,age);
+            pstmt.setInt(6, age);
             pstmt.setString(7, this.prenom);
+            pstmt.setString(8, this.typePatient.toString());
 
 
             pstmt.executeUpdate();

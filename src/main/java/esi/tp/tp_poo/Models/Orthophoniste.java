@@ -1,6 +1,7 @@
 package esi.tp.tp_poo.Models;
 
 import esi.tp.tp_poo.ConnectDB;
+import esi.tp.tp_poo.Enums.TypePatient;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -154,6 +155,10 @@ public class Orthophoniste {
 
     public Enfant addPatientEnfant(String adresse, String telephone, String lieuNaissance, String etude, String nom, String Prenom, LocalDate DateNaissance) throws SQLException {
         return new Enfant(nom, Prenom, Date.valueOf(DateNaissance), adresse, lieuNaissance, telephone, etude, this.identifiant, 0, 0);
+    }
+
+    public void createConsultation(int age, String nom, String prenom, LocalDate date, Time hour, TypePatient type) {
+        new Consultation(age, nom, prenom, Date.valueOf(date), hour, this.identifiant, type,0);
     }
 
     public BilanOrthophonique createBilan(int Patient_id) {
