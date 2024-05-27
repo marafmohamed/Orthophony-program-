@@ -3,6 +3,7 @@ package esi.tp.tp_poo.Controllers;
 import esi.tp.tp_poo.Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -137,7 +138,7 @@ public class DossierController {
 
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
-        // Your logic to handle se deconnecter button action
+        Orthophoniste.disconnect();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {

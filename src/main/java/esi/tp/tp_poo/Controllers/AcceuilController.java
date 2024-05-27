@@ -1,6 +1,7 @@
 package esi.tp.tp_poo.Controllers;
 
 import esi.tp.tp_poo.HelloApplication;
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -146,6 +147,7 @@ public class AcceuilController {
 
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
+        Orthophoniste.disconnect();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login.fxml"));
         Scene scene = null;
         try {

@@ -1,6 +1,7 @@
 package esi.tp.tp_poo.Controllers;
 
 import esi.tp.tp_poo.Models.CurrentPatient;
+import esi.tp.tp_poo.Models.Orthophoniste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
