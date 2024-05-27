@@ -13,9 +13,10 @@ public class Atelier extends RendezVous {
     private List<Integer> DossierPatient;
     private Duration duration = Duration.ofHours(1);
 
-    public Atelier(Date date, Time time, String Thematique, int IdOrthophoniste, int RendezVous_id) {
+    public Atelier(Date date, Time time, String Thematique, int IdOrthophoniste, List<Integer>DossierPatient,int RendezVous_id) {
         super(date, time, IdOrthophoniste);
         this.Thematique = Thematique;
+        this.DossierPatient=DossierPatient;
         if (RendezVousId > 0) {
            this.RendezVousId=RendezVous_id;
         } else {
@@ -27,7 +28,7 @@ public class Atelier extends RendezVous {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO RendezVous (Date,Orthophoniste_id,Time,Duration,Thematique) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Rendez_Vous (Date,Orthophoniste_id,Time,Duration,Thematique) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, String.valueOf(this.date));
@@ -44,7 +45,7 @@ public class Atelier extends RendezVous {
                         String sql2 = "INSERT INTO RendezVous_Dossier (NumDossier,RendezVous_id) VALUES (?,?)";
                         PreparedStatement pstmt2 = connection.prepareStatement(sql2);
                         pstmt2.setInt(1, DossierPatient);
-                        pstmt2.setInt(2, IdOrthophoniste);
+                        pstmt2.setInt(2, this.RendezVousId);
                         pstmt2.executeUpdate();
                     }
                 } else {
@@ -52,7 +53,7 @@ public class Atelier extends RendezVous {
                 }
             }
 
-            System.out.println("BilanOrthophonique added to the database successfully.");
+            System.out.println("RendezVous added to the database successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

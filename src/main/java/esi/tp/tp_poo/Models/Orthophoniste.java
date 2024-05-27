@@ -169,11 +169,14 @@ public class Orthophoniste {
         new Suivi(Date.valueOf(date), hour, numDossier, presentiel, IdOrthophoniste, RendezVous_id);
     }
 
-    public void createAtelier(LocalDate date, Time time, String Thematique, int IdOrthophoniste, int RendezVous_id) {
-        new Atelier(Date.valueOf(date), time, Thematique, IdOrthophoniste, RendezVous_id);
+    public void createAtelier(LocalDate date, Time time, String Thematique, int IdOrthophoniste, List<Integer>DossierPatients,int RendezVous_id) {
+        new Atelier(Date.valueOf(date), time, Thematique, IdOrthophoniste,DossierPatients, RendezVous_id);
     }
-    public BilanOrthophonique createBeilan(int Patient_id) {
-        return new BilanOrthophonique(Patient_id, "10/12/2024", this.identifiant, "kkk", 0);
+    public BilanOrthophonique createBeilan(int Patient_id, String dateRealisation, String projetTherapeutique) {
+        return new BilanOrthophonique(Patient_id, dateRealisation, this.identifiant, projetTherapeutique, 0);
+    }
+    public List<BilanOrthophonique> getAllBilanForPatient (int Patient_id){
+        return null;
     }
 
     public List<Patient> getPatientForOrthophoniste() throws SQLException {

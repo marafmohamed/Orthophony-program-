@@ -2,6 +2,7 @@ package esi.tp.tp_poo.Controllers;
 
 import esi.tp.tp_poo.Models.CurrentPatient;
 import esi.tp.tp_poo.Models.Orthophoniste;
+import esi.tp.tp_poo.Models.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,17 +69,18 @@ public class AtelierController {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
+        // Fetch data from the database
+        List<Patient> patients = Orthophoniste.getInstance().getPatientForOrthophoniste();
         doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
-        List<String> patients = fetchPatientsFromDatabase();
-
         // Create a VBox to hold the CheckBoxes
         VBox vbox = new VBox();
         vbox.setSpacing(10); // Set spacing between CheckBoxes
 
         // Create a CheckBox for each patient
-        for (String patient : patients) {
-            CheckBox checkBox = new CheckBox(patient);
+        for (Patient patient : patients) {
+            String nom = patient.getNom() + patient.getPrenom() + ", " + patient.getNumDossier();
+            CheckBox checkBox = new CheckBox(nom);
             vbox.getChildren().add(checkBox);
         }
 
@@ -184,6 +189,18 @@ public class AtelierController {
 
     private void handleValiderButtonAction(ActionEvent actionEvent) {
         // Your logic to handle enregistrer button action
+        //
+        VBox vbox = (VBox) patientScrollPane.getContent();
+        List<Integer> patients=new ArrayList<>();
+        for (Node node : vbox.getChildren()) {
+            if (node instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) node;
+                if (checkBox.isSelected()) {
+                    // Save the selected patient
+                    patients.add(Integer.parseInt(checkBox.getText().split(", ")[1]));
+                }
+            }
+        }
 
         // Get the data from the fields
         String thematique = thematiqueTextField.getText();
@@ -191,6 +208,19 @@ public class AtelierController {
         String additionalInfo = additionalInfoTextArea.getText();
         String hour = hourComboBox.getValue();
         String minute = minuteComboBox.getValue();
+
+        if(thematique==null|| rendezVousDate==null || additionalInfo==null||hour==null || minute ==null || patients.isEmpty()){
+            showAlert("All fields are required");
+            return;
+        }else{
+            if(patients.size()<2){
+                showAlert("Must choose more than one patient");
+                return;
+            }
+            Time time = Time.valueOf(hour + ":" + minute + ":00");
+            Orthophoniste.getInstance().createAtelier(rendezVousDate,time,thematique,Orthophoniste.getInstance().getIdentifiant(),patients,0);
+        }
+
 
         // Save the data to your database or data structure
         // ...
@@ -220,6 +250,13 @@ public class AtelierController {
         stage.show();
     }
 
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     private void handleSeDeconnecterButtonAction(ActionEvent event) {
         // Your logic to handle se deconnecter button action

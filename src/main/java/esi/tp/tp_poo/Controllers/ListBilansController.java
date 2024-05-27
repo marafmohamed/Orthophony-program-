@@ -1,8 +1,8 @@
 package esi.tp.tp_poo.Controllers;
 
-import esi.tp.tp_poo.Models.BilanOrthophonique;
-import esi.tp.tp_poo.Models.CurrentPatient;
-import esi.tp.tp_poo.Models.Orthophoniste;
+import esi.tp.tp_poo.Models.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ListBilansController implements Initializable {
@@ -39,7 +40,7 @@ public class ListBilansController implements Initializable {
     private Button seDeconnecterButton;
 
     @FXML
-    private TableView<BilanOrthophonique> tableView;
+    private TableView<TableBilan> tableView;
 
     @FXML
     private TableColumn<BilanOrthophonique, String> dateColumn;
@@ -57,7 +58,10 @@ public class ListBilansController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        CurrentBilan.getInstance().removeCurrentBilan();
         // Initialize TableView columns
+        bilanIdColumn.setCellValueFactory(new PropertyValueFactory<>("BilanId"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date de realisation"));
         bilanIdColumn.setCellValueFactory(new PropertyValueFactory<>("Bilan ID"));
@@ -65,7 +69,7 @@ public class ListBilansController implements Initializable {
 
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);
-        AjouterBilan.setOnAction(this::handleAjouterPatient);
+        AjouterBilan.setOnAction(this::handleAjouterBilan);
 
         // Populate TableView with data from the database
         populateTableView();
@@ -77,10 +81,10 @@ public class ListBilansController implements Initializable {
 
         // Handle row click event
         tableView.setRowFactory(tv -> {
-            TableRow<BilanOrthophonique> row = new TableRow<>();
+            TableRow<TableBilan> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 /*&& (!row.isEmpty())*/) {
-                    BilanOrthophonique rowData = row.getItem();
+                    TableBilan rowData = row.getItem();
                     // Your logic to handle row double click
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Bilan.fxml"));
                     Scene scene = null;
@@ -166,6 +170,14 @@ public class ListBilansController implements Initializable {
 
 
     private void populateTableView() {
+        //   Orthophoniste.getInstance()(CurrentPatient.getInstance().getCurrentPatient().getPatient_id());
+        ObservableList<TableBilan> table = FXCollections.observableArrayList();
+        BilanOrthophonique.getBilansForOrthophonisteWithPatient(Orthophoniste.getInstance().getIdentifiant(), CurrentPatient.getInstance().getCurrentPatient().getPatient_id()).forEach(bilanOrthophonique -> {
+            table.add(new TableBilan(bilanOrthophonique.getDateRealisation(), String.valueOf(bilanOrthophonique.getBilanId())));
+        });
+        System.out.println(table.size());
+        tableView.setItems(table);
+
     }
 
 /*@FXML
@@ -228,7 +240,8 @@ public void closeConnection() {
     }
 
     @FXML
-    private void handleAjouterPatient(ActionEvent event) {
+    private void handleAjouterBilan(ActionEvent event) {
+        Orthophoniste.getInstance().createBeilan(CurrentPatient.getInstance().getCurrentPatient().getPatient_id(),String.valueOf(LocalDate.now()) , "");
         // Your logic to handle ajouter patient button action
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Bilan.fxml"));
         Scene scene = null;
