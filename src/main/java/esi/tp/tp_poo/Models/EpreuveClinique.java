@@ -15,12 +15,12 @@ public class EpreuveClinique {
     private List<String> observations;
     private List<Test> tests;
 
-    public EpreuveClinique(String nom, ArrayList<String> observations,int epreuveId) throws SQLException {
+    public EpreuveClinique(String nom, ArrayList<String> observations, int epreuveId) throws SQLException {
         this.nom = nom;
         this.observations = observations;
-        if(epreuveId>0){
-            this.epreuveId=epreuveId;
-        }else {
+        if (epreuveId > 0) {
+            this.epreuveId = epreuveId;
+        } else {
             insert();
         }
     }
@@ -61,32 +61,25 @@ public class EpreuveClinique {
                 throw new RuntimeException(e);
             }
         }
-        return this.tests;    }
+        return this.tests;
+    }
 
     public void addTest(Test test) throws SQLException {
         this.tests.add(test);
     }
+
     private void retrieveTestsFromDB() throws SQLException {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
-        String sql = "SELECT * FROM Test WHERE EpreuveClinique = ?";
+        String sql = "SELECT * FROM Test_Epreuve WHERE Epreuve_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, this.epreuveId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 this.tests = new ArrayList<>();
                 while (rs.next()) {
                     int testId = rs.getInt("Test_id");
-                    String nomTest = rs.getString("nom");
-                    String capacite = rs.getString("Capacite");
-                    int patientId = rs.getInt("Patient");
-                    int compteRenduId = rs.getInt("CompteRendu");
-                    int Bilan= rs.getInt("Bilan");
-                    boolean exo=rs.getBoolean("exo");
-                    if(exo){
-                        Test test = new TestExercices(nomTest,capacite,patientId,compteRenduId,Bilan,testId);
-                        this.tests.add(test);
-                    }else {
-                        Test test=new TestQuestions(nomTest,capacite,patientId,compteRenduId,Bilan,testId);
+                    Test test = Test.getTestById(testId);
+                    if (test != null) {
                         this.tests.add(test);
                     }
                 }
@@ -95,6 +88,7 @@ public class EpreuveClinique {
             throw new RuntimeException(e);
         }
     }
+
     public void insert() throws SQLException {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
@@ -202,4 +196,61 @@ public class EpreuveClinique {
             throw new RuntimeException(e);
         }
     }
+
+    public void addTest(int id) {
+        Test test = Test.getTestById(id);
+        if (test != null) {
+            // Create a new line in the Test_Epreuve table
+            try (Connection connection = ConnectDB.getInstance().getConnection();
+                 PreparedStatement pstmt = connection.prepareStatement("INSERT INTO Test_Epreuve (Test_id, Epreuve_id) VALUES (?, ?)")) {
+                pstmt.setInt(1, id);
+                pstmt.setInt(2, this.epreuveId);
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error adding Test to Epreuve: " + e.getMessage());
+                e.printStackTrace();
+            }
+            this.tests.add(test);
+        }
+    }
+
+    public void removeTest(int id) {
+        Test test = Test.getTestById(id);
+        if (test != null) {
+            // Delete the line in the Test_Epreuve table
+            try (Connection connection = ConnectDB.getInstance().getConnection();
+                 PreparedStatement pstmt = connection.prepareStatement("DELETE FROM Test_Epreuve WHERE Test_id = ? AND Epreuve_id = ?")) {
+                pstmt.setInt(1, id);
+                pstmt.setInt(2, this.epreuveId);
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error removing Test from Epreuve: " + e.getMessage());
+                e.printStackTrace();
+            }
+            this.tests.remove(test);
+        }
+    }
+
+    public static EpreuveClinique getEpreuveById(int id) {
+        ConnectDB db = ConnectDB.getInstance();
+        Connection connection = db.getConnection();
+
+        String sql = "SELECT * FROM EpreuveClinique WHERE EpreuveClinique_id = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String nom = rs.getString("nom");
+                    EpreuveClinique epreuve = new EpreuveClinique(nom, new ArrayList<>(), id);
+                    return epreuve;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving EpreuveClinique: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

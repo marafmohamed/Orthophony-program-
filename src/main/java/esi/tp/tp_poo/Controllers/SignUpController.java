@@ -83,21 +83,19 @@ public class SignUpController {
         String lastName = lastNameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+        String numero = numeroField.getText();
+        String adresse = adresseField.getText();
 
         try{
-            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || numero.isEmpty() || adresse.isEmpty()){
                 showAlert("All fields are required.");
-                return false;
-            }
-            if (!password.equals(confirmPassword)) {
-                showAlert("Passwords do not match.");
                 return false;
             }
             if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
                 showAlert("Invalid email format.");
                 return false;
             }
-            Orthophoniste.getInstance(firstName,lastName,"", "0698058486",email,password);
+            Orthophoniste.getInstance(firstName,lastName,adresse, numero ,email,password);
         }catch (Exception e){
             e.printStackTrace();
             showAlert(e.getMessage());

@@ -15,8 +15,8 @@ public class TestExercices extends Test {
     final boolean exo=true;
 
 
-    public TestExercices(String nomTest, String capacité, int patient, int compteRendu,int Bilan, int Test_id) {
-        super(nomTest, capacité, patient, compteRendu, Bilan);
+    public TestExercices(String nomTest, String capacité, int Test_id) {
+        super(nomTest, capacité);
         this.SerieExercices = new ArrayList<Exercice>();
         if (Test_id > 0) {
             this.Test_id = Test_id;
@@ -61,13 +61,12 @@ public class TestExercices extends Test {
         ConnectDB db = ConnectDB.getInstance();
         Connection connection = db.getConnection();
 
-        String sql = "INSERT INTO TestQuestions (nom, Capacite, Patient,exo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO TestQuestions (nom, Capacite ,exo) VALUES (?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, this.nomTest);
             pstmt.setString(2, this.Capacité);
-            pstmt.setInt(3, this.patient);
-            pstmt.setBoolean(4,this.exo);
+            pstmt.setBoolean(3,this.exo);
             pstmt.executeUpdate();
 
             // Retrieve the generated keys (in this case, just one)

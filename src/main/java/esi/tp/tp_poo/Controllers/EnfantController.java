@@ -11,6 +11,7 @@ import esi.tp.tp_poo.Models.Adult;
 import esi.tp.tp_poo.Models.Patient;
 import esi.tp.tp_poo.Models.Enfant;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -64,8 +65,15 @@ public class EnfantController {
             return;
         }else{
             // prosses the user input
+            try {
+                Orthophoniste.getInstance().addPatientEnfant(adresse,numeroPere,lieuNaissance,niveau,nom,prenom,dateNaissance);
+            } catch (Exception e) {
+                showAlert(e.getMessage());
+                throw new RuntimeException(e);
+            }
             //...
             // clear the fields
+            showAlert("Patient saved!");
             nomField.clear();
             prenomField.clear();
             adresseField.clear();
