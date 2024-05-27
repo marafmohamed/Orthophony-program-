@@ -144,7 +144,7 @@
                         styleClass="secondaryButton" stylesheets="@../Styles/Styles.css"
                         text="Accéder au Fiches de Suivi"  fx:id="AccederFichesButton"/>
                 <Button layoutX="422.0" layoutY="228.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
-                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Modifier le Dossier"/>
+                        styleClass="secondaryButton" stylesheets="@../Styles/Styles.css" text="Modifier le Dossier" fx:id="ModifDossier"/>
                 <Button layoutX="422.0" layoutY="284.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="226.0"
                         styleClass="secondarySuppButton" stylesheets="@../Styles/Styles.css"
                         text="Suprimmer le Dossier"/>

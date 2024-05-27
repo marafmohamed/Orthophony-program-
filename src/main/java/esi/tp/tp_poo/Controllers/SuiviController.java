@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,9 +35,18 @@ public class SuiviController {
     @FXML
     private Text doctorName;
 
+    @FXML
+    private LineChart linechart;
+
 
     @FXML
     public void initialize() {
+        //example for line chart
+        XYChart.Series series = new XYChart.Series();
+series.getData().add(new XYChart.Data("Jan", 3));
+series.getData().add(new XYChart.Data("Feb", 2));
+series.getData().add(new XYChart.Data("Mar", 3));
+
         doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);

@@ -5,6 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -31,10 +35,35 @@ public class StatisticsController {
     private Button seDeconnecterButton;
     @FXML
     private Text doctorName;
+    @FXML
+    private BarChart<?, ?> barChart;
+
+    @FXML
+    private LineChart<?, ?> lineChart;
+
+    @FXML
+    private PieChart pieChart;
+
 
 
     @FXML
     public void initialize() {
+        // Populate the bar chart
+        XYChart.Series series1 = new XYChart.Series();
+        series1.getData().add(new XYChart.Data("Trouble1", 5));
+        series1.getData().add(new XYChart.Data("Trouble2", 2));
+        barChart.getData().addAll(series1);
+
+        // Populate the line chart
+        XYChart.Series series2 = new XYChart.Series();
+        series2.getData().add(new XYChart.Data("Jan", 3));
+        series2.getData().add(new XYChart.Data("Feb", 2));
+        lineChart.getData().addAll(series2);
+
+        // Populate the pie chart
+        PieChart.Data slice1 = new PieChart.Data("Trouble1", 2);
+        PieChart.Data slice2 = new PieChart.Data("Trouble2", 3);
+        pieChart.getData().addAll(slice1, slice2);
         doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
         RetourButton.setOnAction(this::handleRetourButtonAction);
         seDeconnecterButton.setOnAction(this::handleSeDeconnecterButtonAction);

@@ -54,6 +54,7 @@ public class EpreuvesController {
         TestSideBar.setOnAction(this::handleTestSideBarAction);
         StatSideBar.setOnAction(this::handleStatSideBarAction);
         CreerEpreuveButton.setOnAction(this::handleCreerEpreuveButtonAction);
+        ModifierEpreuveButton.setOnAction(this::handleModifierEpreuveButtonAction);
     }
 
     private void handleStatSideBarAction(ActionEvent actionEvent) {
@@ -177,8 +178,21 @@ public class EpreuvesController {
 
     @FXML
     private void handleModifierEpreuveButtonAction(ActionEvent event) {
-        // Your logic to handle modifier epreuve button action
-        // ...
+        // Your logic to handle creer epreuve button action
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Test.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = new Stage();// (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Ajouter une épreuve");
+        stage.show();
     }
 
     @FXML

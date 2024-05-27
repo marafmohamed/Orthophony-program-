@@ -189,7 +189,7 @@
                 </ScrollPane>
                 <AnchorPane layoutX="330.0" layoutY="58.0" prefHeight="279.0" prefWidth="385.0" styleClass="listObj" stylesheets="@../Styles/Styles.css">
                     <children>
-                        <LineChart layoutX="4.0" layoutY="38.0" prefHeight="241.0" prefWidth="346.0">
+                        <LineChart fx:id="linechart" layoutX="4.0" layoutY="38.0" prefHeight="241.0" prefWidth="346.0">
                             <xAxis>
                                 <CategoryAxis side="BOTTOM" />
                             </xAxis>

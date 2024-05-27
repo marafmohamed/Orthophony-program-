@@ -63,8 +63,6 @@ public class ListBilansController implements Initializable {
         bilanIdColumn.setCellValueFactory(new PropertyValueFactory<>("BilanId"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         doctorName.setText("Dr. " + Orthophoniste.getInstance().getNom() + " " + Orthophoniste.getInstance().getPrenom());
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date de realisation"));
-        bilanIdColumn.setCellValueFactory(new PropertyValueFactory<>("Bilan ID"));
 
 
         RetourButton.setOnAction(this::handleRetourButtonAction);

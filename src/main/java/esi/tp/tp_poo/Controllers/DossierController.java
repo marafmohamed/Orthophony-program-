@@ -61,6 +61,9 @@ public class DossierController {
     @FXML
     private Text doctorName;
 
+    @FXML
+    private  Button ModifDossier;
+
 
     @FXML
     public void initialize() throws SQLException {
@@ -76,6 +79,7 @@ public class DossierController {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         hourColumn.setCellValueFactory(new PropertyValueFactory<>("Heure"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("typeRendezVous"));
+        ModifDossier.setOnAction(this::handleModifDossierButtonAction);
         populateTableView();
     }
 
@@ -227,5 +231,21 @@ public class DossierController {
         }
 
         tableView.setItems(table);
+    }
+    private void handleModifDossierButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/ModifDossier.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load FXML file");
+        }
+
+        Button button = (Button) event.getSource();
+        Stage stage = new Stage();// (Stage) button.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Patient Details");
+        stage.show();
     }
 }
